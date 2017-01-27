@@ -1,2 +1,4 @@
 # NervionPlayers
-EEL PROYECTO AI TO WAPO PA LA PEÑA JAJAJ
+Proyecto de Sistemas de Gestión.
+
+<!--Me cago en la puta virgen-->

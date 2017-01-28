@@ -16,6 +16,7 @@ CREATE TABLE Alumnos(
 Id int not null identity(1,1),
 Nombre nvarchar(30) not null,
 Apellidos nvarchar(50) null,
+Alias nvarchar(20) unique not null,
 Correo nvarchar(50) unique not null,
 Fecha_Creacion smalldatetime not null default CURRENT_TIMESTAMP,
 Curso tinyint not null,
@@ -159,6 +160,55 @@ Grant Select,Update,Insert,Delete to ProfesorNervion;
 GO  
 
 --Programación
+Create Trigger InsertarValidoAlumnos on Alumnos after insert as
+declare @FechaCreacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+If DateDiff(MI,@FechaCreacion,cast(CURRENT_TIMESTAMP as smalldatetime))>1 or DateDiff(MI,cast(CURRENT_TIMESTAMP as smalldatetime),@FechaCreacion)>1
+Begin
+rollback
+End
+go
+Create Trigger InsertarValidoEquipos on Equipos after insert as
+declare @FechaCreacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+If DateDiff(MI,@FechaCreacion,cast(CURRENT_TIMESTAMP as smalldatetime))>1 or DateDiff(MI,cast(CURRENT_TIMESTAMP as smalldatetime),@FechaCreacion)>1
+Begin
+rollback
+End
+go
+Create Trigger InsertarValidoPartidos on Partidos after insert as
+declare @FechaCreacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+If DateDiff(MI,@FechaCreacion,cast(CURRENT_TIMESTAMP as smalldatetime))>1 or DateDiff(MI,cast(CURRENT_TIMESTAMP as smalldatetime),@FechaCreacion)>1
+Begin
+rollback
+End
+go
+Create Trigger InsertarValidoDuelos on Duelos after insert as
+declare @FechaCreacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+If DateDiff(MI,@FechaCreacion,cast(CURRENT_TIMESTAMP as smalldatetime))>1 or DateDiff(MI,cast(CURRENT_TIMESTAMP as smalldatetime),@FechaCreacion)>1
+Begin
+rollback
+End
+go
 
+Create Trigger InsertarValidoAlumnosEquipos on AlumnosEquipos after insert as
+declare @FechaCreacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+If DateDiff(MI,@FechaCreacion,cast(CURRENT_TIMESTAMP as smalldatetime))>1 or DateDiff(MI,cast(CURRENT_TIMESTAMP as smalldatetime),@FechaCreacion)>1
+Begin
+rollback
+End
+go
+
+Create Trigger InsertarValidoDispositivos on Dispositivos after insert as
+declare @FechaCreacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+If DateDiff(MI,@FechaCreacion,cast(CURRENT_TIMESTAMP as smalldatetime))>1 or DateDiff(MI,cast(CURRENT_TIMESTAMP as smalldatetime),@FechaCreacion)>1
+Begin
+rollback
+End
+go
 
 --Datos

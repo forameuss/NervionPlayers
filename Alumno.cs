@@ -4,6 +4,7 @@
  * *************
  * Nombre<=30
  * Apellidos<=50
+ * Contraseña<=255 contendrá mínimo un caracter en mayúscula, un número y un carácter especial
  * Alias<=20
  * Correo<=50 será *@*.* donde * es cualquiera cadena
  * Letra<=10
@@ -14,6 +15,8 @@ public class Alumno
     #region Atributos
     private int id;
     private String nombre;
+    private String apellidos;
+    private String contraseña;
     private String alias;
     private String correo;
     private DateTime fecha_Creacion;
@@ -29,11 +32,13 @@ public class Alumno
     {
     }
 
-    public Alumno(int id, String nombre, String alias, String correo, DateTime fecha_Creacion, Byte curso,
-            String letra, String observaciones, bool confirmado)
+    public Alumno(int id, String nombre,String apellidos,String contraseña, String alias, String correo,
+        DateTime fecha_Creacion, Byte curso,String letra, String observaciones, bool confirmado)
     {
         this.id = id;
         this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.contraseña = contraseña;
         this.alias = alias;
         this.correo = correo;
         this.fecha_Creacion = fecha_Creacion;
@@ -155,6 +160,32 @@ public class Alumno
         set
         {
             confirmado = value;
+        }
+    }
+
+    public string Contraseña
+    {
+        get
+        {
+            return contraseña;
+        }
+
+        set
+        {
+            contraseña = value;
+        }
+    }
+
+    public string Apellidos
+    {
+        get
+        {
+            return apellidos;
+        }
+
+        set
+        {
+            apellidos = value;
         }
     }
 

@@ -1,0 +1,22 @@
+Yiiiiii, he creado en github diferentes proyectos, para que podamos trabajar sin que nos pisemos los unos a los otros.
+Por norma general habrá 3 columnas por proyecto,una con las cosas que hay que hacer, otra con las que estamos haciendo y otra con las que hemos acabado y hay que pasar a testing
+La idea principal es ir poniendo cada una de las tarjetas en la columna correspondiente, no tenemos porque hacer únicamente las cosas que nosotros pongamos
+Lo que si es importante, es que antes de ponernos a trabajar en cualquier cosa, miremos en el proyecto correspondiente para ver
+si alguien está trabajando en eso, y si vamos a empezar a desarrollarlo, ponerlo en la columna correspondiente.
+Por último, hay una columna pasar a testing, en la cual pondremos las cosas que tengamos echas (testeadas por nosotros) para que otro las testee
+Para ello, cuando pasemos uan tarjeta de "En desarrollo" a "Testing" tendremos que poner el nombre de quién haya hecho esa tarea, para que 
+cuando se pase a testing, lo testee una persona diferente.
+Cuando alguien pase las tareas de la columna testing al proyecto Test, tendrá que poner el nombre de la persona (que ya vendrá en dicha tarjeta)
+y el proyecto al que pertenece.
+
+Cuando empecéis a trabajar en algo en concreto, acordaros de poner la tarjeta en la columna de desarrollo, y hacer un pull de la rama en la que 
+vayáis a trabajar. Si no acabáis la tarea, mantened la tarjeta en desarrollo, pero pushear los trabajos a la rama correspondiente
+(hacéis un commit y pusheais, siempre intentando que el commit sea autodocumentado). Si la acabáis, primero hacéis el commit y el push
+Y una vez que pusheeis, entonces pasad la tarjeta de la columna en desarrollo a la columna Testing.
+
+Una vez que el proyecto Test empieze a tener trabajo acumulado, explicaré como se trabaja en los Test.
+Muy importante!! El objetivo de esta metodología es que nosotros pongamos trabajo aportando nuestras ideas, y recojamos trabajo que nos pueda gustar más
+(intentándo que sea de nuestra área).
+
+Este tochaco también estará en la rama documentación por si lo queréis volver a leer.
+Un salido, digo saludo*

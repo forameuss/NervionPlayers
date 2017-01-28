@@ -1,9 +1,12 @@
---TODO
 /*
-Añadir trigger para que no se pueda modificar ninguna fecha de creación
+ *************
+ Restricciones
+ *************
+Las fechas de Creación no se insertarán ni modificarán
 */
 
 Use master
+go
 If exists(Select * from dbo.sysdatabases where name='NervionPlayers')
 Drop database NervionPlayers
 go
@@ -15,6 +18,7 @@ Use NervionPlayers
 CREATE TABLE Alumnos(
 Id int not null identity(1,1),
 Nombre nvarchar(30) not null,
+Contraseña nvarchar(255) not null,
 Apellidos nvarchar(50) null,
 Alias nvarchar(20) unique not null,
 Correo nvarchar(50) unique not null,
@@ -140,6 +144,7 @@ CREATE LOGIN AlumnoNervion
 	
 End 
 GO
+
 if not exists(Select * from master.sys.sql_logins where name='ProfesorNervion')
 Begin
 Create Login ProfesorNervion
@@ -160,6 +165,9 @@ Grant Select,Update,Insert,Delete to ProfesorNervion;
 GO  
 
 --Programación
+
+
+--Triggers Insert
 Create Trigger InsertarValidoAlumnos on Alumnos after insert as
 declare @FechaCreacion smalldatetime
 Select @FechaCreacion=Fecha_Creacion from inserted
@@ -168,6 +176,7 @@ Begin
 rollback
 End
 go
+
 Create Trigger InsertarValidoEquipos on Equipos after insert as
 declare @FechaCreacion smalldatetime
 Select @FechaCreacion=Fecha_Creacion from inserted
@@ -176,6 +185,7 @@ Begin
 rollback
 End
 go
+
 Create Trigger InsertarValidoPartidos on Partidos after insert as
 declare @FechaCreacion smalldatetime
 Select @FechaCreacion=Fecha_Creacion from inserted
@@ -184,6 +194,7 @@ Begin
 rollback
 End
 go
+
 Create Trigger InsertarValidoDuelos on Duelos after insert as
 declare @FechaCreacion smalldatetime
 Select @FechaCreacion=Fecha_Creacion from inserted
@@ -211,4 +222,101 @@ rollback
 End
 go
 
+--Triggers Update
+
+Create Trigger ModificarValidoAlumnos on Alumnos after update as
+declare @FechaCreacion smalldatetime
+declare @FechaActualizacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+Select @FechaActualizacion=Fecha_Creacion from deleted
+If @FechaCreacion<>@FechaActualizacion
+Begin
+rollback
+End
+go
+
+Create Trigger ModificarValidoEquipos on Equipos after update as
+declare @FechaCreacion smalldatetime
+declare @FechaActualizacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+Select @FechaActualizacion=Fecha_Creacion from deleted
+If @FechaCreacion<>@FechaActualizacion
+Begin
+rollback
+End
+go
+
+Create Trigger ModificarValidoPartidos on Partidos after update as
+declare @FechaCreacion smalldatetime
+declare @FechaActualizacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+Select @FechaActualizacion=Fecha_Creacion from deleted
+If @FechaCreacion<>@FechaActualizacion
+Begin
+rollback
+End
+go
+
+Create Trigger ModificarValidoDuelos on Duelos after update as
+declare @FechaCreacion smalldatetime
+declare @FechaActualizacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+Select @FechaActualizacion=Fecha_Creacion from deleted
+If @FechaCreacion<>@FechaActualizacion
+Begin
+rollback
+End
+go
+
+Create Trigger ModificarValidoAlumnosEquipos on AlumnosEquipos after update as
+declare @FechaCreacion smalldatetime
+declare @FechaActualizacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+Select @FechaActualizacion=Fecha_Creacion from deleted
+If @FechaCreacion<>@FechaActualizacion
+Begin
+rollback
+End
+go
+
+Create Trigger ModificarValidoDispositivos on Dispositivos after update as
+declare @FechaCreacion smalldatetime
+declare @FechaActualizacion smalldatetime
+Select @FechaCreacion=Fecha_Creacion from inserted
+Select @FechaActualizacion=Fecha_Creacion from deleted
+If @FechaCreacion<>@FechaActualizacion
+Begin
+rollback
+End
+go
+
 --Datos
+USE [NervionPlayers]
+GO
+
+INSERT INTO [dbo].[Alumnos]
+           ([Nombre]
+           ,[Contraseña]
+           ,[Apellidos]
+           ,[Alias]
+           ,[Correo]
+           ,[Curso]
+           ,[Letra]
+           ,[Confirmado])
+     VALUES
+           ('Francisco Javier'
+           ,'Constraseña'
+           ,'Ruiz Rodríguez'
+           ,'Javieraeros'
+           ,'pajarrurro@gmail.com'
+           ,1
+           ,'a'
+           ,0)
+GO
+
+--Pruebas
+/*
+Update Alumnos set Fecha_Creacion=SMALLDATETIMEFROMPARTS(2017,01,28,17,10)
+Select * from Alumnos
+
+*/

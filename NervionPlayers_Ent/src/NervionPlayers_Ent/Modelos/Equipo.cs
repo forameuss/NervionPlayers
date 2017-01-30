@@ -14,6 +14,10 @@ namespace NervionPlayers_Ent.Modelos
         private Byte[] foto;
         private bool confirmado;
 
+        public Equipo()
+        {
+
+        }
         public Equipo(int id, int id_Creador, string nombre, DateTime fecha_Creacion, byte[] foto, bool confirmado)
         {
             Id = id;

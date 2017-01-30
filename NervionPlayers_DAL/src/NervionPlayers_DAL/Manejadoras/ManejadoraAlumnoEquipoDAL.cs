@@ -1,4 +1,5 @@
 ﻿using DALClassLibrary;
+using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,31 +8,31 @@ using System.Threading.Tasks;
 
 namespace NervionPlayers_DAL.Manejadoras
 {
-    public class ManejadoraDeporteDAL
+    public class ManejadoraAlumnoEquipoDAL
     {
         private Connection con;
 
-        public ManejadoraDeporteDAL()
+        public ManejadoraAlumnoEquipoDAL()
         {
             con = new Connection("AlumnoNervion", ".N3tApe$7aH");
         }
 
         /// <summary>
-        /// Busca en la base de datos y devuelve un Deporte con el id recibido
+        /// Busca en la base de datos y devuelve un AlumnoEquipo con el id recibido
         /// </summary>
-        /// <param name="id">Recibe la id del Equipo a buscar</param>
-        /// <returns>retorna el Equipo</returns>
-        public Deporte obtenerDeporte(int id)
+        /// <param name="id">Recibe la id del Duelo a buscar</param>
+        /// <returns>retorna el Duelo</returns>
+        public AlumnoEquipo obtenerAlumnoEquipo(int id)
         {
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();
-            Deporte oDeporte = new Deporte();
+            AlumnoEquipo oAlumnoEquipo = new AlumnoEquipo();
             SqlDataReader lector;
 
             try
             {
-                conexion = con.openConnection();
-                miComando.CommandText = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Deportes_DB.DEPORTES_DB_TABLE_NAME, ContratoDB.Deportes_DB.DEPORTES_DB_ID, id);
+                conexion = con.openConnection();        //MIRAR BIEN QUE HAY QUE USAR PARA BUSCAR
+                //miComando.CommandText = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME, ContratoDB.alumnosEquipos_DB.I, id);
                 miComando.Connection = conexion;
                 lector = miComando.ExecuteReader();
 
@@ -39,8 +40,10 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oDeporte.Id = (int)lector[ContratoDB.Deportes_DB.DEPORTES_DB_ID];
-                        oDeporte.Nombre = (string)lector[ContratoDB.Deportes_DB.DEPORTES_DB_NOMBRE];
+                        oAlumnoEquipo.Id_Alumno = (int)lector[ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO];
+                        oAlumnoEquipo.Id_Equipo = (int)lector[ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO];
+                        oAlumnoEquipo.Fecha_Creacion = (DateTime)lector[ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_FECHA_CREACION];
+                       
                     }
                 }
 
@@ -55,15 +58,15 @@ namespace NervionPlayers_DAL.Manejadoras
                 con.CloseConnection();
             }
 
-            return oDeporte;
+            return oAlumnoEquipo;
         }
 
         /// <summary>
-        /// Añade un nuevo deporte en la base de datos
+        /// Añade un nuevo oAlumnoEquipo en la base de datos
         /// </summary>
-        /// <param name="deporte">Recibe un  tipo Deporte</param>
+        /// <param name="AlumnoEquipo">Recibe un  tipo AlumnoEquipo</param>
         /// <returns>retorna el numero de filas afectadas , int</returns>
-        public int insertarDeporte(Deporte deporte)
+        public int insertarAlumnoEquipo(AlumnoEquipo oAlumnoEquipo)
         {
             int filasAfectadas = 0;
             SqlConnection conexion;
@@ -72,10 +75,11 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");
+                miComando.CommandText = String.Format("");//Preguntar a javi que se inserta y que no
                 miComando.Connection = conexion;
 
                 filasAfectadas = miComando.ExecuteNonQuery();
+
             }
             catch (SqlException ex)
             {
@@ -90,11 +94,11 @@ namespace NervionPlayers_DAL.Manejadoras
         }
 
         /// <summary>
-        /// Funcion que borra un Deporte de la base de datos 
+        /// Funcion que borra un AlumnoEquipo de la base de datos 
         /// </summary>
-        /// <param name="id">Recibe el id del Deporte a borrar</param>
+        /// <param name="id">Recibe el id del AlumnoEquipo a borrar</param>
         /// <returns>int , retorna el numero de filas afectadas</returns>
-        public int borrardeporte(int id)
+        public int borrarAlumnoEquipo(int id)
         {
             int filasafectadas = 0;
             SqlConnection conexion;
@@ -102,8 +106,8 @@ namespace NervionPlayers_DAL.Manejadoras
 
             try
             {
-                conexion = con.openConnection();
-                miComando.CommandText = String.Format("Delete from {0} where {1} = {2}", ContratoDB.Deportes_DB.DEPORTES_DB_TABLE_NAME, ContratoDB.Deportes_DB.DEPORTES_DB_ID, id);
+                conexion = con.openConnection();//MIRAR BIEN QUE SE USA PARA BORRAR
+                //miComando.CommandText = String.Format("Delete from {0} where {1} = {2}", ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME, ContratoDB.Duelos_DB.DUELOS_DB_ID, id);
                 miComando.Connection = conexion;
 
                 filasafectadas = miComando.ExecuteNonQuery();

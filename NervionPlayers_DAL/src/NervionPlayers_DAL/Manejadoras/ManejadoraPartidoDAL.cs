@@ -8,31 +8,31 @@ using System.Threading.Tasks;
 
 namespace NervionPlayers_DAL.Manejadoras
 {
-    public class ManejadoraEquipoDAL
+    public class ManejadoraPartidoDAL
     {
         private Connection con;
 
-        public ManejadoraEquipoDAL()
+        public ManejadoraPartidoDAL()
         {
             con = new Connection("AlumnoNervion", ".N3tApe$7aH");
         }
 
         /// <summary>
-        /// Busca en la base de datos y devuelve un Equipo con el id recibido
+        /// Busca en la base de datos y devuelve un Partido con el id recibido
         /// </summary>
-        /// <param name="id">Recibe la id del Equipo a buscar</param>
-        /// <returns>retorna el Equipo</returns>
-        public Equipo obtenerEquipo(int id)
+        /// <param name="id">Recibe la id del partido a buscar</param>
+        /// <returns>retorna el Partido</returns>
+        public Partido obtenerPartido(int id)
         {
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();
-            Equipo oEquipo = new Equipo();
+            Partido oPartido = new Partido();
             SqlDataReader lector;
 
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME, ContratoDB.Equipos_DB.EQUIPOS_DB_ID, id);
+                miComando.CommandText = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Partidos_DB.PARTIDOS_DB_TABLE_NAME, ContratoDB.Partidos_DB.PARTIDOS_DB_ID, id);
                 miComando.Connection = conexion;
                 lector = miComando.ExecuteReader();
 
@@ -40,17 +40,25 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oEquipo.Id = (int)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID];
-                        oEquipo.Id_Creador = (int)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR];
-                        oEquipo.Nombre = (string)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE];
-                        oEquipo.Foto = (Byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
-                        oEquipo.Confirmado = (bool)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO];
+                        oPartido.Id = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID];
+                        oPartido.Id_Deporte = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE];
+                        oPartido.Id_Local = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL];
+                        oPartido.Id_Visitante = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE];
+                        oPartido.Resultado_Local = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL];
+                        oPartido.Resultado_Visitante = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE];
+                        oPartido.Lugar = (String)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR];
+                        oPartido.Foto = (Byte[])lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO];
+                        oPartido.Notas = (String)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_NOTAS];
+                        oPartido.Fecha_Partido = (DateTime)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_PARTIDO];
+                        oPartido.Fecha_Creacion = (DateTime)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_CREACION];
+
                     }
                 }
 
             }
             catch (SqlException ex)
             {
+
                 throw ex;
             }
             finally
@@ -58,34 +66,32 @@ namespace NervionPlayers_DAL.Manejadoras
                 con.CloseConnection();
             }
 
-            return oEquipo;
+            return oPartido;
         }
 
         /// <summary>
-        /// Añade un nuevoEquipo en la base de datos
+        /// Añade un nuevo Partido en la base de datos
         /// </summary>
-        /// <param name="equipo">Recibe un  tipo Equipo</param>
+        /// <param name="partido">Recibe un  tipo Partido</param>
         /// <returns>retorna el numero de filas afectadas , int</returns>
-        public int insertarEquipo(Equipo equipo)
+        public int insertarPartido(Partido partido)
         {
             int filasAfectadas = 0;
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();
-
+            Partido oPartido = new Partido();
 
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");
+                miComando.CommandText = String.Format("");//Preguntar a javi que se inserta y que no
                 miComando.Connection = conexion;
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 
-
             }
             catch (SqlException ex)
             {
-
                 throw ex;
             }
             finally
@@ -97,11 +103,11 @@ namespace NervionPlayers_DAL.Manejadoras
         }
 
         /// <summary>
-        /// Funcion que borra un Equipo de la base de datos 
+        /// Funcion que borra un Partido de la base de datos 
         /// </summary>
-        /// <param name="id">Recibe el id del Equipo a borrar</param>
+        /// <param name="id">Recibe el id del Partido a borrar</param>
         /// <returns>int , retorna el numero de filas afectadas</returns>
-        public int borrarEquipo(int id)
+        public int borrarPartido(int id)
         {
             int filasafectadas = 0;
             SqlConnection conexion;
@@ -110,7 +116,7 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("Delete from {0} where {1} = {2}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME, ContratoDB.Equipos_DB.EQUIPOS_DB_ID, id);
+                miComando.CommandText = String.Format("Delete from {0} where {1} = {2}", ContratoDB.Partidos_DB.PARTIDOS_DB_TABLE_NAME, ContratoDB.Partidos_DB.PARTIDOS_DB_ID, id);
                 miComando.Connection = conexion;
 
                 filasafectadas = miComando.ExecuteNonQuery();

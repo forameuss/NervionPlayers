@@ -40,7 +40,6 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-
                         oAlumno.Id = (int)lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID];
                         oAlumno.Nombre = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE];
                         oAlumno.Apellidos = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS];
@@ -80,8 +79,6 @@ namespace NervionPlayers_DAL.Manejadoras
             int filasAfectadas = 0;
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();
-            Alumno oAlumno = new Alumno();
-
 
             try
             {
@@ -91,12 +88,9 @@ namespace NervionPlayers_DAL.Manejadoras
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 
-
-
             }
             catch (SqlException ex)
             {
-
                 throw ex;
             }
             finally

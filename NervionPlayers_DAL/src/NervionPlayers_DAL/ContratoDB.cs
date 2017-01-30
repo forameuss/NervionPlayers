@@ -91,6 +91,7 @@ namespace NervionPlayers_DAL
         public static class ResultadosDuelos_DB
         {
             public static String RESULTADOSDUELOS_DB_TABLE_NAME = "ResultadosDuelos";
+            public static String RESULTADOSDUELOS_DB_ID = "Id";
             public static String RESULTADOSDUELOS_DB_ID_ALUMNO = "Id_Alumno";
             public static String RESULTADOSDUELOS_DB_GANADOS = "Ganados";
             public static String RESULTADOSDUELOS_DB_EMPATADOS = "Empatados";

@@ -24,6 +24,7 @@ public class Alumno
     private String letra;
     private String observaciones;
     private bool confirmado;
+    private Byte[] foto;
 
     #endregion
 
@@ -33,7 +34,7 @@ public class Alumno
     }
 
     public Alumno(int id, String nombre,String apellidos,String contraseña, String alias, String correo,
-        DateTime fecha_Creacion, Byte curso,String letra, String observaciones, bool confirmado)
+        DateTime fecha_Creacion, Byte curso,String letra, String observaciones, bool confirmado,Byte[] foto)
     {
         this.id = id;
         this.nombre = nombre;
@@ -46,6 +47,7 @@ public class Alumno
         this.letra = letra;
         this.observaciones = observaciones;
         this.confirmado = confirmado;
+        this.foto = foto;
     }
 
     #endregion
@@ -186,6 +188,19 @@ public class Alumno
         set
         {
             apellidos = value;
+        }
+    }
+
+    public byte[] Foto
+    {
+        get
+        {
+            return foto;
+        }
+
+        set
+        {
+            foto = value;
         }
     }
 

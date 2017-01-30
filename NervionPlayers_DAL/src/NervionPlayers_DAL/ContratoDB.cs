@@ -15,7 +15,7 @@ namespace NervionPlayers_DAL
             public static String ALUMNO_DB_NOMBRE ="Nombre";
             public static String ALUMNO_DB_CONTRASEÑA = "Contraseña";
             public static String ALUMNO_DB_APELLIDOS = "Apellidos";
-            public static String ALUMNO_DB_ALIAS = "alias";
+            public static String ALUMNO_DB_ALIAS = "Alias";
             public static String ALUMNO_DB_CORREO = "Correo";
             public static String ALUMNO_DB_FOTO = "Foto";
             public static String ALUMNO_DB_FECHA_CREACION = "Fecha_Creacion";

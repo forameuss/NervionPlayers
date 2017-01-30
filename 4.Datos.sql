@@ -2,8 +2,6 @@
 USE [NervionPlayers]
 GO
 
-Date var @date = GETDATE(); 
-
 INSERT INTO [dbo].[Alumnos]
            ([Nombre]
            ,[Contraseña]
@@ -31,13 +29,52 @@ INSERT INTO [dbo].[Equipos]
            ([Id_Creador]
            ,[Nombre]
            ,[Fecha_Creacion]
-           ,[Foto]
            ,[Confirmado])
      VALUES
-           (1, '', '', '', '', ''),
-		   (2, '', '', '', '', ''),
-		   (3, '', '', '', '', ''),
-		   (4, '', '', '', '', ''),
-		   (5, '', '', '', '', '')
+           (1, 'Los malotes', '20160224', 0),
+		   (2, 'Los de primero', '20160224', 0),
+		   (3, 'Ya no me se mas', '20160224', 0),
+		   (4, 'equipo dummy', '20160224',0),
+		   (5, 'Los Googles', '20160224', 0)
 GO
+
+USE [NervionPlayers]
+GO
+
+INSERT INTO [dbo].[Deportes]
+           ([Nombre])
+     VALUES
+           ('Futbol'),
+		   ('Baloncesto'),
+		   ('Tenis'),
+		   ('Petanca')
+GO
+
+USE [NervionPlayers]
+GO
+
+INSERT INTO [dbo].[Partidos]
+           ([Id_Local]
+           ,[Id_Visitante]
+           ,[Id_Deporte]
+           ,[Fecha_Partido]
+           ,[Fecha_Creacion]
+           ,[Resultado_Local]
+           ,[Resultado_Visitante]
+           ,[Lugar]
+           ,[Notas])
+     VALUES
+           (1,2,1,20170115,20161224,4,3,'Pista1','No se que no se cuanto'),
+		   (2,1,1,20170124,20161224,null,null,'Pista2','No se que no se cuanto'),
+		   (3,1,2,20170215,20161224,null,null,'Pista1',NULL),
+		   (1,2,1,20170112,20161224,1,2,'Pista3','No se que no se cuanto')
+GO
+
+
+
+
+
+
+
+
 

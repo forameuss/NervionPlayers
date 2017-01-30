@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v1.6/",
-    "signature": "4d6bf58a7e3bb69a04a36251ca595bd46e26ec4e"
+    "signature": "25372870018947a0988db2611d3642ce25c09d2e"
   },
   "compilationOptions": {},
   "targets": {
@@ -72,7 +72,6 @@
           "System.Xml.XDocument": "4.0.11"
         }
       },
-      "RecordConstructorGenerator/3.3.0": {},
       "runtime.native.System/4.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.1",
@@ -751,11 +750,6 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-ypsCvIdCZ4IoYASJHt6tF2fMo7N30NLgV1EbmC+snO490OMl9FvVxmumw14rhReWU3j3g7BYudG6YCrchwHJlA=="
-    },
-    "RecordConstructorGenerator/3.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-IY8NLO6Yr5oo6LER0k0ZO1T99ip1JJ/S7//xItYq2c/pn1rECxqmbXcX5gK0mk4yP6EVbA++V4mxLslVj/B0EA=="
     },
     "runtime.native.System/4.0.0": {
       "type": "package",

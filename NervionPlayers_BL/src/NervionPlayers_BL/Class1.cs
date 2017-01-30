@@ -9,6 +9,7 @@ namespace NervionPlayers_BL
     {
         public Class1()
         {
+            //Commit de prueba desde VisualStudio Code
         }
     }
 }

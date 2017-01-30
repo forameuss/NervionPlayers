@@ -37,7 +37,11 @@ namespace nervionPlayers_API
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseMvc();
+            //app.UseMvc(routes =>
+            //{
+            //    //Por defecto ira Alumnos
+            //    routes.MapRoute("Default", "{controller = Alumnos}/{id?}/action = ");
+            //});
         }
     }
 }

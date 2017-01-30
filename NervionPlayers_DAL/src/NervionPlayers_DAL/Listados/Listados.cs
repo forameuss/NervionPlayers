@@ -7,5 +7,6 @@ namespace NervionPlayers_DAL.Listados
 {
     public class Listados
     {
+        private int id;
     }
 }

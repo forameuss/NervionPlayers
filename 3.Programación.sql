@@ -1,7 +1,8 @@
 
---Programación NerviónPlayers
-
-
+/*Programación NerviónPlayers
+TODO
+Añadir Procedimiento sin parámetros, que cada cierto tiempo limpie los dispositivos que llevan sin usarse más de una semana, y estén inactivos.
+*/
 --Triggers Insert
 Create Trigger InsertarValidoAlumnos on Alumnos after insert as
 declare @FechaCreacion smalldatetime
@@ -124,3 +125,4 @@ Begin
 rollback
 End
 go
+

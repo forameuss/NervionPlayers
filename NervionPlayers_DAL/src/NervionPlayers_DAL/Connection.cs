@@ -55,17 +55,21 @@ namespace DALClassLibrary
         /// <summary>
         /// Abre una conexion. devuelve una SqlException
         /// </summary>
-        public void openConnection()
+        public SqlConnection openConnection()
         {
             ConnectionSql = new SqlConnection();
+            SqlConnection con = new SqlConnection();
             try
             {
-                ConnectionSql.ConnectionString = string.Format("server ={ 0}; database ={ 1}; uid ={ 2}; pwd ={ 3}; ", _host, _dataBase, _user, _password);
+                con.ConnectionString = string.Format("server ={ 0}; database ={ 1}; uid ={ 2}; pwd ={ 3}; ", _host, _dataBase, _user, _password);
+                con.Open();
             }
             catch (SqlException)
             {
                 throw;
             }
+
+            return con;
         }
 
         /// <summary>

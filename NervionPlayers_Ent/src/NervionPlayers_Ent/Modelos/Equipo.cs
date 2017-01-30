@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NervionPlayers_Ent.Modelos
 {
-    public class Equipos
+    public class Equipo
     {
         private int id;
         private int id_Creador;
@@ -14,7 +14,7 @@ namespace NervionPlayers_Ent.Modelos
         private Byte[] foto;
         private bool confirmado;
 
-        public Equipos(int id, int id_Creador, string nombre, DateTime fecha_Creacion, byte[] foto, bool confirmado)
+        public Equipo(int id, int id_Creador, string nombre, DateTime fecha_Creacion, byte[] foto, bool confirmado)
         {
             Id = id;
             Id_Creador = id_Creador;

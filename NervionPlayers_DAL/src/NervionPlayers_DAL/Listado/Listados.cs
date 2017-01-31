@@ -6,8 +6,10 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+//TODO Modificar todos los métodos para que los objetos que vayamos a insertar en el array se creen dentro del while
 
-namespace NervionPlayers_DAL.Listados
+//TODO Mirar como convertir DBNull a null  
+namespace NervionPlayers_DAL.Listado
 {
     public class Listados
     {
@@ -42,11 +44,89 @@ namespace NervionPlayers_DAL.Listados
                         oAlumno.Alias = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS];
                         oAlumno.Correo = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO];
                         oAlumno.Curso = (Byte)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO];
-                        oAlumno.Contraseña = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
-                        oAlumno.Foto = (Byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                        //oAlumno.Contraseña = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
+                        //oAlumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
                         oAlumno.Confirmado = (bool)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO];
                         oAlumno.Letra = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA];
-                        oAlumno.Observaciones = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES];
+                        //oAlumno.Observaciones = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES];
+
+                        alumnos.Add(oAlumno);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (alumnos);
+
+        }
+        /// <summary>
+        /// Método que devuelve todos los Alumnso de un equipo
+        /// </summary>
+        /// <param name="idEquipo"></param>
+        /// <returns></returns>
+        public ObservableCollection<Alumno> listadoAlumnos(int idEquipo)
+        {
+            ObservableCollection<Alumno> alumnos = new ObservableCollection<Alumno>();
+            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Alumno oAlumno;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = String.Format(
+                "Select A.{0},A.{1},A.{2},A.{3},A.{4},A.{5},A.{6},A.{7},A.{8},A.{9},A.{10}"
+                +" FROM {11} as A"
+                + " inner join {12} as AE on A.{0}=AE.{13}"
+                +" where {14}={15}",
+                ContratoDB.Alumno_DB.ALUMNO_DB_ID,
+                ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE,
+                ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS,
+                ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS,
+                ContratoDB.Alumno_DB.ALUMNO_DB_CORREO,
+                ContratoDB.Alumno_DB.ALUMNO_DB_FECHA_CREACION,
+                ContratoDB.Alumno_DB.ALUMNO_DB_CURSO,
+                ContratoDB.Alumno_DB.ALUMNO_DB_LETRA,
+                ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES,
+                ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO,
+                ContratoDB.Alumno_DB.ALUMNO_DB_FOTO,
+                ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME,
+                ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME,
+                ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO,
+                ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO,
+                idEquipo
+                );
+
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        oAlumno = new Alumno();
+                        oAlumno.Id = (int)lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID];
+                        oAlumno.Nombre = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE];
+                        oAlumno.Apellidos = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS];
+                        oAlumno.Alias = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS];
+                        oAlumno.Correo = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO];
+                        oAlumno.Curso = (Byte)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO];
+                        //oAlumno.Contraseña = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
+                        //oAlumno.Foto = (Byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                        oAlumno.Confirmado = (bool)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO];
+                        oAlumno.Letra = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA];
+                        //oAlumno.Observaciones = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES];
 
                         alumnos.Add(oAlumno);
                     }

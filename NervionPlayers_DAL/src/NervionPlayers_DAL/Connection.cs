@@ -61,7 +61,7 @@ namespace DALClassLibrary
             SqlConnection con = new SqlConnection();
             try
             {
-                con.ConnectionString = string.Format("server ={ 0}; database ={ 1}; uid ={ 2}; pwd ={ 3}; ", _host, _dataBase, _user, _password);
+                con.ConnectionString = string.Format("server={0};database={1};uid={2};pwd={3};", _host, _dataBase, _user, _password);
                 con.Open();
             }
             catch (SqlException)

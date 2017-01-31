@@ -13,7 +13,7 @@ namespace NervionPlayers_DAL.Manejadoras
 
         public ManejadoraDeporteDAL()
         {
-            con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
         }
 
         /// <summary>

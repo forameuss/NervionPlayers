@@ -1,4 +1,5 @@
-
+Use NervionPlayers
+go
 /*Programación NerviónPlayers
 TODO
 Añadir Procedimiento sin parámetros, que cada cierto tiempo limpie los dispositivos que llevan sin usarse más de una semana, y estén inactivos.

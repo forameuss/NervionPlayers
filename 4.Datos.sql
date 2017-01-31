@@ -21,10 +21,6 @@ INSERT INTO [dbo].[Alumnos]
 		   ('Mario','123','Parlatori','marPar','marioPar@gmail.com',2,'a',0),
 		   ('Loco','123','Man','locoMan','mariola@gmail.com',3,'a',0)
 GO
-
-USE [NervionPlayers]
-GO
-
 INSERT INTO [dbo].[Equipos]
            ([Id_Creador]
            ,[Nombre]
@@ -36,10 +32,6 @@ INSERT INTO [dbo].[Equipos]
 		   (4, 'equipo dummy',0),
 		   (5, 'Los Googles', 0)
 GO
-
-USE [NervionPlayers]
-GO
-
 INSERT INTO [dbo].[Deportes]
            ([Nombre])
      VALUES
@@ -48,11 +40,6 @@ INSERT INTO [dbo].[Deportes]
 		   ('Tenis'),
 		   ('Petanca')
 GO
-
-
-USE [NervionPlayers]
-GO
-
 INSERT INTO [dbo].[Partidos]
            ([Id_Local]
            ,[Id_Visitante]
@@ -67,9 +54,6 @@ INSERT INTO [dbo].[Partidos]
 		   (2,1,1,'20170124',1,2,'Pista2','No se que no se cuanto'),
 		   (3,1,2,'20170215',1,1,'Pista1',NULL),
 		   (1,2,1,'20170112',1,2,'Pista3','No se que no se cuanto')
-GO
-
-USE [NervionPlayers]
 GO
 
 INSERT INTO [dbo].[Duelos]
@@ -89,10 +73,6 @@ INSERT INTO [dbo].[Duelos]
 		   (1,2,3,'20161206',NULL,0 ,1,'Pista1',NULL)
 GO
 
-
-USE [NervionPlayers]
-GO
-
 INSERT INTO [dbo].[ResultadosPartidos]
            ([Id_Equipo]
            ,[Ganados]
@@ -100,9 +80,6 @@ INSERT INTO [dbo].[ResultadosPartidos]
            ,[Perdidos])
      VALUES
            (1,1,1,0)
-GO
-
-USE [NervionPlayers]
 GO
 
 INSERT INTO [dbo].[AlumnosEquipos]

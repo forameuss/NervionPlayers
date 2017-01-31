@@ -1,4 +1,5 @@
 --Usuarios NervionPLayers
+Use NervionPlayers
 if not exists(Select * from master.sys.sql_logins where name='AlumnoNervion')
 Begin
 CREATE LOGIN AlumnoNervion

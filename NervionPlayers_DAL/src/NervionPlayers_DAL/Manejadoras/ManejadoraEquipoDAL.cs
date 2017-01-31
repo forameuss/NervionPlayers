@@ -76,8 +76,22 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Creador_DB ,@Nombre_DB,@Foto_DB,@confirmado_DB)
+                                        VALUES (@Id_Creador,@Nombre,@Foto,@Confirmado)";
                 miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_Creador_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR);
+                miComando.Parameters.AddWithValue("@Nombre_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE);
+                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO);
+                miComando.Parameters.AddWithValue("@confirmado_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME);
+
+                //Parametros Equipo
+                miComando.Parameters.AddWithValue("@Nombre", equipo.Nombre);
+                miComando.Parameters.AddWithValue("@Id_Creador", equipo.Id_Creador);
+                miComando.Parameters.AddWithValue("@Foto", equipo.Foto);
+                miComando.Parameters.AddWithValue("@Confirmado", equipo.Confirmado);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 

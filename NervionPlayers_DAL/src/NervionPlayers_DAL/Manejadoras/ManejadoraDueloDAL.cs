@@ -65,7 +65,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 con.CloseConnection();
             }
 
-            return oduelo;
+            return oDuelo;
         }
 
         /// <summary>
@@ -82,8 +82,34 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");//Preguntar a javi que se inserta y que no
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Local_DB,@Id_Visitante_DB,@Id_Deporte_DB
+                                            ,@Fecha_Duelo_DB,
+                                        @Foto_DB,@Resultado_Local_DB ,@Resultado_Visitante_DB,@Lugar_DB,@Notas_DB) VALUES 
+                                        (@Id_Local,@Id_Visitante,@Id_Deporte,@Fecha_Duelo,@Foto,@Resultado_Local,@Resultado_Visitante,@Lugar,@Notas)";
                 miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_Local_DB", ContratoDB.Duelos_DB.DUELOS_DB_ID_LOCAL);
+                miComando.Parameters.AddWithValue("@Id_Visitante_DB", ContratoDB.Duelos_DB.DUELOS_DB_ID_VISITANTE);
+                miComando.Parameters.AddWithValue("@Id_Deporte_DB", ContratoDB.Duelos_DB.DUELOS_DB_ID_DEPORTE);
+                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Duelos_DB.DUELOS_DB_FOTO);
+                miComando.Parameters.AddWithValue("@Lugar_DB", ContratoDB.Duelos_DB.DUELOS_DB_LUGAR);
+                miComando.Parameters.AddWithValue("@Notas_DB", ContratoDB.Duelos_DB.DUELOS_DB_NOTAS);
+                miComando.Parameters.AddWithValue("@Resultado_Local_DB", ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_LOCAL);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante_DB", ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_VISITANTE);
+                miComando.Parameters.AddWithValue("@Fecha_Duelo_DB", ContratoDB.Duelos_DB.DUELOS_DB_FECHA_DUELO);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Duelos_DB.DUELOS_DB_TABLE_NAME);
+
+                //Parametros Duelo
+                miComando.Parameters.AddWithValue("@Id_Local",duelo.Id_Local);
+                miComando.Parameters.AddWithValue("@Id_Visitante", duelo.Id_Visitante);
+                miComando.Parameters.AddWithValue("@Id_Deporte", duelo.Id_Deporte);
+                miComando.Parameters.AddWithValue("@Foto", duelo.Foto);
+                miComando.Parameters.AddWithValue("@Lugar", duelo.Lugar);
+                miComando.Parameters.AddWithValue("@Notas", duelo.Notas);
+                miComando.Parameters.AddWithValue("@Resultado_Local", duelo.Resultado_Local);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante",duelo.Resultado_Visitante);
+                miComando.Parameters.AddWithValue("@Fecha_Duelo", duelo.Fecha_Duelo);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 

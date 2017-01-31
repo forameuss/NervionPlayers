@@ -72,8 +72,15 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name] ([@Nombre_DB]) VALUES(@Nombre)";
                 miComando.Connection = conexion;
+
+                //Parametros tabla
+                miComando.Parameters.AddWithValue("@tableName", ContratoDB.Deportes_DB.DEPORTES_DB_TABLE_NAME);
+                miComando.Parameters.AddWithValue("@Nombre_DB", ContratoDB.Deportes_DB.DEPORTES_DB_NOMBRE);
+
+                //Parametros Deporte
+                miComando.Parameters.AddWithValue("@Nombre", deporte.Nombre);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
             }

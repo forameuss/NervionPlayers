@@ -17,49 +17,7 @@ namespace NervionPlayers_DAL.Manejadoras
             con = new Connection("AlumnoNervion", ".N3tApe$7aH");
         }
 
-        /// <summary>
-        /// Busca en la base de datos y devuelve un AlumnoEquipo con el id recibido
-        /// </summary>
-        /// <param name="id">Recibe la id del Duelo a buscar</param>
-        /// <returns>retorna el Duelo</returns>
-        public AlumnoEquipo obtenerAlumnoEquipo(int id)
-        {
-            SqlConnection conexion;
-            SqlCommand miComando = new SqlCommand();
-            AlumnoEquipo oAlumnoEquipo = new AlumnoEquipo();
-            SqlDataReader lector;
-
-            try
-            {
-                conexion = con.openConnection();        //MIRAR BIEN QUE HAY QUE USAR PARA BUSCAR
-                //miComando.CommandText = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME, ContratoDB.alumnosEquipos_DB.I, id);
-                miComando.Connection = conexion;
-                lector = miComando.ExecuteReader();
-
-                if (lector.HasRows)
-                {
-                    if (lector.Read())
-                    {
-                        oAlumnoEquipo.Id_Alumno = (int)lector[ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO];
-                        oAlumnoEquipo.Id_Equipo = (int)lector[ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO];
-                        oAlumnoEquipo.Fecha_Creacion = (DateTime)lector[ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_FECHA_CREACION];
-                       
-                    }
-                }
-
-            }
-            catch (SqlException ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                con.CloseConnection();
-            }
-
-            return oAlumnoEquipo;
-        }
+        //NO ES NECESARIO HACER EL GET DE ALUMNOEQUIPO
 
         /// <summary>
         /// Añade un nuevo oAlumnoEquipo en la base de datos
@@ -75,8 +33,18 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");//Preguntar a javi que se inserta y que no
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name] (@Id_Alumno_DB,@Id_Equipo_DB).
+                                    VALUES (@Id_Alumno,@Id_Equipo)";
                 miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_Alumno_DB", ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO);
+                miComando.Parameters.AddWithValue("@Id_Equipo_DB", ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME);
+
+                //Parametros Equipo
+                miComando.Parameters.AddWithValue("@Id_Alumno", oAlumnoEquipo.Id_Alumno);
+                miComando.Parameters.AddWithValue("@Id_Equipo", oAlumnoEquipo.Id_Equipo);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 
@@ -98,7 +66,7 @@ namespace NervionPlayers_DAL.Manejadoras
         /// </summary>
         /// <param name="id">Recibe el id del AlumnoEquipo a borrar</param>
         /// <returns>int , retorna el numero de filas afectadas</returns>
-        public int borrarAlumnoEquipo(int id)
+        public int borrarAlumnoEquipo(int id_Alumno,int id_Equipo)
         {
             int filasafectadas = 0;
             SqlConnection conexion;
@@ -107,7 +75,10 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();//MIRAR BIEN QUE SE USA PARA BORRAR
-                //miComando.CommandText = String.Format("Delete from {0} where {1} = {2}", ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME, ContratoDB.Duelos_DB.DUELOS_DB_ID, id);
+                miComando.CommandText = String.Format("Delete from {0} where {1} = {2} AND {3} = {4}", 
+                                                        ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME, 
+                                                        ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO, id_Alumno,
+                                                        ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO,id_Equipo);
                 miComando.Connection = conexion;
 
                 filasafectadas = miComando.ExecuteNonQuery();

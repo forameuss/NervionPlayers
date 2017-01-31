@@ -82,9 +82,40 @@ namespace NervionPlayers_DAL.Manejadoras
 
             try
             {
+
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");//Preguntar a javi que se inserta y que no
+                miComando.CommandText = @"INSERT INTO[dbo].[@table_name] (@Nombre_DB,@Contraseña_DB, @Apellidos_DB, 
+                                                 @Alias_DB , @Correo_DB, @Foto_DB, @Curso_DB, 
+                                                  @Letra_DB, @Observaciones_DB, @Confirmado_DB) VALUES
+                                                  (@Nombre,@Contraseña, @Apellidos, 
+                                                 @Alias , @Correo, @Foto, @Curso, 
+                                                  @Letra, @Observaciones, @Confirmado)";
                 miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Nombre_DB", ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE);
+                miComando.Parameters.AddWithValue("@Apellidos_DB", ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS);
+                miComando.Parameters.AddWithValue("@Alias_DB", ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS);
+                miComando.Parameters.AddWithValue("@Correo_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CORREO);
+                miComando.Parameters.AddWithValue("@Contraseña_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA);
+                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Alumno_DB.ALUMNO_DB_FOTO);
+                miComando.Parameters.AddWithValue("@Curso_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CURSO);
+                miComando.Parameters.AddWithValue("@Confirmado_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO);
+                miComando.Parameters.AddWithValue("@Letra_DB", ContratoDB.Alumno_DB.ALUMNO_DB_LETRA);
+                miComando.Parameters.AddWithValue("@Observaciones_DB", ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME);
+
+                //Parametros Alumno
+                miComando.Parameters.AddWithValue("@Nombre", alumno.Nombre);
+                miComando.Parameters.AddWithValue("@Apellidos", alumno.Apellidos);
+                miComando.Parameters.AddWithValue("@Alias", alumno.Alias);
+                miComando.Parameters.AddWithValue("@Correo", alumno.Correo);
+                miComando.Parameters.AddWithValue("@Contraseña", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Foto", alumno.Foto);
+                miComando.Parameters.AddWithValue("@Curso", alumno.Curso);
+                miComando.Parameters.AddWithValue("@Confirmado", alumno.Confirmado);
+                miComando.Parameters.AddWithValue("@Letra", alumno.Letra);
+                miComando.Parameters.AddWithValue("@Observaciones", alumno.Observaciones);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 

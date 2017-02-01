@@ -249,7 +249,7 @@ namespace NervionPlayers_DAL.Listado
                         oPartido.Lugar = Convert.ToString(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR]);
                         try
                         {
-                            oPartido.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
+                            oPartido.Foto = (byte[])lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO];
                         }
                         catch (InvalidCastException)
                         {

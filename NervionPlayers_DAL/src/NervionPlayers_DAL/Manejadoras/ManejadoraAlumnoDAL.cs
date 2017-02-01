@@ -47,8 +47,16 @@ namespace NervionPlayers_DAL.Manejadoras
                         oAlumno.Alias = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS];
                         oAlumno.Correo = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO];
                         oAlumno.Curso = (Byte)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO];
-                        oAlumno.Contraseña = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
-                        oAlumno.Foto = (Byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                        //oAlumno.Contraseña = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
+                        try
+                        {
+                            oAlumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                            oAlumno.Foto = null;
+                        }
+                      
                         oAlumno.Confirmado = (bool)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO];
                         oAlumno.Letra = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA];
                         oAlumno.Observaciones = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES];

@@ -43,7 +43,14 @@ namespace NervionPlayers_DAL.Manejadoras
                         oEquipo.Id = (int)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID];
                         oEquipo.Id_Creador = (int)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR];
                         oEquipo.Nombre = (string)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE];
-                        oEquipo.Foto = (Byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
+                        try
+                        {
+                            oEquipo.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                            oEquipo.Foto = null;
+                        }
                         oEquipo.Confirmado = (bool)lector[ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO];
                     }
                 }

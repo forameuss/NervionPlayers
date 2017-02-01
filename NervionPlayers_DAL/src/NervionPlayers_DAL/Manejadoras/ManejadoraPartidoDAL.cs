@@ -47,7 +47,14 @@ namespace NervionPlayers_DAL.Manejadoras
                         oPartido.Resultado_Local = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL];
                         oPartido.Resultado_Visitante = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE];
                         oPartido.Lugar = (String)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR];
-                        oPartido.Foto = (Byte[])lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO];
+                        try
+                        {
+                            oPartido.Foto = (byte[])lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                            oPartido.Foto = null;
+                        }
                         oPartido.Notas = (String)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_NOTAS];
                         oPartido.Fecha_Partido = (DateTime)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_PARTIDO];
                         oPartido.Fecha_Creacion = (DateTime)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_CREACION];

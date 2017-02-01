@@ -46,7 +46,14 @@ namespace NervionPlayers_DAL.Manejadoras
                         oDuelo.Resultado_Local = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_LOCAL];
                         oDuelo.Resultado_Visitante = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_VISITANTE];
                         oDuelo.Lugar = (String)lector[ContratoDB.Duelos_DB.DUELOS_DB_LUGAR];
-                        oDuelo.Foto = (Byte[])lector[ContratoDB.Duelos_DB.DUELOS_DB_FOTO];
+                        try
+                        {
+                            oDuelo.Foto = (byte[])lector[ContratoDB.Duelos_DB.DUELOS_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                            oDuelo.Foto = null;
+                        }
                         oDuelo.Notas = (String)lector[ContratoDB.Duelos_DB.DUELOS_DB_NOTAS];
                         oDuelo.Fecha_Duelo = (DateTime)lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_DUELO];
                         oDuelo.Fecha_Creacion = (DateTime)lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_CREACION];

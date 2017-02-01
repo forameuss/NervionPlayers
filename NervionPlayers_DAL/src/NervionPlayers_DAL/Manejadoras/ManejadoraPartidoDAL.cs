@@ -1,4 +1,5 @@
-﻿using DALClassLibrary;
+﻿//TODO Actualizar
+using DALClassLibrary;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -40,13 +41,13 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oPartido.Id = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID];
-                        oPartido.Id_Deporte = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE];
-                        oPartido.Id_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL];
-                        oPartido.Id_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE];
-                        oPartido.Resultado_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL];
-                        oPartido.Resultado_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE];
-                        oPartido.Lugar = Convert.ToString(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR];
+                        oPartido.Id = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID]);
+                        oPartido.Id_Deporte = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE]);
+                        oPartido.Id_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL]);
+                        oPartido.Id_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE]);
+                        oPartido.Resultado_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL]);
+                        oPartido.Resultado_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE]);
+                        oPartido.Lugar = Convert.ToString(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR]);
                         try
                         {
                             oPartido.Foto = (byte[])lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO];
@@ -75,6 +76,8 @@ namespace NervionPlayers_DAL.Manejadoras
 
             return oPartido;
         }
+
+        //TODO hacer
 
         /// <summary>
         /// Añade un nuevo Partido en la base de datos

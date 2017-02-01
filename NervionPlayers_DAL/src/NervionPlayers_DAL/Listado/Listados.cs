@@ -17,7 +17,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Alumno> listadoAlumnos()
         {
             ObservableCollection<Alumno> alumnos = new ObservableCollection<Alumno>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             Alumno oAlumno;
 
             SqlConnection conexion;
@@ -81,7 +81,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Alumno> listadoAlumnos(int idEquipo)
         {
             ObservableCollection<Alumno> alumnos = new ObservableCollection<Alumno>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             Alumno oAlumno;
 
             SqlConnection conexion;
@@ -166,7 +166,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Equipo> listadoEquipos()
         {
             ObservableCollection<Equipo> equipos = new ObservableCollection<Equipo>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             Equipo oEquipo;
 
             SqlConnection conexion;
@@ -224,7 +224,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Equipo> listadoEquipos(int idAlumno)
         {
             ObservableCollection<Equipo> equipos = new ObservableCollection<Equipo>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             Equipo oEquipo;
 
             SqlConnection conexion;
@@ -282,12 +282,80 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Partido> listadoPartidos()
         {
             ObservableCollection<Partido> partidos = new ObservableCollection<Partido>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             Partido oPartido;
 
             SqlConnection conexion;
             SqlCommand comando = new SqlCommand();
             comando.CommandText = String.Format("Select * FROM {0}", ContratoDB.Partidos_DB.PARTIDOS_DB_TABLE_NAME);
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        oPartido = new Partido();
+                        oPartido.Id = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID]);
+                        oPartido.Id_Deporte = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE]);
+                        oPartido.Id_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL]);
+                        oPartido.Id_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE]);
+                        oPartido.Resultado_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL]);
+                        oPartido.Resultado_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE]);
+                        oPartido.Lugar = Convert.ToString(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR]);
+                        try
+                        {
+                            oPartido.Foto = (byte[])lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                            oPartido.Foto = null;
+                        }
+                        oPartido.Notas = Convert.ToString(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_NOTAS]);
+                        oPartido.Fecha_Partido = Convert.ToDateTime(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_PARTIDO]);
+                        oPartido.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_CREACION]);
+
+                        partidos.Add(oPartido);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (partidos);
+        }
+
+
+        /// <summary>
+        /// Metodo que obtiene una ObservableCollection<Partido> de todos los partidos de un grupo
+        /// </summary>
+        /// <returns>ObservableCollection<Partido> Partidos</returns>
+        public ObservableCollection<Partido> listadoPartidos(int idEquipo)
+        {
+            ObservableCollection<Partido> partidos = new ObservableCollection<Partido>();
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Partido oPartido;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            //Importante las dos condiciones, porque el equipo puede ser local o visitante
+            comando.CommandText = String.Format("Select * FROM {0} where {1}={3} or {2}={3}", 
+                                    ContratoDB.Partidos_DB.PARTIDOS_DB_TABLE_NAME,
+                                    ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE,
+                                    ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL,
+                                    idEquipo);
             SqlDataReader lector;
 
             try
@@ -344,12 +412,78 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Duelo> listadoDuelos()
         {
             ObservableCollection<Duelo> duelos = new ObservableCollection<Duelo>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             Duelo oDuelo;
 
             SqlConnection conexion;
             SqlCommand comando = new SqlCommand();
             comando.CommandText = String.Format("Select * FROM {0}", ContratoDB.Duelos_DB.DUELOS_DB_TABLE_NAME);
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        oDuelo = new Duelo();
+                        oDuelo.Id = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID]);
+                        oDuelo.Id_Deporte = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_DEPORTE]);
+                        oDuelo.Id_Local = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_LOCAL]);
+                        oDuelo.Id_Visitante = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_VISITANTE]);
+                        oDuelo.Resultado_Local = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_LOCAL]);
+                        oDuelo.Resultado_Visitante = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_VISITANTE]);
+                        oDuelo.Lugar = Convert.ToString(lector[ContratoDB.Duelos_DB.DUELOS_DB_LUGAR]);
+                        try
+                        {
+                            oDuelo.Foto = (byte[])lector[ContratoDB.Duelos_DB.DUELOS_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                            oDuelo.Foto = null;
+                        }
+                        oDuelo.Notas = Convert.ToString(lector[ContratoDB.Duelos_DB.DUELOS_DB_NOTAS]);
+                        oDuelo.Fecha_Duelo = Convert.ToDateTime(lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_DUELO]);
+                        oDuelo.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_CREACION]);
+
+                        duelos.Add(oDuelo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (duelos);
+        }
+
+        /// <summary>
+        /// Metodo que obtiene una ObservableCollection<Duelo> de todos los Duelos de un alumno
+        /// </summary>
+        /// <returns>ObservableCollection<Duelo> Duelos</returns>
+        public ObservableCollection<Duelo> listadoDuelos(int idAlumno)
+        {
+            ObservableCollection<Duelo> duelos = new ObservableCollection<Duelo>();
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Duelo oDuelo;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = String.Format("Select * FROM {0} where {1}={3} or {2}={3}",
+                                    ContratoDB.Duelos_DB.DUELOS_DB_TABLE_NAME,
+                                    ContratoDB.Duelos_DB.DUELOS_DB_ID_LOCAL,
+                                    ContratoDB.Duelos_DB.DUELOS_DB_ID_VISITANTE,
+                                    idAlumno);
             SqlDataReader lector;
 
             try
@@ -406,7 +540,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Deporte> listadoDeportes()
         {
             ObservableCollection<Deporte> deportes = new ObservableCollection<Deporte>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             Deporte oDeporte;
 
             SqlConnection conexion;
@@ -452,7 +586,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<AlumnoEquipo> listadoAlumnosEquipos()
         {
             ObservableCollection<AlumnoEquipo> alumnosEquipos = new ObservableCollection<AlumnoEquipo>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             AlumnoEquipo oAlumnoEquipo;
 
             SqlConnection conexion;
@@ -499,7 +633,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<ResultadoPartido> listadoResultadoPartidos()
         {
             ObservableCollection<ResultadoPartido> resultadoPartidos = new ObservableCollection<ResultadoPartido>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             ResultadoPartido oResultadoPartido;
 
             SqlConnection conexion;
@@ -548,7 +682,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<ResultadoDuelo> listadoResultadoDuelos()
         {
             ObservableCollection<ResultadoDuelo> resultadoDuelos = new ObservableCollection<ResultadoDuelo>();
-            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
             ResultadoDuelo oResultadoDuelo;
 
             SqlConnection conexion;
@@ -588,6 +722,107 @@ namespace NervionPlayers_DAL.Listado
             }
 
             return (resultadoDuelos);
+        }
+
+        /// <summary>
+        /// Devuelve un listado de todos los dispositivos
+        /// </summary>
+        /// <returns></returns>
+        public ObservableCollection<Dispositivo> listadoDispositivos()
+        {
+            ObservableCollection<Dispositivo> dispositivos = new ObservableCollection<Dispositivo>();
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Dispositivo oDispositivo;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = String.Format("Select * FROM {0}", ContratoDB.Dispositivos.TABLA);
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        oDispositivo = new Dispositivo();
+                        oDispositivo.Id = Convert.ToInt32(lector[ContratoDB.Dispositivos.ID]);
+                        oDispositivo.Id_Alumno = Convert.ToInt32(lector[ContratoDB.Dispositivos.ID_ALUMNO]);
+                        oDispositivo.Token = Convert.ToString(lector[ContratoDB.Dispositivos.TOKEN]);
+                        oDispositivo.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Dispositivos.FECHA_CREACION]);
+                        oDispositivo.Fecha_Modificacion = Convert.ToDateTime(lector[ContratoDB.Dispositivos.FECHA_MODIFICACION]);
+
+                        dispositivos.Add(oDispositivo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (dispositivos);
+        }
+        /// <summary>
+        /// Devuelve todos lso dispositivos de un alumno
+        /// </summary>
+        /// <param name="idAlumno"></param>
+        /// <returns></returns>
+        public ObservableCollection<Dispositivo> listadoDispositivos(int idAlumno)
+        {
+            ObservableCollection<Dispositivo> dispositivos = new ObservableCollection<Dispositivo>();
+            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Dispositivo oDispositivo;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = String.Format("Select * FROM {0} where {1}={3}",
+                                    ContratoDB.Dispositivos.TABLA,
+                                    ContratoDB.Dispositivos.ID_ALUMNO,
+                                    idAlumno);
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        oDispositivo = new Dispositivo();
+                        oDispositivo.Id = Convert.ToInt32(lector[ContratoDB.Dispositivos.ID]);
+                        oDispositivo.Id_Alumno = Convert.ToInt32(lector[ContratoDB.Dispositivos.ID_ALUMNO]);
+                        oDispositivo.Token = Convert.ToString(lector[ContratoDB.Dispositivos.TOKEN]);
+                        oDispositivo.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Dispositivos.FECHA_CREACION]);
+                        oDispositivo.Fecha_Modificacion = Convert.ToDateTime(lector[ContratoDB.Dispositivos.FECHA_MODIFICACION]);
+
+                        dispositivos.Add(oDispositivo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (dispositivos);
         }
     }
 }

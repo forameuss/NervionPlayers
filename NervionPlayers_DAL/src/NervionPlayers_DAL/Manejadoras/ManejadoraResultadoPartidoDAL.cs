@@ -1,4 +1,5 @@
-﻿using DALClassLibrary;
+﻿//TODO Actualizar
+using DALClassLibrary;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -40,11 +41,11 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oResultadoPartido.Id = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_ID];
-                        oResultadoPartido.Id_Equipo = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_ID_EQUIPO];
-                        oResultadoPartido.Ganados = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_GANADOS];
-                        oResultadoPartido.Empatados = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_EMPATADOS];
-                        oResultadoPartido.Perdidos = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_PERDIDOS];
+                        oResultadoPartido.Id = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_ID]);
+                        oResultadoPartido.Id_Equipo = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_ID_EQUIPO]);
+                        oResultadoPartido.Ganados = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_GANADOS]);
+                        oResultadoPartido.Empatados = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_EMPATADOS]);
+                        oResultadoPartido.Perdidos = Convert.ToInt32(lector[ContratoDB.ResultadosPartidos_DB.RESULTADOSPARTIDOS_DB_PERDIDOS]);
                     }
                 }
 
@@ -61,6 +62,8 @@ namespace NervionPlayers_DAL.Manejadoras
 
             return oResultadoPartido;
         }
+
+        //TODO hacer
 
         /// <summary>
         /// Añade un nuevo resultadoPartido en la base de datos

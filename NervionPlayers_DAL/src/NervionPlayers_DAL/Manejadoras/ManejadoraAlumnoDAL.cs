@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using NervionPlayers_Ent.Modelos;
 
 namespace NervionPlayers_DAL.Manejadoras
 {
-    //TODO Cambiar lso (****) por Convert.To****()
     public class ManejadoraAlumnoDAL
     {
 
@@ -47,7 +47,6 @@ namespace NervionPlayers_DAL.Manejadoras
                         oAlumno.Alias = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS]);
                         oAlumno.Correo = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO]);
                         oAlumno.Curso = Convert.ToByte(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO]);
-                        //oAlumno.Contraseña = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
                         try
                         {
                             oAlumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];

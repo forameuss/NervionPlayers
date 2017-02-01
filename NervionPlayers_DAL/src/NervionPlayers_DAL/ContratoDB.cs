@@ -107,6 +107,16 @@ namespace NervionPlayers_DAL
             public static String RESULTADOSPARTIDOS_DB_GANADOS = "Ganados";
         }
 
+        public static class Dispositivos
+        {
+            public const String TABLA = "Dispositivos";
+            public const String ID = "Id";
+            public const String ID_ALUMNO = "Id_Alumno";
+            public const String TOKEN = "Token";
+            public const String FECHA_CREACION = "Fecha_Creacion";
+            public const String FECHA_MODIFICACION = "Fecha_Modificacion";
+            public const String ACTIVO = "Activo";
+        }
 
     }
 }

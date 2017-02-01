@@ -1,4 +1,5 @@
-﻿using DALClassLibrary;
+﻿//TODO Actualizar
+using DALClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -60,6 +61,8 @@ namespace NervionPlayers_DAL.Manejadoras
 
             return oResultadoDuelo;
         }
+
+        //TODO hacer
 
         /// <summary>
         /// Añade un nuevo resultadoDuelo en la base de datos

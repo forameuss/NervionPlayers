@@ -1,4 +1,10 @@
-﻿using System;
+﻿/***************
+ * Restricciones
+ * *************
+ * Nombre<=20
+ * No se insertará en BBDD las fecha de Creación
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

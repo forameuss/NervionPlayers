@@ -1,21 +1,4 @@
 ﻿using System;
-/**
- * #region Atributos
-
-    #endregion
-
-    #region Constructores
-    #endregion
-
-    #region Propiedades
-
-    #endregion
-
-    #region Métodos
-
-    #endregion
- * 
- */
 /**************
 * Restricciones
 * *************
@@ -23,55 +6,58 @@
 * 
 * 
 */
-public class Deporte
+namespace NervionPlayers_Ent.Modelos
 {
-    #region Atributos
-
-    private int id;
-    private String nombre;
-    #endregion
-
-    #region Constructores
-    public Deporte() { }
-
-    public Deporte(int id, String nombre)
+    public class Deporte
     {
-        this.id = id;
-        this.nombre = nombre;
+        #region Atributos
+
+        private int id;
+        private String nombre;
+        #endregion
+
+        #region Constructores
+        public Deporte() { }
+
+        public Deporte(int id, String nombre)
+        {
+            this.id = id;
+            this.nombre = nombre;
+        }
+
+        #endregion
+
+        #region Propiedades
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+
+            set
+            {
+                nombre = value;
+            }
+        }
+        #endregion
+
+        #region Métodos
+
+        #endregion
     }
-
-    #endregion
-
-    #region Propiedades
-
-    public int Id
-    {
-        get
-        {
-            return id;
-        }
-
-        set
-        {
-            id = value;
-        }
-    }
-
-    public string Nombre
-    {
-        get
-        {
-            return nombre;
-        }
-
-        set
-        {
-            nombre = value;
-        }
-    }
-    #endregion
-
-    #region Métodos
-
-    #endregion
 }

@@ -100,7 +100,7 @@ Id_Alumno int,
 Token nvarchar(255) unique not null,
 Fecha_Creacion smalldatetime not null default CURRENT_TIMESTAMP,
 Fecha_Modificacion smalldatetime null,
-Activo bit not null
+Activo bit not null default 0
 )
 
 --Claves primarias
@@ -136,4 +136,5 @@ Alter table Partidos add constraint FK_Partidos_Visitante foreign key (Id_Visita
 --Restricciones
 
 Alter table Alumnos add constraint CK_Correo check (Correo like '%@%.%');
+Alter table Alumnos add constraint CK_Alias check (Alias like '');
 go

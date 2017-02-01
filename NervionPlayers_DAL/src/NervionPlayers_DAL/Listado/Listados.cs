@@ -72,6 +72,7 @@ namespace NervionPlayers_DAL.Listado
             return (alumnos);
 
         }
+
         /// <summary>
         /// Método que devuelve todos los Alumnso de un equipo
         /// </summary>
@@ -171,6 +172,66 @@ namespace NervionPlayers_DAL.Listado
              SqlConnection conexion;
             SqlCommand comando = new SqlCommand();
             comando.CommandText = String.Format("Select * FROM {0}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME);
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        oEquipo = new Equipo();
+                        oEquipo.Id = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID]);
+                        oEquipo.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
+                        oEquipo.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
+                        try
+                        {
+                            oEquipo.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                            oEquipo.Foto = null;
+                        }
+                        oEquipo.Confirmado = Convert.ToBoolean(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO]);
+
+                        equipos.Add(oEquipo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (equipos);
+        }
+
+        /// <summary>
+        /// Metodo que obtiene una ObservableCollection<Equipo> de todos los equipos del alumno con la id
+        ///     pasada como parametro
+        /// </summary>
+        /// <param name="idAlumno"></param>
+        /// <returns>ObservableCollection<Equipo> equipos</returns>
+        public ObservableCollection<Equipo> listadoEquipos(int idAlumno)
+        {
+            ObservableCollection<Equipo> equipos = new ObservableCollection<Equipo>();
+            Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            Equipo oEquipo;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = String.Format("Select * FROM {0} AS E Inner Join {1} AS AE ON E.{2}=AE.{3} "
+                                                +"where  AE.{4} = {5}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME,ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME,ContratoDB.Equipos_DB.EQUIPOS_DB_ID
+                                                            ,ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO,ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO,idAlumno);
             SqlDataReader lector;
 
             try

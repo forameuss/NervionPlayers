@@ -39,13 +39,13 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oDuelo.Id = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_ID];
-                        oDuelo.Id_Deporte = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_DEPORTE];
-                        oDuelo.Id_Local = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_LOCAL];
-                        oDuelo.Id_Visitante = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_VISITANTE];
-                        oDuelo.Resultado_Local = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_LOCAL];
-                        oDuelo.Resultado_Visitante = (int)lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_VISITANTE];
-                        oDuelo.Lugar = (String)lector[ContratoDB.Duelos_DB.DUELOS_DB_LUGAR];
+                        oDuelo.Id = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID]);
+                        oDuelo.Id_Deporte = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_DEPORTE]);
+                        oDuelo.Id_Local = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_LOCAL]);
+                        oDuelo.Id_Visitante = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_ID_VISITANTE]);
+                        oDuelo.Resultado_Local = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_LOCAL]);
+                        oDuelo.Resultado_Visitante = Convert.ToInt32(lector[ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_VISITANTE]);
+                        oDuelo.Lugar = Convert.ToString(lector[ContratoDB.Duelos_DB.DUELOS_DB_LUGAR]);
                         try
                         {
                             oDuelo.Foto = (byte[])lector[ContratoDB.Duelos_DB.DUELOS_DB_FOTO];
@@ -54,9 +54,9 @@ namespace NervionPlayers_DAL.Manejadoras
                         {
                             oDuelo.Foto = null;
                         }
-                        oDuelo.Notas = (String)lector[ContratoDB.Duelos_DB.DUELOS_DB_NOTAS];
-                        oDuelo.Fecha_Duelo = (DateTime)lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_DUELO];
-                        oDuelo.Fecha_Creacion = (DateTime)lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_CREACION];
+                        oDuelo.Notas = Convert.ToString(lector[ContratoDB.Duelos_DB.DUELOS_DB_NOTAS]);
+                        oDuelo.Fecha_Duelo = Convert.ToDateTime(lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_DUELO]);
+                        oDuelo.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Duelos_DB.DUELOS_DB_FECHA_CREACION]);
 
                     }
                 }

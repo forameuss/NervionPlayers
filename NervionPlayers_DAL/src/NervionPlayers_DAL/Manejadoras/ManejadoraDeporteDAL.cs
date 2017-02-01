@@ -39,8 +39,8 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oDeporte.Id = (int)lector[ContratoDB.Deportes_DB.DEPORTES_DB_ID];
-                        oDeporte.Nombre = (string)lector[ContratoDB.Deportes_DB.DEPORTES_DB_NOMBRE];
+                        oDeporte.Id = Convert.ToInt32(lector[ContratoDB.Deportes_DB.DEPORTES_DB_ID]);
+                        oDeporte.Nombre = Convert.ToString(lector[ContratoDB.Deportes_DB.DEPORTES_DB_NOMBRE]);
                     }
                 }
 

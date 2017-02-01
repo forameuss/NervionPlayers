@@ -1,4 +1,5 @@
 ﻿using NervionPlayers_DAL.Listado;
+using NervionPlayers_DAL.Manejadoras;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -47,12 +48,20 @@ namespace ConsoleApp1
             Console.Read();*/
 
             //PRUEBA DE ListadoEquipos(int idAlumo) -->Correcta
-            ObservableCollection<Equipo> equipo = miLista.listadoEquipos(2);
-            foreach (var al in equipo)
-            {
-                Console.WriteLine(al.Nombre);
-            }
+             ObservableCollection<Equipo> equipo = miLista.listadoEquipos(2);
+             foreach (var al in equipo)
+             {
+                 Console.WriteLine(al.Nombre);
+             }
+             Console.Read();
+
+            //PRUEBA DE getAlumnoDAL(int idAlumo) -->Correcta
+            //ManejadoraAlumnoDAL man = new ManejadoraAlumnoDAL();
+            ManejadoraDueloDAL man = new ManejadoraDueloDAL();
+            //Alumno a = man.obtenerAlumno(1);
+            Duelo d = man.obtenerDuelo(1);
             Console.Read();
+             
         }
     }
 }

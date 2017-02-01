@@ -41,13 +41,13 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oAlumno.Id = (int)lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID];
-                        oAlumno.Nombre = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE];
-                        oAlumno.Apellidos = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS];
-                        oAlumno.Alias = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS];
-                        oAlumno.Correo = (string)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO];
-                        oAlumno.Curso = (Byte)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO];
-                        //oAlumno.Contraseña = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
+                        oAlumno.Id = Convert.ToInt32(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID]);
+                        oAlumno.Nombre = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE]);
+                        oAlumno.Apellidos = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS]);
+                        oAlumno.Alias = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS]);
+                        oAlumno.Correo = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO]);
+                        oAlumno.Curso = Convert.ToByte(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO]);
+                        //oAlumno.Contraseña = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA];
                         try
                         {
                             oAlumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
@@ -56,10 +56,10 @@ namespace NervionPlayers_DAL.Manejadoras
                         {
                             oAlumno.Foto = null;
                         }
-                      
-                        oAlumno.Confirmado = (bool)lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO];
-                        oAlumno.Letra = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA];
-                        oAlumno.Observaciones = (String)lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES];
+
+                        oAlumno.Confirmado = Convert.ToBoolean(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO]);
+                        oAlumno.Letra = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA]);
+                        oAlumno.Observaciones = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES]);
 
                     }
                 }

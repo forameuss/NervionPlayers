@@ -40,13 +40,13 @@ namespace NervionPlayers_DAL.Manejadoras
                 {
                     if (lector.Read())
                     {
-                        oPartido.Id = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID];
-                        oPartido.Id_Deporte = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE];
-                        oPartido.Id_Local = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL];
-                        oPartido.Id_Visitante = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE];
-                        oPartido.Resultado_Local = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL];
-                        oPartido.Resultado_Visitante = (int)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE];
-                        oPartido.Lugar = (String)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR];
+                        oPartido.Id = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID];
+                        oPartido.Id_Deporte = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE];
+                        oPartido.Id_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL];
+                        oPartido.Id_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE];
+                        oPartido.Resultado_Local = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL];
+                        oPartido.Resultado_Visitante = Convert.ToInt32(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE];
+                        oPartido.Lugar = Convert.ToString(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR];
                         try
                         {
                             oPartido.Foto = (byte[])lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO];
@@ -55,9 +55,9 @@ namespace NervionPlayers_DAL.Manejadoras
                         {
                             oPartido.Foto = null;
                         }
-                        oPartido.Notas = (String)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_NOTAS];
-                        oPartido.Fecha_Partido = (DateTime)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_PARTIDO];
-                        oPartido.Fecha_Creacion = (DateTime)lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_CREACION];
+                        oPartido.Notas = Convert.ToString(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_NOTAS]);
+                        oPartido.Fecha_Partido = Convert.ToDateTime(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_PARTIDO]);
+                        oPartido.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_CREACION]);
 
                     }
                 }

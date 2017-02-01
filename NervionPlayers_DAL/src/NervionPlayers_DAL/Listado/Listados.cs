@@ -47,11 +47,11 @@ namespace NervionPlayers_DAL.Listado
                         {
                             oAlumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
                         }
-                        catch(InvalidCastException)
+                        catch (InvalidCastException)
                         {
                             oAlumno.Foto = null;
                         }
-                        
+
                         oAlumno.Confirmado = Convert.ToBoolean(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO]);
                         oAlumno.Letra = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA]);
                         oAlumno.Observaciones = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES]);
@@ -88,9 +88,9 @@ namespace NervionPlayers_DAL.Listado
             SqlCommand comando = new SqlCommand();
             comando.CommandText = String.Format(
                 "Select A.{0},A.{1},A.{2},A.{3},A.{4},A.{5},A.{6},A.{7},A.{8},A.{9},A.{10}"
-                +" FROM {11} as A"
+                + " FROM {11} as A"
                 + " inner join {12} as AE on A.{0}=AE.{13}"
-                +" where {14}={15}",
+                + " where {14}={15}",
                 ContratoDB.Alumno_DB.ALUMNO_DB_ID,
                 ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE,
                 ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS,
@@ -169,7 +169,7 @@ namespace NervionPlayers_DAL.Listado
             Connection con = new Connection("AlumnoNervion", ".N3tApe$7aH");
             Equipo oEquipo;
 
-             SqlConnection conexion;
+            SqlConnection conexion;
             SqlCommand comando = new SqlCommand();
             comando.CommandText = String.Format("Select * FROM {0}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME);
             SqlDataReader lector;
@@ -230,8 +230,8 @@ namespace NervionPlayers_DAL.Listado
             SqlConnection conexion;
             SqlCommand comando = new SqlCommand();
             comando.CommandText = String.Format("Select * FROM {0} AS E Inner Join {1} AS AE ON E.{2}=AE.{3} "
-                                                +"where  AE.{4} = {5}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME,ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME,ContratoDB.Equipos_DB.EQUIPOS_DB_ID
-                                                            ,ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO,ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO,idAlumno);
+                                                + "where  AE.{4} = {5}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME, ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_TABLE_NAME, ContratoDB.Equipos_DB.EQUIPOS_DB_ID
+                                                            , ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_EQUIPO, ContratoDB.alumnosEquipos_DB.ALUMNOSEQUIPOS_DB_ID_ALUMNO, idAlumno);
             SqlDataReader lector;
 
             try

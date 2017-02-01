@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 
 namespace NervionPlayers_DAL.Manejadoras
 {
+    //TODO Cambiar lso (****) por Convert.To****()
     public class ManejadoraAlumnoDAL
     {
 

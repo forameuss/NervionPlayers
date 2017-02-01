@@ -12,7 +12,7 @@ namespace ConsoleApp1
         public static void Main(string[] args)
         {
             Listados miLista = new Listados();
-            ObservableCollection<Alumno> alumnosEquipo1 = miLista.listadoAlumnos(1);
+            ObservableCollection<Alumno> alumnosEquipo1 = miLista.listadoAlumnos();
             foreach (var al in alumnosEquipo1)
             {
                 Console.WriteLine(al.Nombre);

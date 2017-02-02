@@ -150,5 +150,57 @@ namespace NervionPlayers_DAL.Manejadoras
 
             return filasafectadas;
         }
+
+        /// <summary>
+        /// Funcion para actualizar un equipod e la DB
+        /// </summary>
+        /// <param name="equipo">Ojeto equipo NO NULLO</param>
+        /// <returns>Numero de filas afectadas</returns>
+        public int actualizarEquipo(Equipo equipo) 
+        {
+            if (equipo == null)
+                throw new ArgumentNullException("Equipo es nulo");
+
+            int filasAfectadas = 0;
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+
+            try
+            {
+                conexion = con.openConnection();
+                miComando.CommandText = @"UPDATE [@table_name] SET @IdCreador_Equipo_DB=@IdCreado_Equipo, 
+                                        @Nombre_Equipo_DB=@Nombre_Equipo, @Foto_Equipo_DB=@Foto_Equipo,
+                                        @FechaCreacion_Equipo_DB=@FechaCreacion_Equipo, 
+                                        @Confirmado_Equipo_DB=@Confirmado_Equipo
+                                        WHERE @Id_DB=@Id";
+
+                //Parametros DB
+                miComando.Parameters.AddWithValue("@table_name", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME);
+                miComando.Parameters.AddWithValue("@IdCreador_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR);
+                miComando.Parameters.AddWithValue("@Nombre_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE);
+                miComando.Parameters.AddWithValue("@Foto_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO);
+                miComando.Parameters.AddWithValue("@FechaCreacion_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_FECHA_CREACION);
+                miComando.Parameters.AddWithValue("@Confirmado_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO);
+                miComando.Parameters.AddWithValue("@Id_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_ID);
+
+                //Parametros Equipo
+                miComando.Parameters.AddWithValue("@IdCreado_Equipo", equipo.Id_Creador);
+                miComando.Parameters.AddWithValue("@Nombre_Equipo", equipo.Nombre);
+                miComando.Parameters.AddWithValue("@Foto_Equipo", equipo.Foto);
+                miComando.Parameters.AddWithValue("@Confirmado_Equipo", equipo.Confirmado);
+                miComando.Parameters.AddWithValue("@Id", equipo.Id);
+
+                filasAfectadas = miComando.ExecuteNonQuery();
+
+            } catch(SqlException)
+            {
+                throw;
+            } finally
+            {
+                con.CloseConnection();
+            }
+
+            return filasAfectadas;
+        }
     }
 }

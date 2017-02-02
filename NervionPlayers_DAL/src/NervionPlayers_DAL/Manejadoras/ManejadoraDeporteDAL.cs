@@ -144,18 +144,16 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = @"UPDATE [@table_name] set @Id_Deporte_DB=@Id_Deporte,
-                                        @Nombre_Deporte_DB=@Nombre_Deporte WHERE @Id_DB=@Id_Deporte";
+                miComando.CommandText = @"UPDATE [@table_name] set @Nombre_Deporte_DB=@Nombre_Deporte
+                                        WHERE @Id_DB=@Id_Deporte";
                 miComando.Connection = conexion;
 
                 //Parametros Tabla
                 miComando.Parameters.AddWithValue("@table_name", ContratoDB.Deportes_DB.DEPORTES_DB_TABLE_NAME);
-                miComando.Parameters.AddWithValue("@Id_Deporte_DB", ContratoDB.Deportes_DB.DEPORTES_DB_ID);
                 miComando.Parameters.AddWithValue("@Nombre_Deporte_DB", ContratoDB.Deportes_DB.DEPORTES_DB_NOMBRE);
                 miComando.Parameters.AddWithValue("@Id_DB", ContratoDB.Deportes_DB.DEPORTES_DB_ID);
 
                 //Parametros Deporte
-                miComando.Parameters.AddWithValue("@Id_Deporte", deporte.Id);
                 miComando.Parameters.AddWithValue("@Nombre_Deporte", deporte.Nombre);
                 miComando.Parameters.AddWithValue("@Id_Deporte", deporte.Id);
 

@@ -133,10 +133,13 @@ namespace NervionPlayers_DAL.Manejadoras
         /// <summary>
         /// Funcion que actualiza un deporte de la base de datos
         /// </summary>
-        /// <param name="deporte">Objeto Deporte</param>
+        /// <param name="deporte">Objeto Deporte NO NULO</param>
         /// <returns>int del numero de filas afectadas</returns>
         public int actualizarDeporte(Deporte deporte)
         {
+            if (deporte == null)
+                throw new ArgumentNullException("Deporte es nulo");
+
             int filasAfectadas = 0;
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();

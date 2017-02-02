@@ -154,7 +154,7 @@ namespace NervionPlayers_DAL.Manejadoras
         /// <summary>
         /// Funcion para actualizar un equipod e la DB
         /// </summary>
-        /// <param name="equipo">Ojeto equipo NO NULLO</param>
+        /// <param name="equipo">Ojeto equipo NO NULO</param>
         /// <returns>Numero de filas afectadas</returns>
         public int actualizarEquipo(Equipo equipo) 
         {

@@ -33,7 +33,7 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <returns>un Equipo</returns>
         [HttpGet("{id}")]
-        public Equipo GetEquipo()
+        public Equipo GetEquipo(int id)
         {
 
             return null;
@@ -46,7 +46,7 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name=""></param>
         [HttpPost]
-        public void PostEquipos()
+        public void PostEquipos([FromBody] Equipo value)
         {
 
         }
@@ -58,8 +58,8 @@ namespace nervionPlayers_API.Controllers
         /// Dentro del metodo hay que actualizar el Equipo
         /// </summary>
         /// <param name="idEquipo">Es el ID del Partido que el usuario desea actualizar</param>
-        //[HttpPut("{idEquipo}")]
-        public void PutEquipos(int idEquipo)
+        [HttpPut("{id}")]
+        public void PutEquipos(int id, [FromBody]Equipo value)
         {
 
         }
@@ -71,8 +71,8 @@ namespace nervionPlayers_API.Controllers
         /// Falta meter la funcionalidad del metodo
         /// </summary>
         /// <param name="idEquipo">El Id del Equipo que el usuario desea borrar</param>
-        //[HttpDelete("{idEquipo}")]
-        public void DeleteEquipos(int idEquipo)
+        [HttpDelete("{id}")]
+        public void DeleteEquipos(int id)
         {
 
 
@@ -84,8 +84,10 @@ namespace nervionPlayers_API.Controllers
         /// Metodo que devuelve un grupo de alumnos pertenecientes a un equipo concreto con la idEquipo
         /// </summary>
         /// <returns>IEnumerable<Alumnnos></returns>
-        [HttpGet("{idEquipo}")]
-        public IEnumerable<Alumnnos> GetAlumnosEquipo()
+        /// 
+        //Comprobar si nos lleva a la ruta directamente a 
+        [HttpGet("{id}"),ActionName("Alumnos")]
+        public IEnumerable<Alumnno> GetAlumnosEquipo(int id)
         {
 
             //if (alumnoEquipo != null)
@@ -108,8 +110,8 @@ namespace nervionPlayers_API.Controllers
         /// se pasa el idAlumno
         /// </summary>
         /// <returns>IEnumerable<Equipos></returns>
-        [HttpGet("{idAlumno}")]
-        public IEnumerable<Equipos> GetEquiposAlumno()
+        [HttpGet("{id}")]
+        public IEnumerable<Equipos> GetEquiposAlumno(int id)
         {
 
             return null;

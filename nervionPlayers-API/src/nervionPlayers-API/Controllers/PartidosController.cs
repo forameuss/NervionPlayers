@@ -36,7 +36,7 @@ namespace ControllersNP.Controllers
         /// </summary>
         /// <returns>un Partido</returns>
         [HttpGet("{id}")]
-        public Partido GetPartido()
+        public Partido GetPartido(int id)
         {
 
             //if (partido != null)
@@ -60,7 +60,7 @@ namespace ControllersNP.Controllers
         /// Dentro del metodo crear un nuevo Partido
         /// </summary>
         [HttpPost]
-        public void PostPartidos()
+        public void PostPartidos([FromBody] Duelo value)
         {
 
         }
@@ -74,9 +74,9 @@ namespace ControllersNP.Controllers
         /// Descomentar linea de encima del metodo
         /// Dentro del metodo hay que actualizar el Partido
         /// </summary>
-        /// <param name="idPartido">Es el ID del Partido que el usuario desea actualizar</param>
-        //[HttpPut("{idPartido}")]
-        public void PutPartidos(int idPartido)
+        /// <param name="id">Es el ID del Partido que el usuario desea actualizar</param>
+        [HttpPut("{id}")]
+        public void PutPartidos(int id, [FromBody]Duelo value)
         {
 
         }
@@ -90,9 +90,9 @@ namespace ControllersNP.Controllers
         /// Descomentar linea de encima del metodo
         /// Falta meter funcionalidad del metodo
         /// </summary>
-        /// <param name="idPartido">El id del Partido que el usuario desea borrar</param>
-        //[HttpDelete("{idPartido}")]
-        public void DeletePartidos(int idPartido)
+        /// <param name="id">El id del Partido que el usuario desea borrar</param>
+        [HttpDelete("{id}")]
+        public void DeletePartidos(int id)
         {
 
 

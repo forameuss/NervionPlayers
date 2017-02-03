@@ -37,7 +37,7 @@ namespace ControllersNP.Controllers
         /// </summary>
         /// <returns>un Duelo</returns>
         [HttpGet("{id}")]
-        public Duelo GetDuelo()
+        public Duelo GetDuelo(int id)
         {
 
             //if (duelo != null)
@@ -61,7 +61,7 @@ namespace ControllersNP.Controllers
         /// Dentro del metodo crear un nuevo Duelo
         /// </summary>
         [HttpPost]
-        public void PostDuelos()
+        public void PostDuelos([FromBody] Duelo value)
         {
 
         }
@@ -74,9 +74,9 @@ namespace ControllersNP.Controllers
         /// Descomentar linea de encima del metodo
         /// Dentro del metodo hay que actualizar el Duelo
         /// </summary>
-        /// <param name="idDuelo">Es el ID del Duelos que el usuario desea actualizar</param>
-        //[HttpPut("{idDuelo}")]
-        public void PutDuelos(int idDuelo)
+        /// <param name="id">Es el ID del Duelos que el usuario desea actualizar</param>
+        [HttpPut("{id}")]
+        public void PutDuelos(int id, [FromBody]Duelo value)
         {
 
         }
@@ -91,8 +91,8 @@ namespace ControllersNP.Controllers
         /// Falta meter funcionalidad del metodo
         /// </summary>
         /// <param name="idDuelo">El id del Duelo que el usuario desea borrar</param>
-        //[HttpDelete("{idDuelo}")]
-        public void DeleteDuelos(int idDuelo)
+        [HttpDelete("{id}")]
+        public void DeleteDuelos(int id)
         {
 
 

@@ -41,7 +41,7 @@ namespace ControllersNP.Controllers
         /// </summary>
         /// <returns>un Deporte</returns>
         [HttpGet("{id}")]
-        public Deporte GetDeporte()
+        public Deporte GetDeporte(int id)
         {
 
             //if (deporte != null)
@@ -64,7 +64,7 @@ namespace ControllersNP.Controllers
         /// Dentro del metodo crear un nuevo Deporte
         /// </summary>
         [HttpPost]
-        public void PostDeportes()
+        public void PostDeportes([FromBody] Equipo value)
         {
 
         }
@@ -76,9 +76,9 @@ namespace ControllersNP.Controllers
         /// Descomentar linea de encima del metodo
         /// Dentro del metodo hay que actualizar el Deporte
         /// </summary>
-        /// <param name="idDeporte">Es el ID del Deporte que el usuario desea actualizar</param>
-        //[HttpPut("{idDeporte}")]
-        public void PutDeportes(int idDeporte)
+        /// <param name="id">Es el ID del Deporte que el usuario desea actualizar</param>
+        [HttpPut("{id}")]
+        public void PutDeportes(int id, [FromBody]Deporte value)
         {
 
         }
@@ -90,9 +90,9 @@ namespace ControllersNP.Controllers
         /// Descomentar linea de encima del metodo
         /// Falta meter funcionalidad del metodo
         /// </summary>
-        /// <param name="idDeporte">El id del Deporte que el usuario desea borrar</param>
-        //[HttpDelete("{idDeporte}")]
-        public void DeleteDeportes(int idDeporte)
+        /// <param name="id">El id del Deporte que el usuario desea borrar</param>
+        [HttpDelete("{id}")]
+        public void DeleteDeportes(int id)
         {
 
 

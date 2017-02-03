@@ -252,3 +252,4 @@ paket-files/
 *.sln.iml
 /.gitattributes
 /TestBL
+/NervionPlayers_BL/TestBL

@@ -15,5 +15,10 @@ namespace ManejadoraDeporteBL {
         public int borrarDeporte(int id){
             return 0;
         }
+
+        public int actualizarDeporte(Deporte deporte)
+        {
+            return 0;
+        }
     }
 }

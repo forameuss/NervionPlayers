@@ -15,5 +15,10 @@ namespace ManejadoraEquipoBL {
         public int borrarEquipo(int id) {
             return 0;
         }
+
+        public int actualizarEquipo(Equipo equipo)
+        {
+            return 0;
+        }
     }
 }

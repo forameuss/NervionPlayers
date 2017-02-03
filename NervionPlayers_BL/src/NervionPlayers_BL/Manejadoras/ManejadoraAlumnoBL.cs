@@ -16,5 +16,12 @@ namespace ManejadoraAlumnoBL {
         public int borrarAlumno(int id) {
             return 0;
         } 
+        
+        public int actualizarAlumno(Almuno alumno)
+        {
+            return 0;
+        }
+
+
     }
 }

@@ -22,7 +22,9 @@ namespace nervionPlayers_API.Controllers
         [HttpGet]
         public IEnumerable<Equipo> GetEquipos()
         {
-            return null;
+            //clsListadosEquiposBL lista = new clsListadosEquiposBL();
+
+            //return lista.listadoEquiposBL();
         }
 
         //  /equipos/{id }
@@ -57,7 +59,7 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostEquipos([FromBody] Equipo value)
         {
-
+           // new clsManejadoraEquiposBL().insertEquipoBL(value);
         }
         #endregion
         #region PUT
@@ -70,7 +72,7 @@ namespace nervionPlayers_API.Controllers
         [HttpPut("{id}")]
         public void PutEquipos(int id, [FromBody]Equipo value)
         {
-
+           // new clsManejadoraEquipo().updateEquipoBL(value);
         }
         #endregion
         #region DELETE
@@ -79,12 +81,12 @@ namespace nervionPlayers_API.Controllers
         /// Descomentar linea de encima del metodo
         /// Falta meter la funcionalidad del metodo
         /// </summary>
-        /// <param name="idEquipo">El Id del Equipo que el usuario desea borrar</param>
+        /// <param name="id">El Id del Equipo que el usuario desea borrar</param>
         [HttpDelete("{id}")]
         public void DeleteEquipos(int id)
         {
-
-
+            //clsManejadoraEquipoBL manejadora = new clsManejadoraEquipoBL();
+            //manejadora.deleteEquipoBLConfirmar(id);
         }
         #endregion
         #region METODOS PARA LA TABLA ALUMNOSEQUIPOS
@@ -95,11 +97,10 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <returns>IEnumerable<Alumnnos></returns>
         /// 
-        //Comprobar si nos lleva a la ruta directamente a 
+        //Comprobar si nos lleva a la ruta directamente
         [HttpGet("{id}"),ActionName("Alumnos")]
         public IEnumerable<Alumnno> GetAlumnosEquipo(int id)
         {
-
 
         }
 

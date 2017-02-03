@@ -3,6 +3,10 @@
  Restricciones
  *************
 Las fechas de Creación no se insertarán ni modificarán
+En curso de alumno se guardará un nñumer entre 1 y 8, sinedo 5 y 6 primero y segundo de bachillerato y 7 y 8 primero y segundo de ciclo
+En un equipo solo podrán ir alumnos de una misma categoría
+Categoría podrá valer 1 o 2 (primero a tercero de eso, y de cuarto en adelante)
+En un partido solo habrá equipos de una misma categoría
 */
 
 Use master
@@ -33,6 +37,7 @@ Confirmado bit not null default 0
 CREATE TABLE Equipos(
 Id int identity(1,1),
 Id_Creador int not null,
+Categoria int not null,
 Nombre nvarchar(20) unique not null,
 Fecha_Creacion smalldatetime not null default CURRENT_TIMESTAMP,
 Foto varbinary(max) null,
@@ -52,8 +57,8 @@ Id_Deporte int,
 Fecha_Partido smalldatetime not null,
 Fecha_Creacion smalldatetime not null default CURRENT_TIMESTAMP,
 Foto varbinary(max) null,
-Resultado_Local int not null,
-Resultado_Visitante int not null,
+Resultado_Local int  null,
+Resultado_Visitante int null,
 Lugar nvarchar(30) null,
 Notas nvarchar(max) null
 )
@@ -66,8 +71,8 @@ Id_Deporte int,
 Fecha_Creacion smalldatetime not null default CURRENT_TIMESTAMP,
 Fecha_Duelo smalldatetime not null,
 Foto varbinary(max),
-Resultado_Local int not null,
-Resultado_Visitante int not null,
+Resultado_Local int null,
+Resultado_Visitante int null,
 Lugar nvarchar(30) null,
 Notas nvarchar(max) null
 )
@@ -137,4 +142,6 @@ Alter table Partidos add constraint FK_Partidos_Visitante foreign key (Id_Visita
 
 Alter table Alumnos add constraint CK_Correo check (Correo like '%@%.%');
 Alter table Alumnos add constraint CK_Alias check (Alias like '');
+Alter table Alumnos add constraint CK_Curso check (Curso between 1 and 8);
+alter table Equipos add constraint CK_Categoria check(Categoria between 1 and 2);
 go

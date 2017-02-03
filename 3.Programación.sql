@@ -3,6 +3,7 @@ go
 /*Programación NerviónPlayers
 TODO
 Añadir Procedimiento sin parámetros, que cada cierto tiempo limpie los dispositivos que llevan sin usarse más de una semana, y estén inactivos.
+Trigger que compruebe que en un equipo solo haya jugadores de uan misma categoría
 */
 --Triggers Insert
 Create Trigger InsertarValidoAlumnos on Alumnos after insert as
@@ -127,3 +128,8 @@ rollback
 End
 go
 
+--Trigger EquipoCategoría
+Create Trigger CategoriaEquipo on AlumnosEquipos after insert as
+--TODO
+
+--Trigger PartidoCategoría

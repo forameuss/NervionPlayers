@@ -1,20 +1,25 @@
-using NervionPlayers_Ent.Modelos;
+﻿using NervionPlayers_Ent.Modelos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ManejadoraEquipoBL {
-    public class ManejadoraEquipoBL{
-        public ManejadoraEquipoBL(){
-
-        }
-
-        public Equipo obtenerEquipo(int id) {
+namespace NervionPlayers_BL.Manejadoras
+{
+    public class ManejadoraEquipoBL
+    {
+        public Equipo obtenerEquipo(int id)
+        {
             return null;
         }
 
-        public int insertarEquipo(Equipo equipo) {
+        public int insertarEquipo(Equipo equipo)
+        {
             return 0;
         }
 
-        public int borrarEquipo(int id) {
+        public int borrarEquipo(int id)
+        {
             return 0;
         }
 

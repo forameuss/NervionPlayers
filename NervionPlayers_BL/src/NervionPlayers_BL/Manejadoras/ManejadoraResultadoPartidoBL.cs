@@ -28,6 +28,4 @@ namespace NervionPlayers_BL.Manejadoras
             return 0;
         }
     }
-
-   
 }

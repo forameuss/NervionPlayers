@@ -1,3 +1,5 @@
+using NervionPlayers_Ent.Modelos;
+
 namespace ManejadoraEquipoBL {
     public class ManejadoraEquipoBL{
         public ManejadoraEquipoBL(){

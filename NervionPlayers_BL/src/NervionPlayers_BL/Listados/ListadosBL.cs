@@ -9,75 +9,75 @@ namespace NervionPlayers_BL
         {
             
         }
-        public ObservableCollection<Alumno> listadoAlumnos() {
+        public ObservableCollection<Alumno> listadoAlumnosBL() {
                 
         }
 
-        public ObservableCollection<Alumno> listadoAlumnos(int idAlumno)
+        public ObservableCollection<Alumno> listadoAlumnosBL(int idAlumno)
         {
 
         }
 
-        public ObservableCollection<Equipo> listadoEquipos() {
+        public ObservableCollection<Equipo> listadoEquiposBL() {
 
         }
 
-        public ObservableCollection<Equipo> listadoEquipos(int idEquipo)
+        public ObservableCollection<Equipo> listadoEquiposBL(int idEquipo)
         {
 
         }
 
-        public ObservableCollection<Partido> listadoPartidos()
+        public ObservableCollection<Partido> listadoPartidosBL()
         {
 
         }
 
-        public ObservableCollection<Partido> listadoPartidos(int idPartidos)
+        public ObservableCollection<Partido> listadoPartidosBL(int idPartidos)
         {
 
         }
 
-        public ObservableCollection<Duelo> listadoDuelos()
+        public ObservableCollection<Duelo> listadoDuelosBL()
         {
 
         }
 
-        public ObservableCollection<Duelo> listadoDuelos(int idDuelo)
+        public ObservableCollection<Duelo> listadoDuelosBL(int idDuelo)
         {
 
         }
 
-        public ObservableCollection<Deporte> listadoDeportes()
+        public ObservableCollection<Deporte> listadoDeportesBL()
         {
 
         }
 
-        public ObservableCollection<Deporte> listadoDeportes(int idDeporte)
+        public ObservableCollection<Deporte> listadoDeportesBL(int idDeporte)
         {
 
         }
 
-        public ObservableCollection<AlumnoEquipo> listadoAlumnosEquipos()
+        public ObservableCollection<AlumnoEquipo> listadoAlumnosEquiposBL()
         {
 
         }
 
-        public ObservableCollection<ResultadoPartido> listadoResultadoPartidos()
+        public ObservableCollection<ResultadoPartido> listadoResultadoPartidosBL()
         {
 
         }
 
-        public ObservableCollection<ResultadoDuelo> listadoResultadoDuelos()
+        public ObservableCollection<ResultadoDuelo> listadoResultadoDuelosBL()
         {
 
         }
 
-        public ObservableCollection<Dispositivo> listadoDispositivos()
+        public ObservableCollection<Dispositivo> listadoDispositivosBL()
         {
 
         }
 
-        public ObservableCollection<Dispositivo> listadoDispositivos(int idAlumno)
+        public ObservableCollection<Dispositivo> listadoDispositivosBL(int idAlumno)
         {
 
         }

@@ -25,6 +25,17 @@ namespace ControllersNP.Controllers
         [HttpGet]
         public IEnumerable<Partido> GetPartidos()
         {
+           // List<Partido> partidos = new clsManejadoraPartidoBL().getPartidosBL();
+
+            //if (partidos != null)
+            //{
+            //    return new ObjectResult(partidos);
+            //}
+            //else
+            //{
+            //    return NotFound();
+            //}
+
             return null;
         }
 
@@ -38,6 +49,7 @@ namespace ControllersNP.Controllers
         [HttpGet("{id}")]
         public Partido GetPartido(int id)
         {
+            // Partido  partido= new clsManejadoraPartidoBL().getPartidoBL(id);
 
             //if (partido != null)
             //{
@@ -60,8 +72,10 @@ namespace ControllersNP.Controllers
         /// Dentro del metodo crear un nuevo Partido
         /// </summary>
         [HttpPost]
-        public void PostPartidos([FromBody] Duelo value)
+        public void PostPartidos([FromBody] Partido value)
         {
+            //clsManejadoraPartidoBL manejadoraBL = new clsManejadoraPartidoBL();
+            //manejadoraBL.postPartidoBL(value);
 
         }
 
@@ -78,7 +92,8 @@ namespace ControllersNP.Controllers
         [HttpPut("{id}")]
         public void PutPartidos(int id, [FromBody]Duelo value)
         {
-
+            //clsManejadoraPartidoBL manejadoraBL = new clsManejadoraPartidoBL();
+            //manejadoraBL.putPartidoBL(value);
         }
 
         #endregion
@@ -94,7 +109,8 @@ namespace ControllersNP.Controllers
         [HttpDelete("{id}")]
         public void DeletePartidos(int id)
         {
-
+            //clsManejadoraPartidoBL manejadoraBL = new clsManejadoraPartidoBL();
+            //manejadoraBL.deletePartidoBL(id);
 
         }
 

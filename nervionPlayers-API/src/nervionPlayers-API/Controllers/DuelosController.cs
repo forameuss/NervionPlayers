@@ -52,7 +52,6 @@ namespace ControllersNP.Controllers
         }
 
         #endregion
-
         #region POST
 
         /// <summary>
@@ -66,7 +65,6 @@ namespace ControllersNP.Controllers
 
         }
         #endregion
-
         #region PUT
 
         /// <summary>
@@ -82,7 +80,6 @@ namespace ControllersNP.Controllers
         }
 
         #endregion
-
         #region DELETE
 
         /// <summary>

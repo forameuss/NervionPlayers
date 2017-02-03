@@ -110,7 +110,7 @@ namespace nervionPlayers_API.Controllers
         /// se pasa el idAlumno
         /// </summary>
         /// <returns>IEnumerable<Equipos></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), ActionName("Equipos")]
         public IEnumerable<Equipos> GetEquiposAlumno(int id)
         {
 

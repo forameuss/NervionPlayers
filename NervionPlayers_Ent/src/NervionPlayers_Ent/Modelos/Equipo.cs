@@ -15,6 +15,7 @@ namespace NervionPlayers_Ent.Modelos
     {
         private int id;
         private int id_Creador;
+        private int categoria;
         private String nombre;
         private DateTime fecha_Creacion;
         private Byte[] foto;
@@ -24,10 +25,11 @@ namespace NervionPlayers_Ent.Modelos
         {
 
         }
-        public Equipo(int id, int id_Creador, string nombre, DateTime fecha_Creacion, byte[] foto, bool confirmado)
+        public Equipo(int id, int id_Creador,int categoria, string nombre, DateTime fecha_Creacion, byte[] foto, bool confirmado)
         {
             Id = id;
             Id_Creador = id_Creador;
+            this.categoria = Categoria;
             Nombre = nombre;
             Fecha_Creacion = fecha_Creacion;
             Foto = foto;
@@ -109,6 +111,19 @@ namespace NervionPlayers_Ent.Modelos
             set
             {
                 confirmado = value;
+            }
+        }
+
+        public int Categoria
+        {
+            get
+            {
+                return categoria;
+            }
+
+            set
+            {
+                categoria = value;
             }
         }
     }

@@ -4,6 +4,7 @@
  * No se insertará en BBDD las fecha de Creación
  * Fecha de partido posterior a fecha de creación
  * lugar<=30
+ * El equipo local y visitante deberán pertencer a la misma categoría
  */
 using System;
 using System.Collections.Generic;

@@ -9,6 +9,7 @@
  * Correo<=50 será *@*.* donde * es cualquiera cadena
  * Letra<=10
  * No se insertará en BBDD las fecha de Creación
+ * Curso: 5 corresponderá a 1 bachillerato,6 a segundo de bachillerato, 7 a primero de ciclo y 8 a segundo de ciclo
  */
 namespace NervionPlayers_Ent.Modelos
 {

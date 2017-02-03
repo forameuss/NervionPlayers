@@ -1,5 +1,4 @@
-﻿//TODO Actualizar
-using DALClassLibrary;
+﻿using DALClassLibrary;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -166,6 +165,72 @@ namespace NervionPlayers_DAL.Manejadoras
             }
 
             return filasafectadas;
+        }
+
+
+        /// <summary>
+        /// Funcion que actualiza un Duelo de la base de datos
+        /// </summary>
+        /// <param name="duelo">Objeto Duelo NO NULO</param>
+        /// <returns>int del numero de filas afectadas</returns>
+        public int actualizarDuelo(Duelo duelo)
+        {
+            if (duelo == null)
+                throw new ArgumentNullException("Duelo es nulo");
+
+            int filasAfectadas = 0;
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+
+            try
+            {
+                conexion = con.openConnection();
+                miComando.CommandText = @"UPDATE [@table_Name] set @Id_Local_DB=@Id_Local, @Id_Visitante_DB=@Id_Visitante,
+                                                                  @Id_Deporte_DB=@Id_Deporte, @Foto_DB=@Foto, @Lugar_DB=@Lugar,
+                                                                  @Notas_DB=@Notas, @Resultado_Local_DB=@Resultado_Local,@Resultado_Visitante_DB=@Resultado_Visitante,
+                                                                @Fecha_Duelo_DB=@Fecha_Duelo
+                                            WHERE @Id_DB=@Id";
+
+
+
+                miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_Local_DB", ContratoDB.Duelos_DB.DUELOS_DB_ID_LOCAL);
+                miComando.Parameters.AddWithValue("@Id_Visitante_DB", ContratoDB.Duelos_DB.DUELOS_DB_ID_VISITANTE);
+                miComando.Parameters.AddWithValue("@Id_Deporte_DB", ContratoDB.Duelos_DB.DUELOS_DB_ID_DEPORTE);
+                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Duelos_DB.DUELOS_DB_FOTO);
+                miComando.Parameters.AddWithValue("@Lugar_DB", ContratoDB.Duelos_DB.DUELOS_DB_LUGAR);
+                miComando.Parameters.AddWithValue("@Notas_DB", ContratoDB.Duelos_DB.DUELOS_DB_NOTAS);
+                miComando.Parameters.AddWithValue("@Resultado_Local_DB", ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_LOCAL);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante_DB", ContratoDB.Duelos_DB.DUELOS_DB_RESULTADO_VISITANTE);
+                miComando.Parameters.AddWithValue("@Fecha_Duelo_DB", ContratoDB.Duelos_DB.DUELOS_DB_FECHA_DUELO);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Duelos_DB.DUELOS_DB_TABLE_NAME);
+
+                //Parametros Duelo
+                miComando.Parameters.AddWithValue("@Id", duelo.Id);
+                miComando.Parameters.AddWithValue("@Id_Local", duelo.Id_Local);
+                miComando.Parameters.AddWithValue("@Id_Visitante", duelo.Id_Visitante);
+                miComando.Parameters.AddWithValue("@Id_Deporte", duelo.Id_Deporte);
+                miComando.Parameters.AddWithValue("@Foto", duelo.Foto);
+                miComando.Parameters.AddWithValue("@Lugar", duelo.Lugar);
+                miComando.Parameters.AddWithValue("@Notas", duelo.Notas);
+                miComando.Parameters.AddWithValue("@Resultado_Local", duelo.Resultado_Local);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante", duelo.Resultado_Visitante);
+                miComando.Parameters.AddWithValue("@Fecha_Duelo", duelo.Fecha_Duelo);
+
+                filasAfectadas = miComando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return filasAfectadas;
         }
     }
 }

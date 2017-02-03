@@ -172,5 +172,73 @@ namespace NervionPlayers_DAL.Manejadoras
 
             return filasafectadas;
         }
+
+        /// <summary>
+        /// Funcion que actualiza un alumno de la base de datos
+        /// </summary>
+        /// <param name="alumno">Objeto Alumno NO NULO</param>
+        /// <returns>int del numero de filas afectadas</returns>
+        public int actualizarAlumno(Alumno alumno)
+        {
+            if (alumno == null)
+                throw new ArgumentNullException("Alumno es nulo");
+
+            int filasAfectadas = 0;
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+
+            try
+            {
+                conexion = con.openConnection();
+                miComando.CommandText = @"UPDATE [@table_Name] set @Nombre_DB=@Nombre_Alumno, @Apellidos_DB=@Apellidos_Alumno,
+                                                                  @Alias_DB=@Alias_Alumno, @Correo_DB=@Correo_Alumno, @Contraseña_DB=@Contraseña_Alumno,
+                                                                  @Foto_DB=@Foto_Alumno, @Curso_DB=@Curso_Alumno,@Confirmado_DB=@Confirmado_Alumno,@Letra_DB=@Letra_Alumno,
+                                                                @Observaciones_DB=@Observaciones_Alumno
+                                            WHERE @Id_DB=@Id_Alumno";
+
+
+
+                miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Nombre_DB", ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE);
+                miComando.Parameters.AddWithValue("@Apellidos_DB", ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS);
+                miComando.Parameters.AddWithValue("@Alias_DB", ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS);
+                miComando.Parameters.AddWithValue("@Correo_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CORREO);
+                miComando.Parameters.AddWithValue("@Contraseña_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA);
+                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Alumno_DB.ALUMNO_DB_FOTO);
+                miComando.Parameters.AddWithValue("@Curso_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CURSO);
+                miComando.Parameters.AddWithValue("@Confirmado_DB", ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO);
+                miComando.Parameters.AddWithValue("@Letra_DB", ContratoDB.Alumno_DB.ALUMNO_DB_LETRA);
+                miComando.Parameters.AddWithValue("@Observaciones_DB", ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME);
+                miComando.Parameters.AddWithValue("@Id_DB", ContratoDB.Alumno_DB.ALUMNO_DB_ID);
+
+                //Parametros Alumno
+                miComando.Parameters.AddWithValue("@Nombre_Alumno", alumno.Nombre);
+                miComando.Parameters.AddWithValue("@Apellidos_Alumno", alumno.Apellidos);
+                miComando.Parameters.AddWithValue("@Alias_Alumno", alumno.Alias);
+                miComando.Parameters.AddWithValue("@Correo_Alumno", alumno.Correo);
+                miComando.Parameters.AddWithValue("@Contraseña_Alumno", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Foto_Alumno", alumno.Foto);
+                miComando.Parameters.AddWithValue("@Curso_Alumno", alumno.Curso);
+                miComando.Parameters.AddWithValue("@Confirmado_Alumno", alumno.Confirmado);
+                miComando.Parameters.AddWithValue("@Letra_Alumno", alumno.Letra);
+                miComando.Parameters.AddWithValue("@Observaciones_Alumno", alumno.Observaciones);
+                miComando.Parameters.AddWithValue("@Id_Alumno", alumno.Id);
+
+                filasAfectadas = miComando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return filasAfectadas;
+        }
     }
 }

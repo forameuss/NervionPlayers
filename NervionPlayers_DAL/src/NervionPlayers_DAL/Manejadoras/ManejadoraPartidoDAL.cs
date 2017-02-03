@@ -1,5 +1,4 @@
-﻿//TODO Actualizar
-using DALClassLibrary;
+﻿using DALClassLibrary;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -77,8 +76,6 @@ namespace NervionPlayers_DAL.Manejadoras
             return oPartido;
         }
 
-        //TODO hacer
-
         /// <summary>
         /// Añade un nuevo Partido en la base de datos
         /// </summary>
@@ -89,13 +86,38 @@ namespace NervionPlayers_DAL.Manejadoras
             int filasAfectadas = 0;
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();
-            Partido oPartido = new Partido();
 
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");//Preguntar a javi que se inserta y que no
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Local_DB,@Id_Visitante_DB,@Id_Deporte_DB
+                                            ,@Fecha_Partido_DB,
+                                        @Foto_DB,@Resultado_Local_DB ,@Resultado_Visitante_DB,@Lugar_DB,@Notas_DB) VALUES 
+                                        (@Id_Local,@Id_Visitante,@Id_Deporte,@Fecha_Partido,@Foto,@Resultado_Local,@Resultado_Visitante,@Lugar,@Notas)";
                 miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_Local_DB ", ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL);
+                miComando.Parameters.AddWithValue("@Id_Visitante_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE);
+                miComando.Parameters.AddWithValue("@Id_Deporte_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE);
+                miComando.Parameters.AddWithValue("@Fecha_Partido_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_PARTIDO);
+                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO);
+                miComando.Parameters.AddWithValue("@Resultado_Local_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE);
+                miComando.Parameters.AddWithValue("@Lugar_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR);
+                miComando.Parameters.AddWithValue("@Notas_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_NOTAS);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Partidos_DB.PARTIDOS_DB_TABLE_NAME);
+
+                //Parametros Partido
+                miComando.Parameters.AddWithValue("@Id_Local", partido.Id_Local);
+                miComando.Parameters.AddWithValue("@Id_Visitante", partido.Id_Visitante);
+                miComando.Parameters.AddWithValue("@Id_Deporte", partido.Id_Deporte);
+                miComando.Parameters.AddWithValue("@Fecha_Partido", partido.Fecha_Partido);
+                miComando.Parameters.AddWithValue("@Foto", partido.Foto);
+                miComando.Parameters.AddWithValue("@Resultado_Local", partido.Resultado_Local);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante", partido.Resultado_Visitante);
+                miComando.Parameters.AddWithValue("@Lugar", partido.Lugar);
+                miComando.Parameters.AddWithValue("@Notas", partido.Notas);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 
@@ -111,6 +133,8 @@ namespace NervionPlayers_DAL.Manejadoras
 
             return filasAfectadas;
         }
+
+
 
         /// <summary>
         /// Funcion que borra un Partido de la base de datos 
@@ -143,6 +167,72 @@ namespace NervionPlayers_DAL.Manejadoras
             }
 
             return filasafectadas;
+        }
+
+        /// <summary>
+        /// Funcion que actualiza un Partido de la base de datos
+        /// </summary>
+        /// <param name="partido">Objeto Partido NO NULO</param>
+        /// <returns>int del numero de filas afectadas</returns>
+        public int actualizarPartido(Partido partido)
+        {
+            if (partido == null)
+                throw new ArgumentNullException("Partido es nulo");
+
+            int filasAfectadas = 0;
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+
+            try
+            {
+                conexion = con.openConnection();
+                miComando.CommandText = @"UPDATE [@table_Name] set @Id_Local_DB=@Id_Local, @Id_Visitante_DB=@Id_Visitante,
+                                                                  @Id_Deporte_DB=@Id_Deporte, @Foto_DB=@Foto, @Lugar_DB=@Lugar,
+                                                                  @Notas_DB=@Notas, @Resultado_Local_DB=@Resultado_Local,@Resultado_Visitante_DB=@Resultado_Visitante,
+                                                                @Fecha_Duelo_DB=@Fecha_Duelo
+                                            WHERE @Id_DB=@Id";
+
+
+
+                miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_ID);
+                miComando.Parameters.AddWithValue("@Id_Local_DB ", ContratoDB.Partidos_DB.PARTIDOS_DB_ID_LOCAL);
+                miComando.Parameters.AddWithValue("@Id_Visitante_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_ID_VISITANTE);
+                miComando.Parameters.AddWithValue("@Id_Deporte_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_ID_DEPORTE);
+                miComando.Parameters.AddWithValue("@Fecha_Partido_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_FECHA_PARTIDO);
+                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_FOTO);
+                miComando.Parameters.AddWithValue("@Resultado_Local_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_LOCAL);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_RESULTADO_VISITANTE);
+                miComando.Parameters.AddWithValue("@Lugar_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_LUGAR);
+                miComando.Parameters.AddWithValue("@Notas_DB", ContratoDB.Partidos_DB.PARTIDOS_DB_NOTAS);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Partidos_DB.PARTIDOS_DB_TABLE_NAME);
+
+                //Parametros Partido
+                miComando.Parameters.AddWithValue("@Id", partido.Id);
+                miComando.Parameters.AddWithValue("@Id_Local", partido.Id_Local);
+                miComando.Parameters.AddWithValue("@Id_Visitante", partido.Id_Visitante);
+                miComando.Parameters.AddWithValue("@Id_Deporte", partido.Id_Deporte);
+                miComando.Parameters.AddWithValue("@Fecha_Partido", partido.Fecha_Partido);
+                miComando.Parameters.AddWithValue("@Foto", partido.Foto);
+                miComando.Parameters.AddWithValue("@Resultado_Local", partido.Resultado_Local);
+                miComando.Parameters.AddWithValue("@Resultado_Visitante", partido.Resultado_Visitante);
+                miComando.Parameters.AddWithValue("@Lugar", partido.Lugar);
+                miComando.Parameters.AddWithValue("@Notas", partido.Notas);
+
+                filasAfectadas = miComando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return filasAfectadas;
         }
     }
 }

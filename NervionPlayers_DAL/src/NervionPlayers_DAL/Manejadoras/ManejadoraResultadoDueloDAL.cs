@@ -1,5 +1,4 @@
-﻿//TODO Actualizar
-using DALClassLibrary;
+﻿using DALClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -60,14 +59,12 @@ namespace NervionPlayers_DAL.Manejadoras
             }
 
             return oResultadoDuelo;
-        }
-
-        //TODO hacer
+        }      
 
         /// <summary>
-        /// Añade un nuevo resultadoDuelo en la base de datos
+        /// Añade un nuevo ResultadoDuelo en la base de datos
         /// </summary>
-        /// <param name="ResultadoDuelo">Recibe un  tipo ResultadoDuelo</param>
+        /// <param name="resultadoDuelo">Recibe un  tipo ResultadoDuelo</param>
         /// <returns>retorna el numero de filas afectadas , int</returns>
         public int insertarResultadoDuelo(ResultadoDuelo resultadoDuelo)
         {
@@ -78,10 +75,19 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("");
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Alumno_DB) VALUES 
+                                        (@Id_Alumno)";
                 miComando.Connection = conexion;
 
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_Alumno_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_ALUMNO);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_TABLE_NAME);
+
+                //Parametros ResultadoDuelo
+                miComando.Parameters.AddWithValue("@Id_Alumno", resultadoDuelo.Id_Alumno);
+
                 filasAfectadas = miComando.ExecuteNonQuery();
+
             }
             catch (SqlException ex)
             {
@@ -94,6 +100,7 @@ namespace NervionPlayers_DAL.Manejadoras
 
             return filasAfectadas;
         }
+
 
         /// <summary>
         /// Funcion que borra un ResultadoDuelo de la base de datos 
@@ -126,6 +133,60 @@ namespace NervionPlayers_DAL.Manejadoras
             }
 
             return filasafectadas;
+        }
+
+
+        /// <summary>
+        /// Funcion que actualiza un ResultadoDuelo de la base de datos
+        /// </summary>
+        /// <param name="resultadoDuelo">Objeto ResultadoDuelo NO NULO</param>
+        /// <returns>int del numero de filas afectadas</returns>
+        public int actualizarResultadoDuelo(ResultadoDuelo resultadoDuelo)
+        {
+            if (resultadoDuelo == null)
+                throw new ArgumentNullException("ResultadoDuelo es nulo");
+
+            int filasAfectadas = 0;
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+
+            try
+            {
+                conexion = con.openConnection();
+                miComando.CommandText = @"UPDATE [@table_Name] set @Id_Alumno_DB=@Id_Alumno, @Ganados_DB=@Ganados,
+                                                                  @Empatados_DB=@Empatados, @Perdidos_DB=@Perdidos
+                                            WHERE @Id_DB=@Id";
+
+                miComando.Connection = conexion;
+
+                //Parametros Tabla
+                miComando.Parameters.AddWithValue("@Id_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID);
+                miComando.Parameters.AddWithValue("@Id_Alumno_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_ALUMNO);
+                miComando.Parameters.AddWithValue("@Ganados_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_GANADOS);
+                miComando.Parameters.AddWithValue("@Empatados_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_EMPATADOS);
+                miComando.Parameters.AddWithValue("@Perdidos_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_PERDIDOS);
+                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_TABLE_NAME);
+
+                //Parametros Resultado Duelo
+                miComando.Parameters.AddWithValue("@Id", resultadoDuelo.Id);
+                miComando.Parameters.AddWithValue("@Id_Alumno", resultadoDuelo.Id_Alumno);
+                miComando.Parameters.AddWithValue("@Ganados", resultadoDuelo.Ganados);
+                miComando.Parameters.AddWithValue("@Empatados", resultadoDuelo.Empatados);
+                miComando.Parameters.AddWithValue("@Perdidos", resultadoDuelo.Perdidos);
+                
+
+                filasAfectadas = miComando.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return filasAfectadas;
         }
     }
 }

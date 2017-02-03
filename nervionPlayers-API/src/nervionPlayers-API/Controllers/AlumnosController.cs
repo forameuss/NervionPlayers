@@ -27,9 +27,11 @@ namespace nervionPlayers_API.Controllers
         [HttpGet]
         public IEnumerable<Alumnno> GetAlumnos()
         {
-            return null;
+            //clsListadosAlumnosBL lista = new clsListadosAlumnosBL();
+
+            //return lista.listadoAlumnosBL();
         }
-        
+
 
         /// <summary>
         /// Ruta: /alumnos/id

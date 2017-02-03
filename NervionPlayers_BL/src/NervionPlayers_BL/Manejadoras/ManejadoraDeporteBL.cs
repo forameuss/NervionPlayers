@@ -1,6 +1,8 @@
+using NervionPlayers_Ent.Modelos;
+
 namespace ManejadoraDeporteBL {
     public class ManejadoraDeporteBL {
-        public ManejadoraDeporteBL {
+        public ManejadoraDeporteBL() {
 
         }
 

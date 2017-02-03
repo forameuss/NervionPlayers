@@ -36,7 +36,16 @@ namespace nervionPlayers_API.Controllers
         public Equipo GetEquipo(int id)
         {
 
-            return null;
+            // team = new clsManejadoraEquipoBL().getEquipoBL(id);
+
+            //if (team != null)
+            //{
+            //    return new ObjectResult(team);
+            //}
+            //else
+            //{
+            //    return NotFound();
+            //}
         }
         #endregion
         #region POST
@@ -90,15 +99,7 @@ namespace nervionPlayers_API.Controllers
         public IEnumerable<Alumnno> GetAlumnosEquipo(int id)
         {
 
-            //if (alumnoEquipo != null)
-            //{
-            //    return new ObjectResult(alumnoEquipo);
-            //}
-            //else {
-            //    return Not Found();
-            //}
 
-            return null;
         }
 
 

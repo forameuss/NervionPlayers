@@ -17,6 +17,8 @@ public class ResultadoDuelo
     #endregion
 
     #region Constructores
+    public ResultadoDuelo() { }
+
     public ResultadoDuelo(int id, int id_Alumno, int ganados, int empatados, int perdidos)
     {
         this.id = id;

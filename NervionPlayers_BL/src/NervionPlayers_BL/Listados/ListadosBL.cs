@@ -1,3 +1,4 @@
+using NervionPlayers_Ent.Modelos;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -9,9 +10,11 @@ namespace NervionPlayers_BL
         {
             
         }
-        public ObservableCollection<Alumno> listadoAlumnosBL() {
-                
+        public ObservableCollection<Alumno> listadoAlumnosBL()
+        {
+
         }
+               
 
         public ObservableCollection<Alumno> listadoAlumnosBL(int idAlumno)
         {

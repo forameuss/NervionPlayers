@@ -251,5 +251,4 @@ paket-files/
 .idea/
 *.sln.iml
 /.gitattributes
-/TestBL
-/NervionPlayers_BL/TestBL
+/NervionPlayers_BL/src/NervionPlayers_BL/Test/

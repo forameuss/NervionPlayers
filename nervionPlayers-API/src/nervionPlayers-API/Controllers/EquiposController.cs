@@ -79,6 +79,7 @@ namespace nervionPlayers_API.Controllers
         }
         #endregion
         #region METODOS PARA LA TABLA ALUMNOSEQUIPOS
+        //equipo / id / alumno
         /// <summary>
         /// Ruta: /equipos/{idEquipo}/alumno
         /// Metodo que devuelve un grupo de alumnos pertenecientes a un equipo concreto con la idEquipo
@@ -104,6 +105,7 @@ namespace nervionPlayers_API.Controllers
 
         //Hace referencia a la tabla AlumnosGrupos
 
+        //alumno / id / equipo
         /// <summary>
         /// Ruta: /alumnos/{idAlumno}/equipo
         /// Metodo que devuelve un grupo de equipos a los que pertenece un alumno
@@ -111,11 +113,41 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <returns>IEnumerable<Equipos></returns>
         [HttpGet("{id}"), ActionName("Equipos")]
-        public IEnumerable<Equipos> GetEquiposAlumno(int id)
+        public IEnumerable<Equipo> GetEquiposAlumno(int id)
         {
 
             return null;
         }
+
+        //equipo / id / partidos
+        /// <summary>
+        /// Ruta: /equipo/{idEquipo}/partidos
+        /// Metodo que devuelve un grupo de partidos en los que ha participado un equipo
+        /// se pasa el idEquipo
+        /// </summary>
+        /// <returns>IEnumerable<Partidos></returns>
+        [HttpGet("{id}"), ActionName("Partidos")]
+        public IEnumerable<Partido> GetPartidosEquipo(int id)
+        {
+
+            return null;
+        }
+
+
+        //alumno / id / duelos
+        /// <summary>
+        /// Ruta: /alumno/{idAlumno}/duelos
+        /// Metodo que devuelve un grupo de duelos en los que ha participado un alumno
+        /// se pasa el idAlumno
+        /// </summary>
+        /// <returns>IEnumerable<Duelos></returns>
+        [HttpGet("{id}"), ActionName("Duelos")]
+        public IEnumerable<Duelo> GetDuelosAlumno(int id)
+        {
+
+            return null;
+        }
+
         #endregion
     }
 }

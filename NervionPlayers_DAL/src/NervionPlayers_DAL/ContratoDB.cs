@@ -31,6 +31,7 @@ namespace NervionPlayers_DAL
             public static String EQUIPOS_DB_TABLE_NAME = "Equipos";
             public static String EQUIPOS_DB_ID = "Id";
             public static String EQUIPOS_DB_ID_CREADOR= "Id_Creador";
+            public static String EQuIPOS_DB_CATEGORIA = "Categoria";
             public static String EQUIPOS_DB_NOMBRE = "Nombre";
             public static String EQUIPOS_DB_FOTO = "Foto";
             public static String EQUIPOS_DB_FECHA_CREACION = "Fecha_Creacion";

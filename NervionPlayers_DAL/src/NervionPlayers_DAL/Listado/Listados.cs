@@ -1,5 +1,4 @@
-﻿//TODO Añadir categoría
-using DALClassLibrary;
+﻿using DALClassLibrary;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -189,6 +188,7 @@ namespace NervionPlayers_DAL.Listado
                         oEquipo.Id = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID]);
                         oEquipo.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
                         oEquipo.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
+                        oEquipo.Categoria = Convert.ToInt16(lector[ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA]);
                         try
                         {
                             oEquipo.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
@@ -249,6 +249,7 @@ namespace NervionPlayers_DAL.Listado
                         oEquipo.Id = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID]);
                         oEquipo.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
                         oEquipo.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
+                        oEquipo.Categoria = Convert.ToInt16(lector[ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA]);
                         try
                         {
                             oEquipo.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];

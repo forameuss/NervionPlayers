@@ -1,5 +1,4 @@
-﻿//TODO Añadir categoría a TODO
-using DALClassLibrary;
+﻿using DALClassLibrary;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -44,6 +43,7 @@ namespace NervionPlayers_DAL.Manejadoras
                         oEquipo.Id = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID]);
                         oEquipo.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
                         oEquipo.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
+                        oEquipo.Categoria = Convert.ToInt16(lector[ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA]);
                         try
                         {
                             oEquipo.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
@@ -84,20 +84,22 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Creador_DB ,@Nombre_DB,@Foto_DB,@confirmado_DB)
-                                        VALUES (@Id_Creador,@Nombre,@Foto,@Confirmado)";
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Creador_DB ,@Nombre_DB,@Categoria_DB,@Foto_DB,@confirmado_DB)
+                                        VALUES (@Id_Creador,@Nombre,@Categoria,@Foto,@Confirmado)";
                 miComando.Connection = conexion;
 
                 //Parametros Tabla
                 miComando.Parameters.AddWithValue("@Id_Creador_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR);
                 miComando.Parameters.AddWithValue("@Nombre_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE);
                 miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO);
+                miComando.Parameters.AddWithValue("@Categoria_DB", ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA);
                 miComando.Parameters.AddWithValue("@confirmado_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO);
                 miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME);
 
                 //Parametros Equipo
                 miComando.Parameters.AddWithValue("@Nombre", equipo.Nombre);
                 miComando.Parameters.AddWithValue("@Id_Creador", equipo.Id_Creador);
+                miComando.Parameters.AddWithValue("@Categoria", equipo.Categoria);
                 miComando.Parameters.AddWithValue("@Foto", equipo.Foto);
                 miComando.Parameters.AddWithValue("@Confirmado", equipo.Confirmado);
 
@@ -171,13 +173,14 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.CommandText = @"UPDATE [@table_name] SET @IdCreador_Equipo_DB=@IdCreado_Equipo, 
                                         @Nombre_Equipo_DB=@Nombre_Equipo, @Foto_Equipo_DB=@Foto_Equipo,
                                         @FechaCreacion_Equipo_DB=@FechaCreacion_Equipo, 
-                                        @Confirmado_Equipo_DB=@Confirmado_Equipo
+                                        @Confirmado_Equipo_DB=@Confirmado_Equipo,@Categoria_DB=@Categoria
                                         WHERE @Id_DB=@Id";
 
                 //Parametros DB
                 miComando.Parameters.AddWithValue("@table_name", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME);
                 miComando.Parameters.AddWithValue("@IdCreador_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR);
                 miComando.Parameters.AddWithValue("@Nombre_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE);
+                miComando.Parameters.AddWithValue("@Categoria_DB", ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA);
                 miComando.Parameters.AddWithValue("@Foto_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO);
                 miComando.Parameters.AddWithValue("@FechaCreacion_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_FECHA_CREACION);
                 miComando.Parameters.AddWithValue("@Confirmado_Equipo_DB", ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO);
@@ -187,6 +190,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@IdCreado_Equipo", equipo.Id_Creador);
                 miComando.Parameters.AddWithValue("@Nombre_Equipo", equipo.Nombre);
                 miComando.Parameters.AddWithValue("@Foto_Equipo", equipo.Foto);
+                miComando.Parameters.AddWithValue("@Categoria", equipo.Categoria);
                 miComando.Parameters.AddWithValue("@Confirmado_Equipo", equipo.Confirmado);
                 miComando.Parameters.AddWithValue("@Id", equipo.Id);
 

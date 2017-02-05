@@ -15,6 +15,7 @@ namespace NervionPlayers_Ent.Modelos
 {
 
     /// <summary>
+    /// Restricciones:
     /// <para>Nombre &lt; &#61; 30</para>
     /// <para>Apellidos &lt; &#61; 50</para>
     /// <para>Contraseña &lt; &#61; 255 contendrá mínimo un caracter en mayúscula, un número y un carácter especial</para> 

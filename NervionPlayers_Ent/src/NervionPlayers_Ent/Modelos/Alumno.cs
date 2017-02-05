@@ -14,7 +14,17 @@
 namespace NervionPlayers_Ent.Modelos
 {
 
-
+    /// <summary>
+    /// <para>Nombre &lt; &#61; 30</para>
+    /// <para>Apellidos &lt; &#61; 50</para>
+    /// <para>Contraseña &lt; &#61; 255 contendrá mínimo un caracter en mayúscula, un número y un carácter especial</para> 
+    /// <para>Alias &lt; &#61; 20</para>
+    /// <para>Correo &lt; &#61; 50 será*@*.* donde * es cualquiera cadena</para>
+    /// <para>Letra &lt; &#61; 10</para>
+    /// 
+    /// <para>Curso: 5 corresponderá a 1 bachillerato,6 a segundo de bachillerato, 7 a primero de ciclo y 8 a segundo de ciclo</para>
+    /// </summary>
+    /// <remarks>No se insertará en BBDD las fecha de Creación</remarks>
     public class Alumno
     {
         #region Atributos
@@ -37,6 +47,7 @@ namespace NervionPlayers_Ent.Modelos
         public Alumno()
         {
         }
+       
 
         public Alumno(int id, String nombre, String apellidos, String contraseña, String alias, String correo,
             DateTime fecha_Creacion, Byte curso, String letra, String observaciones, bool confirmado, Byte[] foto)

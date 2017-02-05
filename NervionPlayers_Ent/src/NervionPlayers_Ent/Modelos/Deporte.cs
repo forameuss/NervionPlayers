@@ -8,6 +8,9 @@
 */
 namespace NervionPlayers_Ent.Modelos
 {
+    /// <summary>
+    /// Nombre &#60;&#61; 20 caracteres
+    /// </summary>
     public class Deporte
     {
         #region Atributos

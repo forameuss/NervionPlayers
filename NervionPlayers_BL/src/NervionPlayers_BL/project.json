@@ -2,6 +2,7 @@
   "version": "1.0.0-*",
 
   "dependencies": {
+    "NervionPlayers_DAL": "1.0.0-*",
     "NervionPlayers_Ent": "1.0.0-*",
     "NETStandard.Library": "1.6.0",
     "System.Globalization.Extensions": "4.0.1"

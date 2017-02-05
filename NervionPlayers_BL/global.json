@@ -1,5 +1,5 @@
 {
-  "projects": [ "src", "test", "../NervionPlayers_Ent/src" ],
+  "projects": [ "src", "test", "../NervionPlayers_Ent/src", "../NervionPlayers_DAL/src" ],
   "sdk": {
     "version": "1.0.0-preview2-003121"
   }

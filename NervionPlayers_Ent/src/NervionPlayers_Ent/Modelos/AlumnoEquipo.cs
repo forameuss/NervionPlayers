@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace NervionPlayers_Ent.Modelos
 {
+
+    /// <summary>
+    /// No se insertará en BBDD las fecha de Creación
+    /// </summary>
     public class AlumnoEquipo
     {
         #region Atributos

@@ -1,3 +1,4 @@
+using NervionPlayers_DAL.Listado;
 using NervionPlayers_Ent.Modelos;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -6,51 +7,52 @@ namespace NervionPlayers_BL
 {
     public class ListadosBL
     {
+        Listados listadosDAL;
         public ListadosBL()
         {
-            
+            listadosDAL = new Listados();
         }
         public ObservableCollection<Alumno> listadoAlumnosBL()
         {
-            return null;
+            return listadosDAL.listadoAlumnos();
         }
                
 
-        public ObservableCollection<Alumno> listadoAlumnosBL(int idAlumno)
+        public ObservableCollection<Alumno> listadoAlumnosBL(int idEquipo)
         {
-            return null;
+            return listadosDAL.listadoAlumnos(idEquipo);
         }
 
         public ObservableCollection<Equipo> listadoEquiposBL() {
-            return null;
+            return listadosDAL.listadoEquipos();
         }
 
-        public ObservableCollection<Equipo> listadoEquiposBL(int idEquipo)
+        public ObservableCollection<Equipo> listadoEquiposBL(int idAlumno)
         {
-            return null;
+            return listadosDAL.listadoEquipos(idAlumno);
 
         }
 
         public ObservableCollection<Partido> listadoPartidosBL()
         {
-            return null;
+            return listadosDAL.listadoPartidos();
         }
 
-        public ObservableCollection<Partido> listadoPartidosBL(int idPartidos)
+        public ObservableCollection<Partido> listadoPartidosBL(int idEquipo)
         {
-            return null;
+            return listadosDAL.listadoPartidos(idEquipo);
 
         }
 
         public ObservableCollection<Duelo> listadoDuelosBL()
         {
-            return null;
+            return listadosDAL.listadoDuelos();
 
         }
 
-        public ObservableCollection<Duelo> listadoDuelosBL(int idDuelo)
+        public ObservableCollection<Duelo> listadoDuelosBL(int idAlumno)
         {
-            return null;
+            return listadosDAL.listadoDuelos(idAlumno);
 
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Globalization;
+using NervionPlayers_DAL.Manejadoras;
 
 namespace NervionPlayers_BL.Manejadoras
 {
@@ -27,46 +28,101 @@ namespace NervionPlayers_BL.Manejadoras
          * No se insertará en BBDD las fecha de Creación
          * Curso: 5 corresponderá a 1 bachillerato,6 a segundo de bachillerato, 7 a primero de ciclo y 8 a segundo de ciclo
          */
-        #region const
+        #region const & Var
         private const int NOMBRE_MAXIMO_CARACTER = 30;
-            private const int APELLIDO_MAXIMO_CARACTER = 30;
-            private const int PASS_MAXIMO_CARACTER = 255;
-            private const int LETRA_MAXIMO_CARACTER = 10;
+        private const int APELLIDO_MAXIMO_CARACTER = 30;
+        private const int PASS_MAXIMO_CARACTER = 255;
+        private const int LETRA_MAXIMO_CARACTER = 10;
+
+        private ManejadoraAlumnoDAL manejadora;
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Manejadora Alumno, gestiona todos las posibles acciones con alumno.
+        /// </summary>
+        public ManejadoraAlumnoBL()
+        {
+            manejadora = new ManejadoraAlumnoDAL();
+        }
+
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Obtiene un alumno desde su id, devuelve o null si no se encuentra el objeto o el objeto en si.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns><see cref="Alumno"/> o Null/></returns>
         public Alumno obtenerAlumno(int id)
-            {
+        {
+            Alumno alumno = manejadora.obtenerAlumno(id);
 
-                return null;
-            }
+            return alumno;
+        }
 
-            public int insertarAlumno(Alumno alumno)
-            {
-                if (alumno.Nombre.Length > NOMBRE_MAXIMO_CARACTER)
-                    throw new InvalidValueException("El nombre del alumno excede el maximo permitido de " + NOMBRE_MAXIMO_CARACTER);
+        /// <summary>
+        /// Inserta un alumno tras la llamada a <seealso cref="ManejadoraAlumnoDAL"/>.
+        /// </summary>
+        /// <remarks>El alumno debe cumplir las especificaciones de <seealso cref="Alumno"/></remarks>
+        /// <exception cref="InvalidValueException">En caso de no cumplir con las especificaciones</exception>
+        /// <param name="alumno">Objeto alumno</param>
+        /// <returns><see cref="ManejadoraAlumnoDAL"/></returns>
+        public int insertarAlumno(Alumno alumno)
+        {
+            //Comprobacion de los datos del alumno
 
-                if (alumno.Apellidos.Length > APELLIDO_MAXIMO_CARACTER)
-                    throw new InvalidValueException("El apellido del alumno excede el maximo permitod de " + APELLIDO_MAXIMO_CARACTER);
+            if (alumno.Nombre.Length > NOMBRE_MAXIMO_CARACTER)
+                throw new InvalidValueException("El nombre del alumno excede el maximo permitido de " + NOMBRE_MAXIMO_CARACTER);
 
-                if (!isPassValid(alumno.Contraseña))
-                    throw new InvalidValueException("La contraseña del alumno no cumple con los requisitos");
+            if (alumno.Apellidos.Length > APELLIDO_MAXIMO_CARACTER)
+                throw new InvalidValueException("El apellido del alumno excede el maximo permitod de " + APELLIDO_MAXIMO_CARACTER);
 
-                if (!isPassValid(alumno.Correo))
-                    throw new InvalidValueException("El correo no es valido");
+            if (!isPassValid(alumno.Contraseña))
+                throw new InvalidValueException("La contraseña del alumno no cumple con los requisitos");
 
-                return 0;
-            }
+            if (!isPassValid(alumno.Correo))
+                throw new InvalidValueException("El correo no es valido");
 
-            public int borrarAlumno(int id)
-            {
-                return 0;
-            }
+            //Todo es correcto se llama a DAL
+            return manejadora.insertarAlumno(alumno);
+        }
 
-            public int actualizarAlumno(Alumno alumno)
-            {
-                return 0;
-            }
+        /// <summary>
+        /// Permite borrar un alumno a trves de su id
+        /// </summary>
+        /// <param name="id">Id del alumnos</param>
+        /// <returns>valor devuelto por <see cref="ManejadoraAlumnoDAL.borrarAlumno(int)"/></returns>
+        public int borrarAlumno(int id)
+        {
+            return manejadora.borrarAlumno(id);
+        }
+
+        /// <summary>
+        /// Permite actualizar un alumno si se ha cumplido todas las especificaciones de <see cref="Alumno"/>
+        /// </summary>
+        /// <param name="alumno">Objeto <see cref="Alumno"/></param>
+        /// <returns>Valor devuelto por <see cref="ManejadoraAlumnoDAL.actualizarAlumno(Alumno)"/></returns>
+        public int actualizarAlumno(Alumno alumno)
+        {
+            //Comprobacion de los datos del alumno
+
+            if (alumno.Nombre.Length > NOMBRE_MAXIMO_CARACTER)
+                throw new InvalidValueException("El nombre del alumno excede el maximo permitido de " + NOMBRE_MAXIMO_CARACTER);
+
+            if (alumno.Apellidos.Length > APELLIDO_MAXIMO_CARACTER)
+                throw new InvalidValueException("El apellido del alumno excede el maximo permitod de " + APELLIDO_MAXIMO_CARACTER);
+
+            if (!isPassValid(alumno.Contraseña))
+                throw new InvalidValueException("La contraseña del alumno no cumple con los requisitos");
+
+            if (!isPassValid(alumno.Correo))
+                throw new InvalidValueException("El correo no es valido");
+
+            //Todo es correcto se llama a DAL
+            return manejadora.actualizarAlumno(alumno);
+        }
 
         #endregion
 
@@ -86,7 +142,8 @@ namespace NervionPlayers_BL.Manejadoras
             {
                 isValid = false;
 
-            } else
+            }
+            else
             {
                 try
                 {
@@ -112,7 +169,7 @@ namespace NervionPlayers_BL.Manejadoras
         /// <summary>
         /// Comprueba el dominio de correo.
         /// </summary>
-        /// <param name="match"></param>
+        /// <param name="match">Parte del dominio del correo. EJ ex@example.com (example.com)</param>
         /// <returns></returns>
         private string DomainMapper(Match match)
         {
@@ -135,28 +192,28 @@ namespace NervionPlayers_BL.Manejadoras
         }
 
         /// <summary>
-        /// Verifica si la contraseña cumple o no con los requisitos
+        /// Verifica si la contraseña cumple o no con los requisitos.
+        /// <para>Si su tamaño es el <see cref="PASS_MAXIMO_CARACTER"/>, existe una mayusula y un numero, ademas si contiene caracteres espeicales.</para>
         /// </summary>
         /// <param name="pass">Contraseña</param>
         /// <returns>false en caso de no cumplir y true en caso de si cumplir</returns>
         private bool isPassValid(String pass)
+        {
+            bool isValid = false;
+            Regex RgxUrl = new Regex("[^a-z0-9]");
+            bool isSpecialChar = RgxUrl.IsMatch(pass);
+            bool isUpper = pass.Any(x => char.IsUpper(x));
+            bool isDigit = pass.Any(x => char.IsDigit(x));
+
+            //Si su tamaño es el <see cref="PASS_MAXIMO_CARACTER"/>, existe una mayusula y un numero, ademas si contiene caracteres espeicales.
+            if (pass.Length > PASS_MAXIMO_CARACTER && isUpper && isDigit && isSpecialChar)
             {
-                bool isValid = false;
-                Regex RgxUrl = new Regex("[^a-z0-9]");
-                bool isSpecialChar = RgxUrl.IsMatch(pass);
-                bool isUpper = pass.Any(x => char.IsUpper(x));
-                bool isDigit = pass.Any(x => char.IsDigit(x));
+                isValid = true;
+            }
 
-                ///Si su tamaño es el <see cref="PASS_MAXIMO_CARACTER"/>, existe una mayusula y un numero, ademas si contiene caracteres espeicales.
-                ///TODO añadir si hay caracteres especiales.
-                if (pass.Length > PASS_MAXIMO_CARACTER && isUpper && isDigit && isSpecialChar)
-                    {
-                        isValid = true;
-                    }
-
-                    return isValid;
-                }
+            return isValid;
         }
+    }
 
     #endregion
 }

@@ -56,7 +56,7 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostResultadosDuelos([FromBody] ResultadosDuelos value)
         {
-
+            // new clsManejadoraResultadosDuelosBL().insertResultadosDuelosBL(value);
         }
         #endregion
 
@@ -81,8 +81,8 @@ namespace nervionPlayers_API.Controllers
         [HttpDelete("{id}")]
         public void DeleteResultadosDuelos(int id)
         {
-
-
+            //clsManejadoraResultadosDuelosBL manejadora = new clsManejadoraResultadosDuelosBL();
+            //manejadora.deleteEquipoBLConfirmar(id);
         }
         #endregion
     }

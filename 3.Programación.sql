@@ -129,14 +129,20 @@ End
 go
 
 --Trigger EquipoCategoría
+--TODO AAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEEEEEEEGGGGGGGGGGGGGGGGGGGGLLLLLLLLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
 Create Trigger CategoriaEquipo on AlumnosEquipos after insert as
 declare @Categoria int
 declare @Curso tinyint
-
-Select @Categoria=Categoria from Equipos where Id=(Select Id_Equipo from inserted)
-Select @Curso=Curso from Alumnos where Id=(Select Id_Alumno from inserted)
-If not (@Categoria=1 and(@Curso between 1 and 3) or (@Categoria=2 and(@Curso between 4 and 6)))
-rollback
+declare @TotalInserciones int,@i int=0
+Select @TotalInserciones=count(*) from inserted
+while(@i<@TotalInserciones)
+Begin
+	Select @Categoria=Categoria from Equipos where Id=(Select Id_Equipo from inserted where =@i)
+	Select @Curso=Curso from Alumnos where Id=(Select Id_Alumno from inserted where =@i)
+	set @i=@i+1
+	If not (@Categoria=1 and(@Curso between 1 and 3) or (@Categoria=2 and(@Curso between 4 and 6)))
+		rollback
+	End
 go
 
 --Trigger PartidoCategoría

@@ -18,7 +18,8 @@ namespace nervionPlayers_API.Controllers
             String auth = Request.Headers["Authorization"];
             auth = Encoding.UTF8.GetString(Convert.FromBase64String(auth));
             String[] miPersona = auth.Split(':');
-            
+            Console.WriteLine(miPersona[0]);
+            Console.WriteLine(miPersona[1]);
         }
     }
 }

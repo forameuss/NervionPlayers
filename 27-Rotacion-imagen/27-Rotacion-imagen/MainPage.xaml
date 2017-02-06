@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="_27_Rotacion_imagen.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_27_Rotacion_imagen"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Storyboard x:Name="voltearImagen">
+            <DoubleAnimation Storyboard.TargetName="trump" Storyboard.TargetProperty="(Projection).(PlaneProjection.RotationY)" From="0" To="90" Duration="00:00:01.000"/>
+            <DoubleAnimation Storyboard.TargetName="melania" Storyboard.TargetProperty="(Projection).(PlaneProjection.RotationY)" From="90" To="0" Duration="00:00:03.000" BeginTime="0:0:1"/>
+        </Storyboard>
+    </Page.Resources>
+    <Grid>
+        <Image x:Name="trump" 
+        Source="Assets/trump.jpg"
+        Width="500">
+            <Image.Projection>
+                <PlaneProjection RotationY="90" />
+            </Image.Projection>
+        </Image>
+        <Image x:Name="melania" 
+        Source="Assets/melania.jpg"
+        Width="500">
+            <Image.Projection>
+                <PlaneProjection RotationY="90" />
+            </Image.Projection>
+        </Image>
+    </Grid>
+</Page>

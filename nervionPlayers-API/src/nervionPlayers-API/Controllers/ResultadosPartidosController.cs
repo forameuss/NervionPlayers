@@ -17,10 +17,6 @@ namespace nervionPlayers_API.Controllers
         }
 
         #region GET
-
-
-        //  /resultadosPartidos
-
         /// <summary>
         /// Ruta: /resultadosPartidos
         /// Metodo que devuelve un IEnumerable de resultadosPartidos

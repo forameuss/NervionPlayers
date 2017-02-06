@@ -64,6 +64,9 @@ namespace NervionPlayers_BL.Manejadoras
             if (partido.Fecha_Partido < DateTime.Now)
                 throw new InvalidValueException("La fecha del partido es inferior a la fecha de creacion");
 
+            if (isEquiposValid(partido.Id_Local, partido.Id_Visitante))
+                throw new InvalidValueException("El id local y el id visitante no pertenecen a la misma categoria");
+
             return manejadora.insertarPartido(partido);
         }
 
@@ -81,7 +84,7 @@ namespace NervionPlayers_BL.Manejadoras
         /// Actualiza un duelo si cumple con los requisitos.  Lugar Menor o igual que 30 y Fecha partido mayor que creacion.
         /// </summary>
         /// <exception cref="InvalidValueException">Si no cunple los requisitos</exception>
-        /// <param name="duelo">Objeto duelo actualizado</param>
+        /// <param name="partido">Objeto duelo actualizado</param>
         /// <returns>Valor devuelto por <see cref="ManejadoraPartidoDAL.actualizarPartido(Partido)"/></returns>
         public int actualizarPartido(Partido partido)
         {
@@ -93,6 +96,27 @@ namespace NervionPlayers_BL.Manejadoras
                 throw new InvalidValueException("La fecha del partido es inferior a la fecha de creacion");
 
             return manejadora.actualizarPartido(partido);
+        }
+
+        /// <summary>
+        /// Comprueba tras una llamada a <see cref="ManejadoraPartidoDAL.obtenerPartido(int)"/> si los equipos son de la misma categoria o no.
+        /// </summary>
+        /// <param name="id_Local"></param>
+        /// <param name="id_Visitante"></param>
+        /// <returns>True o False en caso de ser o no valido</returns>
+        private bool isEquiposValid(int id_Local, int id_Visitante)
+        {
+            bool isvalid = false;
+            ManejadoraEquipoDAL manejadoraEquipo = new ManejadoraEquipoDAL();
+
+            Equipo eLocal = manejadoraEquipo.obtenerEquipo(id_Local);
+            Equipo eVisitante = manejadoraEquipo.obtenerEquipo(id_Visitante);
+
+            if (eLocal.Categoria == eVisitante.Categoria)
+                isvalid = true;
+
+
+            return isvalid;
         }
     }
 }

@@ -206,7 +206,7 @@ namespace NervionPlayers_BL.Manejadoras
             bool isDigit = pass.Any(x => char.IsDigit(x));
 
             //Si su tamaño es el <see cref="PASS_MAXIMO_CARACTER"/>, existe una mayusula y un numero, ademas si contiene caracteres espeicales.
-            if (pass.Length > PASS_MAXIMO_CARACTER && isUpper && isDigit && isSpecialChar)
+            if (pass.Length < PASS_MAXIMO_CARACTER && isUpper && isDigit && isSpecialChar)
             {
                 isValid = true;
             }

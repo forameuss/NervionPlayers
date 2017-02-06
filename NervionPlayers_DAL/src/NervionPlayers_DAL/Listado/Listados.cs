@@ -826,5 +826,61 @@ namespace NervionPlayers_DAL.Listado
 
             return (dispositivos);
         }
+
+        public ObservableCollection<Profesor> listadoProfesores()
+        {
+            ObservableCollection<Profesor> profesores = new ObservableCollection<Profesor>();
+            Connection con = new Connection("Profesor", "P4P,7h€60D!");
+            Profesor profesor;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = String.Format("Select * FROM {0}",
+                                    ContratoDB.Profesores_DB.TABLA);
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        profesor = new Profesor();
+                        profesor.Id = Convert.ToInt32(lector[ContratoDB.Profesores_DB.ID]);
+                        profesor.Nombre = Convert.ToString(lector[ContratoDB.Profesores_DB.NOMBRE]);
+                        profesor.Apellidos = Convert.ToString(lector[ContratoDB.Profesores_DB.APELLIDOS]);
+                        try
+                        {
+                            profesor.Foto = (Byte[])(lector[ContratoDB.Profesores_DB.FOTO]);
+                        }
+                        catch (InvalidCastException)
+                        {
+                            profesor.Foto = null;
+                        }
+                        
+                        profesor.Correo = Convert.ToString(lector[ContratoDB.Profesores_DB.CORREO]);
+                       // profesor.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Profesores_DB.FECHA_CREACION]);
+                        profesor.Observaciones = Convert.ToString(lector[ContratoDB.Profesores_DB.OBSERVACIONEs]);
+
+                        profesores.Add(profesor);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (profesores);
+        }
     }
 }

@@ -8,8 +8,8 @@
     mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="voltearImagen">
-            <DoubleAnimation Storyboard.TargetName="trump" Storyboard.TargetProperty="(Projection).(PlaneProjection.RotationY)" From="0" To="90" Duration="00:00:01.000"/>
-            <DoubleAnimation Storyboard.TargetName="melania" Storyboard.TargetProperty="(Projection).(PlaneProjection.RotationY)" From="90" To="0" Duration="00:00:03.000" BeginTime="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetName="trump" Storyboard.TargetProperty="(Projection).(PlaneProjection.RotationY)" From="0" To="90" Duration="00:00:02.000"/>
+            <DoubleAnimation Storyboard.TargetName="trumpCard" Storyboard.TargetProperty="(Projection).(PlaneProjection.RotationY)" From="90" To="0" Duration="00:00:03.000" BeginTime="0:0:2"/>
         </Storyboard>
     </Page.Resources>
     <Grid>
@@ -20,8 +20,8 @@
                 <PlaneProjection RotationY="90" />
             </Image.Projection>
         </Image>
-        <Image x:Name="melania" 
-        Source="Assets/melania.jpg"
+        <Image x:Name="trumpCard" 
+        Source="Assets/trumpCard.png"
         Width="500">
             <Image.Projection>
                 <PlaneProjection RotationY="90" />

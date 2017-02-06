@@ -26,6 +26,7 @@ namespace _27_Rotacion_imagen
         {
             this.InitializeComponent();
             voltearImagen.Begin();
+
         }
     }
 }

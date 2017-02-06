@@ -119,5 +119,18 @@ namespace NervionPlayers_DAL
             public const String ACTIVO = "Activo";
         }
 
+        public static class Profesores_DB
+        {
+            public const String TABLA = "Profesores";
+            public const String ID = "Id";
+            public const String NOMBRE = "Nombre";
+            public const String CONTRASEÑA= "Contraseña";
+            public const String APELLIDOS = "Apellidos";
+            public const String CORREO = "Correo";
+            public const String FOTO = "Foto";
+            public const String OBSERVACIONEs = "Observaciones";
+            public const String FECHA_CREACION = "Fecha_Creacion";
+        }
+
     }
 }

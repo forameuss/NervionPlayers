@@ -130,6 +130,7 @@ namespace NervionPlayers_DAL
             public const String FOTO = "Foto";
             public const String OBSERVACIONEs = "Observaciones";
             public const String FECHA_CREACION = "Fecha_Creacion";
+            public const String ALIAS = "Alias";
         }
 
     }

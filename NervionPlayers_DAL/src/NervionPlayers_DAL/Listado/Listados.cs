@@ -830,7 +830,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Profesor> listadoProfesores()
         {
             ObservableCollection<Profesor> profesores = new ObservableCollection<Profesor>();
-            Connection con = new Connection("Profesor", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "P4P,7h€60D!");
             Profesor profesor;
 
             SqlConnection conexion;

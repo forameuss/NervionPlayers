@@ -15,11 +15,13 @@ namespace nervionPlayers_API.Controllers
         // GET: /<controller>/
         public void Index()
         {
+            //Recuperamos la cabecera sin Basic
             String auth = Request.Headers["Authorization"];
+            auth=auth.Substring(6);
+
+            //Decodificamos de base64 a texto plano
             auth = Encoding.UTF8.GetString(Convert.FromBase64String(auth));
             String[] miPersona = auth.Split(':');
-            Console.WriteLine(miPersona[0]);
-            Console.WriteLine(miPersona[1]);
         }
     }
 }

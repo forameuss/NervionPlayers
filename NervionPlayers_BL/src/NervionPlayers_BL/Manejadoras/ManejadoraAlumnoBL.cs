@@ -33,6 +33,8 @@ namespace NervionPlayers_BL.Manejadoras
         private const int APELLIDO_MAXIMO_CARACTER = 30;
         private const int PASS_MAXIMO_CARACTER = 255;
         private const int LETRA_MAXIMO_CARACTER = 10;
+        private const int CURSO_MINIMO_ACEPTADO = 5;
+        private const int CURSO_MAXIMO_ACEPTADO = 8;
 
         private ManejadoraAlumnoDAL manejadora;
         #endregion
@@ -84,6 +86,9 @@ namespace NervionPlayers_BL.Manejadoras
 
             if (!isPassValid(alumno.Correo))
                 throw new InvalidValueException("El correo no es valido");
+
+            if (alumno.Curso < CURSO_MINIMO_ACEPTADO || alumno.Curso > CURSO_MAXIMO_ACEPTADO)
+                throw new InvalidValueException("El curso no es aceptado (un rango de " + CURSO_MINIMO_ACEPTADO + " a " + CURSO_MINIMO_ACEPTADO + ")");
 
             //Todo es correcto se llama a DAL
             return manejadora.insertarAlumno(alumno);

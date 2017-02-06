@@ -31,7 +31,6 @@ namespace nervionPlayers_API.Controllers
         /// Metodo que devuelve el resultado de un duelo en concreto
         /// </summary>
         /// <param name="id">Codigo del duelo concreto</param>
-        /// <returns></returns>
         [HttpGet("{id}")]
         public ResultadosDuelos GetResultadosDuelos(int id)
         {
@@ -43,7 +42,6 @@ namespace nervionPlayers_API.Controllers
             //else {
             //    return Not Found();
             //}
-
             return null;
         }
         #endregion

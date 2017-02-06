@@ -15,27 +15,21 @@ namespace ControllersNP.Controllers
         }
 
         #region GET
-
-        //  /duelos
-
         /// <summary>
-        /// Ruta: /duelos
-        /// Metodo que devuelve un IEnumerable de Duelos
+        ///  Metodo que devuelve todos los Duelos que se han llevado a cabo
         /// </summary>
-        /// <returns>IEnumerable de Duelos</returns>
+        /// <returns>Deuelve una lista de todos los Duelos</returns>
         [HttpGet]
         public IEnumerable<Duelo> GetDuelos()
         {
             return null;
         }
 
-        //  /duelos/{id}
-
         /// <summary>
-        /// Ruta: /duelos/id
-        /// Metodo que devuelve un Duelo con la id especificada
+        /// Metodo que devuelve un duelo concreto
         /// </summary>
-        /// <returns>un Duelo</returns>
+        /// <param name="id">Id del duelo</param>
+        /// <returns>Devuelve un duelo concreto</returns>
         [HttpGet("{id}")]
         public Duelo GetDuelo(int id)
         {
@@ -52,27 +46,25 @@ namespace ControllersNP.Controllers
         }
 
         #endregion
-        #region POST
 
+        #region POST
         /// <summary>
-        /// Metodo que crea un nuevo Duelo
-        /// Falta ponerle los parametros
-        /// Dentro del metodo crear un nuevo Duelo
+        /// Metodo que crea un nuevo duelo
         /// </summary>
+        /// <param name="value">Valores para la creacion de un nuevo duelo</param>
         [HttpPost]
         public void PostDuelos([FromBody] Duelo value)
         {
 
         }
         #endregion
-        #region PUT
 
+        #region PUT
         /// <summary>
-        /// Metodo que realiza la actualizacion de un Duelo
-        /// Descomentar linea de encima del metodo
-        /// Dentro del metodo hay que actualizar el Duelo
+        /// Metodo que actualiza un duelo
         /// </summary>
-        /// <param name="id">Es el ID del Duelos que el usuario desea actualizar</param>
+        /// <param name="id">Id del duelo que el usuario desea actualizar</param>
+        /// <param name="value">Valores que el usuario quiere actualizar</param>
         [HttpPut("{id}")]
         public void PutDuelos(int id, [FromBody]Duelo value)
         {
@@ -80,14 +72,13 @@ namespace ControllersNP.Controllers
         }
 
         #endregion
+
         #region DELETE
 
         /// <summary>
-        /// Metodo que borra un Duelo
-        /// Descomentar linea de encima del metodo
-        /// Falta meter funcionalidad del metodo
+        /// Metodo que elimina un duelo
         /// </summary>
-        /// <param name="idDuelo">El id del Duelo que el usuario desea borrar</param>
+        /// <param name="id">Id del duelo que el usuario desea borrar</param>
         [HttpDelete("{id}")]
         public void DeleteDuelos(int id)
         {

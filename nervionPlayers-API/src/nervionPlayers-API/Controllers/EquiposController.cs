@@ -13,12 +13,11 @@ namespace nervionPlayers_API.Controllers
         {
             return View();
         }
-        #region GETs
+        #region GET
         /// <summary>
-        /// Ruta: /equipos
-        /// Metodo que devuelve un IEnumerable de equipos
+        /// Metodo que devuelve un listado con todos los equipos
         /// </summary>
-        /// <returns>IEnumerable de equipos</returns>
+        /// <returns>Devuelve un listado de equipos</returns>
         [HttpGet]
         public IEnumerable<Equipo> GetEquipos()
         {
@@ -26,18 +25,14 @@ namespace nervionPlayers_API.Controllers
 
             //return lista.listadoEquiposBL();
         }
-
-        //  /equipos/{id }
-
         /// <summary>
-        /// Ruta: /equipos/id
-        /// Metodo que devuelve un Equipo con la id especificada
+        /// Metodo que devuelve un equipo concreto
         /// </summary>
-        /// <returns>un Equipo</returns>
+        /// <param name="id">Identificador del equipo concreto</param>
+        /// <returns>Devuelve un equipo concreto</returns>
         [HttpGet("{id}")]
         public Equipo GetEquipo(int id)
         {
-
             // team = new clsManejadoraEquipoBL().getEquipoBL(id);
 
             //if (team != null)
@@ -50,18 +45,19 @@ namespace nervionPlayers_API.Controllers
             //}
         }
         #endregion
+
         #region POST
+        /// <summary>
         /// Metodo que crea un nuevo equipo
-        /// Falta ponerle los parametros
-        /// Dentro del metodo crear un nuevo equipo
         /// </summary>
-        /// <param name=""></param>
+        /// <param name="value">Valores del Json para la creacion del nuevo usuario</param>
         [HttpPost]
         public void PostEquipos([FromBody] Equipo value)
         {
            // new clsManejadoraEquiposBL().insertEquipoBL(value);
         }
         #endregion
+
         #region PUT
         /// <summary>
         /// Metodo que realiza la actualizacion de un Equipo
@@ -75,6 +71,7 @@ namespace nervionPlayers_API.Controllers
            // new clsManejadoraEquipo().updateEquipoBL(value);
         }
         #endregion
+
         #region DELETE
         /// <summary>
         /// Metodo que borra un Equipo 
@@ -89,31 +86,28 @@ namespace nervionPlayers_API.Controllers
             //manejadora.deleteEquipoBLConfirmar(id);
         }
         #endregion
+
         #region METODOS PARA LA TABLA ALUMNOSEQUIPOS
-        //equipo / id / alumno
         /// <summary>
-        /// Ruta: /equipos/{idEquipo}/alumno
-        /// Metodo que devuelve un grupo de alumnos pertenecientes a un equipo concreto con la idEquipo
+        ///  Metodo que devuelve un grupo de alumnos pertenecientes a un equipo concreto con la idEquipo
         /// </summary>
-        /// <returns>IEnumerable<Alumnnos></returns>
-        /// 
+        /// <param name="id">Identificador del grupo </param>
+        /// <returns>Devuelve la informacion los alumnos que estan en ese equipo</returns>
+
         //Comprobar si nos lleva a la ruta directamente
         [HttpGet("{id}"),ActionName("Alumnos")]
         public IEnumerable<Alumnno> GetAlumnosEquipo(int id)
         {
-
+            return null;
         }
 
 
         //Hace referencia a la tabla AlumnosGrupos
-
-        //alumno / id / equipo
         /// <summary>
-        /// Ruta: /alumnos/{idAlumno}/equipo
         /// Metodo que devuelve un grupo de equipos a los que pertenece un alumno
-        /// se pasa el idAlumno
         /// </summary>
-        /// <returns>IEnumerable<Equipos></returns>
+        /// <param name="id">Identificador del alumno</param>
+        /// <returns>Devuelve los equipos o equipo a los que pertenece el alumno</returns>
         [HttpGet("{id}"), ActionName("Equipos")]
         public IEnumerable<Equipo> GetEquiposAlumno(int id)
         {
@@ -121,13 +115,11 @@ namespace nervionPlayers_API.Controllers
             return null;
         }
 
-        //equipo / id / partidos
         /// <summary>
-        /// Ruta: /equipo/{idEquipo}/partidos
         /// Metodo que devuelve un grupo de partidos en los que ha participado un equipo
-        /// se pasa el idEquipo
         /// </summary>
-        /// <returns>IEnumerable<Partidos></returns>
+        /// <param name="id">Id del equipo</param>
+        /// <returns>Devuelve los partidos que ha jugado un equipo</returns>
         [HttpGet("{id}"), ActionName("Partidos")]
         public IEnumerable<Partido> GetPartidosEquipo(int id)
         {
@@ -136,13 +128,11 @@ namespace nervionPlayers_API.Controllers
         }
 
 
-        //alumno / id / duelos
         /// <summary>
-        /// Ruta: /alumno/{idAlumno}/duelos
-        /// Metodo que devuelve un grupo de duelos en los que ha participado un alumno
-        /// se pasa el idAlumno
+        ///  Metodo que devuelve un grupo de duelos en los que ha participado un alumno
         /// </summary>
-        /// <returns>IEnumerable<Duelos></returns>
+        /// <param name="id">El id del Alumno</param>
+        /// <returns>Devulve los duelos en los que ha participado un alumno</returns>
         [HttpGet("{id}"), ActionName("Duelos")]
         public IEnumerable<Duelo> GetDuelosAlumno(int id)
         {

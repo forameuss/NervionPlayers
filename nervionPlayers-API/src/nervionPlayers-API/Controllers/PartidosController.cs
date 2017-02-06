@@ -15,13 +15,10 @@ namespace ControllersNP.Controllers
 
         #region GET
 
-        //  /partidos
-
         /// <summary>
-        /// Ruta: /partidos
-        /// Metodo que devuelve un IEnumerable de Partidos
+        /// Metodo que devuelve un listado de Partidos
         /// </summary>
-        /// <returns>IEnumerable de Partidos</returns>
+        /// <returns>Devuelve un listado de partidos</returns>
         [HttpGet]
         public IEnumerable<Partido> GetPartidos()
         {

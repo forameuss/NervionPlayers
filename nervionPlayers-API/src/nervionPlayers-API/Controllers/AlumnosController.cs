@@ -20,10 +20,9 @@ namespace nervionPlayers_API.Controllers
         }
         #region GETs
         /// <summary>
-        /// Ruta: /alumnos
-        /// Metodo que devuelve un IEnumerable de Alumnos
+        /// Metodo que devuelve un listado de todos los alumnos
         /// </summary>
-        /// <returns>IEnumerable de Alumnos</returns>
+        /// <returns>Listado de todos los alumnos</returns>
         [HttpGet]
         public IEnumerable<Alumno> GetAlumnos()
         {
@@ -34,10 +33,10 @@ namespace nervionPlayers_API.Controllers
 
 
         /// <summary>
-        /// Ruta: /alumnos/id
-        /// Metodo que devuelve un Alumno con la id especificada
+        /// Metodo que obtiene la informacion de un alumno concreto
         /// </summary>
-        /// <returns>un Alumno</returns>
+        /// <param name="id">Identificador del alumno</param>
+        /// <returns>Devuelve un alumno concreto</returns>
         [HttpGet("{id}")]
         public Alumno GetAlumno(int id)
         {
@@ -56,9 +55,8 @@ namespace nervionPlayers_API.Controllers
         #region POST
         /// <summary>
         /// Metodo que crea un nuevo alumno
-        /// Falta ponerle los parametros
-        /// Dentro del metodo crear un nuevo alumno
         /// </summary>
+        /// <param name="value">Valores para la creacion del nuevo alumno</param>
         [HttpPost]
         public void PostAlumnos([FromBody] Alumno value)
         {
@@ -67,11 +65,10 @@ namespace nervionPlayers_API.Controllers
         #endregion
         #region PUT
         /// <summary>
-        /// Metodo que realiza la actualizacion de un Aumno
-        /// Descomentar linea de encima del metodo
-        /// Dentro del metodo hay que actualizar el Alumno
+        /// Metodo que actualiza un Alumno
         /// </summary>
-        /// <param name="idAlumno">Es el ID del Alumno que el usuario desea actualizar</param>
+        /// <param name="id">Id del Alumno que el usuario desea actualizar</param>
+        /// <param name="value">Valores para la actualizacion del usuario</param>
         [HttpPut("{id}")]
         public void PutAlumnos(int id, [FromBody]Alumno value)
         {
@@ -80,11 +77,9 @@ namespace nervionPlayers_API.Controllers
         #endregion
         #region DELETE
         /// <summary>
-        /// Metodo que borra un Alumno
-        /// Descomentar linea de encima del metodo
-        /// Falta meter funcionalidad del metodo
+        /// Metodo que elimina un Alumno
         /// </summary>
-        /// <param name="idAlumno">El id del Alumno que el usuario desea borrar</param>
+        /// <param name="id">Id del Alumno que el usuario desea eliminar</param>
         [HttpDelete("{id}")]
         public void DeleteAlumnos(int id)
         {

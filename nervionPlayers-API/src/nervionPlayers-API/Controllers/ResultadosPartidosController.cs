@@ -27,14 +27,11 @@ namespace nervionPlayers_API.Controllers
         {
             return null;
         }
-
-        //  /resultadosPartidos/{id}
-
         /// <summary>
-        /// Ruta: /resultadosPartidos/id
-        /// Metodo que devuelve un resultadosPartidos con la id especificada
+        /// Metodo que devuelve el resultado de un partido concreto
         /// </summary>
-        /// <returns>un resultadosPartidos</returns>
+        /// <param name="id">Identificador del resultado del partido</param>
+        /// <returns>Devuelve el resultado del partido</returns>
         [HttpGet("{id}")]
         public ResultadosPartidos GetresultadosPartidos(int id)
         {
@@ -55,29 +52,29 @@ namespace nervionPlayers_API.Controllers
         #region POST
 
         /// <summary>
-        /// Metodo que crea un nuevo ResultadosPartidos
-        /// 
-        /// Dentro del metodo crear un nuevo Duelo
+        /// Metodo que crea un nuevo resultado de un partido
         /// </summary>
+        /// <param name="value">Valores referentes al nuevo resultado</param>
         [HttpPost]
         public void PostResultadosPartidos([FromBody] ResultadosPartidos value)
         {
-
+            //clsManejadoraResultadosPartidosBL manejadoraBL = new clsManejadoraResultadosPartidosBL();
+            //manejadoraBL.postResultadosPartidosBL(value);
         }
 
         #endregion
 
         #region PUT
-
         /// <summary>
-        /// Metodo que realiza la actualizacion de un ResultadosPartidos
-        /// Dentro del metodo hay que actualizar el ResultadosPartidos
+        /// Metodo que actualiza el resultado de un partido concreto
         /// </summary>
-        /// <param name="id">Es el ID del ResultadosPartidos que el usuario desea actualizar</param>
+        /// <param name="id">Identificador del resultado del partido</param>
+        /// <param name="value">Valores que pasa el usuario para actualizar el resultado del partido</param>
         [HttpPut("{id}")]
         public void PutResultadosPartidos(int id, [FromBody]ResultadosPartidos value)
         {
-
+            //clsManejadoraResultadosPartidosBL manejadoraBL = new clsManejadoraResultadosPartidosBL();
+            //manejadoraBL.putResultadosPartidosBL(value);
         }
 
         #endregion
@@ -85,15 +82,14 @@ namespace nervionPlayers_API.Controllers
         #region DELETE
 
         /// <summary>
-        /// Metodo que borra un ResultadosPartidos
-        /// Falta meter funcionalidad del metodo
+        /// Metodo que borra un resultado concreto
         /// </summary>
-        /// <param name="idDuelo">El id del ResultadosPartidos que el usuario desea borrar</param>
+        /// <param name="id">Identificador del partido que el usuario desea borrar</param>
         [HttpDelete("{id}")]
         public void DeleteResultadosPartidos(int id)
         {
-
-
+            //clsManejadoraResultadosPartidosBL manejadoraBL = new clsManejadoraResultadosPartidoBsL();
+            //manejadoraBL.deleteResultadosPartidosBL(id);
         }
 
 

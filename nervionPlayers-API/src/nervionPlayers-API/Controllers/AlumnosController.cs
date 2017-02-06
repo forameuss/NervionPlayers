@@ -25,7 +25,7 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <returns>IEnumerable de Alumnos</returns>
         [HttpGet]
-        public IEnumerable<Alumnno> GetAlumnos()
+        public IEnumerable<Alumno> GetAlumnos()
         {
             //clsListadosAlumnosBL lista = new clsListadosAlumnosBL();
 

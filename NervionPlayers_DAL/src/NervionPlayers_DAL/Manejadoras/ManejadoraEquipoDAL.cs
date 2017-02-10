@@ -207,7 +207,60 @@ namespace NervionPlayers_DAL.Manejadoras
             return filasAfectadas;
         }
 
+        /// <summary>
+        /// Busca un equipo por el nombre y lo devuelve si lo encuentra, si no, devuelve null.
+        /// </summary>
+        /// <param name="nombre">Nombre del equipo a buscar.</param>
+        /// <returns>Devuelve el equipo si lo encuentra o null si no lo encuentra.</returns>
+        public Equipo encuentraEquipo(String nombre)
+        {
+            Equipo res = null;
+            if (nombre == null)
+                throw new ArgumentNullException("El nombre es nulo");
 
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                miComando.CommandText = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME, ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE, nombre);
+                miComando.Connection = conexion;
+                lector = miComando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    if (lector.Read())
+                    {                        
+                        res.Id = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID]);
+                        res.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
+                        res.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
+                        res.Categoria = Convert.ToInt16(lector[ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA]);
+                        try
+                        {
+                            res.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
+                        }
+                        catch (InvalidCastException)
+                        {
+                           res.Foto = null;
+                        }
+                        res.Confirmado = Convert.ToBoolean(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_CONFIRMADO]);
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return res;
+        }
 
     }
 }

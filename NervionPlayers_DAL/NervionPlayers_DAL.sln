@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6845EAAE-11D9-4ED8-BFDF-DF72CC343238}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CBA04C5B-34BE-4928-8D1E-5AF95AE9D82C}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NervionPlayers_DAL", "src\NervionPlayers_DAL\NervionPlayers_DAL.xproj", "{26183BED-1BBC-480F-A18E-055884164DE8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A602C53-A52F-4692-BB53-C5CFED1F3676} = {7A602C53-A52F-4692-BB53-C5CFED1F3676}
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NervionPlayers_Ent", "..\NervionPlayers_Ent\src\NervionPlayers_Ent\NervionPlayers_Ent.xproj", "{7A602C53-A52F-4692-BB53-C5CFED1F3676}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ConsoleApp1", "src\ConsoleApp1\ConsoleApp1.xproj", "{6821A70D-5A75-4A3A-8C2F-FF759C51F785}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26183BED-1BBC-480F-A18E-055884164DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26183BED-1BBC-480F-A18E-055884164DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26183BED-1BBC-480F-A18E-055884164DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26183BED-1BBC-480F-A18E-055884164DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A602C53-A52F-4692-BB53-C5CFED1F3676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A602C53-A52F-4692-BB53-C5CFED1F3676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A602C53-A52F-4692-BB53-C5CFED1F3676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A602C53-A52F-4692-BB53-C5CFED1F3676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6821A70D-5A75-4A3A-8C2F-FF759C51F785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6821A70D-5A75-4A3A-8C2F-FF759C51F785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6821A70D-5A75-4A3A-8C2F-FF759C51F785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6821A70D-5A75-4A3A-8C2F-FF759C51F785}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26183BED-1BBC-480F-A18E-055884164DE8} = {6845EAAE-11D9-4ED8-BFDF-DF72CC343238}
+		{7A602C53-A52F-4692-BB53-C5CFED1F3676} = {6845EAAE-11D9-4ED8-BFDF-DF72CC343238}
+		{6821A70D-5A75-4A3A-8C2F-FF759C51F785} = {6845EAAE-11D9-4ED8-BFDF-DF72CC343238}
+	EndGlobalSection
+EndGlobal

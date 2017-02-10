@@ -138,6 +138,14 @@ namespace NervionPlayers_BL
 
         }
 
+        /// <summary>
+        /// Obtiene un listado de Profesores
+        /// </summary>
+        /// <returns>Observablecollection de Profesor</returns>
+        public ObservableCollection<Profesor> listadoProfesor()
+        {
+            return listadosDAL.listadoProfesores();
+        }
         
     }
 }

@@ -89,11 +89,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Estilos\Content\bootstrap-theme.css" />
+    <Content Include="Estilos\Content\bootstrap-theme.min.css" />
+    <Content Include="Estilos\Content\bootstrap.css" />
+    <Content Include="Estilos\Content\bootstrap.min.css" />
+    <Content Include="Estilos\HomePage.css" />
+    <Content Include="Estilos\Registro.css" />
+    <Content Include="Estilos\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Estilos\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Estilos\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Estilos\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Estilos\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Estilos\Content\bootstrap.min.css.map" />
+    <Content Include="Estilos\Content\bootstrap.css.map" />
+    <Content Include="Estilos\Content\bootstrap-theme.min.css.map" />
+    <Content Include="Estilos\Content\bootstrap-theme.css.map" />
+    <None Include="Estilos\Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Estilos\Scripts\bootstrap.js" />
+    <Content Include="Estilos\Scripts\bootstrap.min.js" />
+    <Content Include="Estilos\Scripts\jquery-1.9.1.js" />
+    <Content Include="Estilos\Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Imagenes\logoNervionPlayers.png" />
+    <Content Include="Views\Registro.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -102,6 +125,8 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Estilos\Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\Home\HomePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,7 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

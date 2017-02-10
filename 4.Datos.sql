@@ -24,13 +24,14 @@ GO
 INSERT INTO [dbo].[Equipos]
            ([Id_Creador]
            ,[Nombre]
-           ,[Confirmado])
+           ,[Confirmado]
+		   ,Categoria)
      VALUES
-			(1,'Prueba',0),
-		   (2, 'Los de primero', 0),
-		   (3, 'Ya no me se mas', 0),
-		   (4, 'equipo dummy',0),
-		   (5, 'Los Googles', 0)
+			(1,'Prueba',0,1),
+		   (2, 'Los de primero', 0,1),
+		   (3, 'Ya no me se mas', 0,1),
+		   (4, 'equipo dummy',0,1),
+		   (5, 'Los Googles', 0,1)
 GO
 INSERT INTO [dbo].[Deportes]
            ([Nombre])
@@ -94,18 +95,3 @@ INSERT INTO [dbo].[AlumnosEquipos]
 		   (6,2),
 		   (7,2)
 GO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

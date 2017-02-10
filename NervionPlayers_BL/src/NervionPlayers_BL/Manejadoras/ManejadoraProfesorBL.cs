@@ -1,4 +1,5 @@
-﻿using NervionPlayers_DAL.Manejadoras;
+﻿using NervionPlayers_BL.Model;
+using NervionPlayers_DAL.Manejadoras;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -36,10 +37,14 @@ namespace NervionPlayers_BL.Manejadoras
         /// Inserta un profesor tras la llamada a <see cref="ManejadoraProfesorDAL"/>, devuelte un int
         /// en el cual se reflejará el numero de filas afectadas.
         /// </summary>
+        /// <exception cref="InvalidValueException">En caso de que profesor sea nulo</exception>
         /// <param name="profesor">Objeto profesor</param>
         /// <returns>Valor devuelto por <see cref="ManejadoraProfesorDAL"/></returns>
         public int insertarProfesor(Profesor profesor)
         {
+            if (profesor == null)
+                throw new InvalidValueException("El profesor es nulo");
+
             return manejadora.insertarProfesor(profesor);
         }
 
@@ -57,13 +62,17 @@ namespace NervionPlayers_BL.Manejadoras
         /// <summary>
         /// Actualiza el profesor tras la llamada a <see cref="ManejadoraProfesorDAL"/>
         /// devuelve un valor int en el cual se reflejará el numero de filas afectadas.
+        /// Se validará si el objeto no es Nulo
         /// </summary>
-        /// <param name="profesor"></param>
-        /// <returns></returns>
+        /// <exception cref="InvalidValueException">En caso de que el objeto sea nulo</exception>
+        /// <param name="profesor">Objeto no nulo</param>
+        /// <returns>Valor devuelto por <see cref="ManejadoraProfesorDAL"/></returns>
         public int actualizarProfesor(Profesor profesor)
         {
-            return manejadora.actualizarprofesor(profesor);
+            if (profesor == null)
+                throw new InvalidValueException("El objeto profesor es nulo");
 
+            return manejadora.actualizarprofesor(profesor);
         }
 
     }

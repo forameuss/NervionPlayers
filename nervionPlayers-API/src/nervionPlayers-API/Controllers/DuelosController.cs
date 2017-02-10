@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NervionPlayers_BL;
+using NervionPlayers_BL.Manejadoras;
+using NervionPlayers_BL.Model;
+using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +12,8 @@ namespace ControllersNP.Controllers
     [Route("api/[controller]")]
     public class DuelosController : Controller
     {
+        ListadosBL listaDuelos = new ListadosBL();
+        ManejadoraDueloBL manejadoraDuelos = new ManejadoraDueloBL();
         // GET: Duelos
         public ActionResult Index()
         {
@@ -22,7 +28,7 @@ namespace ControllersNP.Controllers
         [HttpGet]
         public IEnumerable<Duelo> GetDuelos()
         {
-            return null;
+            return listaDuelos.listadoDuelosBL();
         }
 
         /// <summary>
@@ -34,15 +40,7 @@ namespace ControllersNP.Controllers
         public Duelo GetDuelo(int id)
         {
 
-            //if (duelo != null)
-            //{
-            //    return new ObjectResult(duelo);
-            //}
-            //else {
-            //    return Not Found();
-            //}
-
-            return null;
+            return manejadoraDuelos.obtenerDuelo(id);
         }
 
         #endregion
@@ -55,7 +53,14 @@ namespace ControllersNP.Controllers
         [HttpPost]
         public void PostDuelos([FromBody] Duelo value)
         {
-
+            try
+            {
+                manejadoraDuelos.insertarDuelo(value);
+            }
+            catch (InvalidValueException invalido)
+            {
+                //Falta devolver error
+            }
         }
         #endregion
 
@@ -68,7 +73,13 @@ namespace ControllersNP.Controllers
         [HttpPut("{id}")]
         public void PutDuelos(int id, [FromBody]Duelo value)
         {
-
+            try
+            {
+                manejadoraDuelos.actualizarDuelo(value);
+            }catch(InvalidValueException invalido)
+            {
+                //Falta devolver error
+            }
         }
 
         #endregion
@@ -82,7 +93,14 @@ namespace ControllersNP.Controllers
         [HttpDelete("{id}")]
         public void DeleteDuelos(int id)
         {
-
+            try
+            {
+                manejadoraDuelos.borrarDuelo(id);
+            }
+            catch (InvalidValueException invalido)
+            {
+                //Falta devolver error
+            }
 
         }
 

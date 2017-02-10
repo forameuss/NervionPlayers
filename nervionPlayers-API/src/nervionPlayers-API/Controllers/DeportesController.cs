@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NervionPlayers_BL;
+using NervionPlayers_BL.Manejadoras;
+using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NervionPlayers_BL.Model;
 
 
 namespace ControllersNP.Controllers
@@ -9,8 +13,8 @@ namespace ControllersNP.Controllers
     [Route("api/[controller]")]
     public class DeportesController : Controller
     {
-
-
+        ListadosBL listado = new ListadosBL();
+        ManejadoraDeporteBL manejadoraDeporte = new ManejadoraDeporteBL();
 
         // GET: Deportes
         public ActionResult Index()
@@ -27,7 +31,7 @@ namespace ControllersNP.Controllers
         [HttpGet]
         public IEnumerable<Deporte> GetDeportes()
         {
-            return null;
+            return listado.listadoDeportesBL();
         }
 
         /// <summary>
@@ -39,15 +43,7 @@ namespace ControllersNP.Controllers
         public Deporte GetDeporte(int id)
         {
 
-            //if (deporte != null)
-            //{
-            //    return new ObjectResult(deporte);
-            //}
-            //else {
-            //    return Not Found();
-            //}
-
-            return null;
+            return manejadoraDeporte.obtenerDeporte(id);
         }
 
         #endregion
@@ -58,9 +54,16 @@ namespace ControllersNP.Controllers
         /// </summary>
         /// <param name="value">Valores del nuevo deporte </param>
         [HttpPost]
-        public void PostDeportes([FromBody] Equipo value)
+        public void PostDeportes([FromBody] Deporte value)
         {
-
+            try
+            {
+                manejadoraDeporte.insertarDeporte(value);
+            }
+            catch (InvalidValueException invalido)
+            {
+                //Devolver error
+            }
         }
         #endregion
 
@@ -71,9 +74,15 @@ namespace ControllersNP.Controllers
         /// <param name="id">Id del deporte concreto que el usuario desea actualizar</param>
         /// <param name="value">Valores que el usuario quiere actualizar</param>
         [HttpPut("{id}")]
-        public void PutDeportes(int id, [FromBody]Deporte value)
+        public void PutDeportes([FromBody]Deporte value)
         {
-
+            try
+            {
+                manejadoraDeporte.actualizarDeporte(value);
+            }catch (InvalidValueException invalido)
+            {
+                //Devolver error
+            }
         }
         #endregion
 
@@ -85,7 +94,13 @@ namespace ControllersNP.Controllers
         [HttpDelete("{id}")]
         public void DeleteDeportes(int id)
         {
-
+            try
+            {
+                manejadoraDeporte.borrarDeporte(id);
+            }catch(InvalidValueException invalido)
+            {
+                //Devolver error
+            }
 
         }
         #endregion

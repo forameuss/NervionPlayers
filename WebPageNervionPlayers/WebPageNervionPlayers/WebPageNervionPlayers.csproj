@@ -97,6 +97,7 @@
     <Content Include="Estilos\Registro.css" />
     <Content Include="Estilos\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+<<<<<<< HEAD
     <Content Include="Estilos\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Estilos\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Estilos\fonts\glyphicons-halflings-regular.ttf" />
@@ -112,6 +113,9 @@
     <Content Include="Estilos\Scripts\jquery-1.9.1.min.js" />
     <Content Include="Imagenes\logoNervionPlayers.png" />
     <Content Include="Views\Registro.html" />
+=======
+    <Content Include="jQuery\getters.js" />
+>>>>>>> Angular2
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

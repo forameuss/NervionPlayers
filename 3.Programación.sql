@@ -129,8 +129,7 @@ End
 go
 
 --Trigger EquipoCategoría
---TODO AAAAAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEEEEEEEGGGGGGGGGGGGGGGGGGGGLLLLLLLLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAAARRRRRRRRRRRRR
-Create Trigger CategoriaEquipo on AlumnosEquipos after insert as
+Create Trigger CategoriaEquipo on AlumnosEquipos after insert,update as
 /*declare @Categoria int
 declare @Curso tinyint
 declare @TotalInserciones int,@i int=0

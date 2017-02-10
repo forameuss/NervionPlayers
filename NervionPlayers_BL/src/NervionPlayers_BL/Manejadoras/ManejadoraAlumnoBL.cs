@@ -33,7 +33,7 @@ namespace NervionPlayers_BL.Manejadoras
         private const int APELLIDO_MAXIMO_CARACTER = 30;
         private const int PASS_MAXIMO_CARACTER = 255;
         private const int LETRA_MAXIMO_CARACTER = 10;
-        private const int CURSO_MINIMO_ACEPTADO = 5;
+        private const int CURSO_MINIMO_ACEPTADO = 1;
         private const int CURSO_MAXIMO_ACEPTADO = 8;
 
         private ManejadoraAlumnoDAL manejadora;

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NervionPlayers_Ent.Modelos;
+using NervionPlayers_BL;
+using NervionPlayers_DAL.Listado;
+using NervionPlayers_BL.Manejadoras;
+using NervionPlayers_BL.Model;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,7 +17,9 @@ namespace nervionPlayers_API.Controllers
    // [Route("api/[controller]")]
     public class AlumnosController : Controller
     {
-        
+        ListadosBL listado = new ListadosBL();
+        ManejadoraAlumnoBL manejadoraAlumnos = new ManejadoraAlumnoBL();
+
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -26,12 +33,8 @@ namespace nervionPlayers_API.Controllers
         [HttpGet]
         public IEnumerable<Alumno> GetAlumnos()
         {
-            //clsListadosAlumnosBL lista = new clsListadosAlumnosBL();
-
-            //return lista.listadoAlumnosBL();
+           return listado.listadoAlumnosBL();          
         }
-
-
         /// <summary>
         /// Metodo que obtiene la informacion de un alumno concreto
         /// </summary>
@@ -40,16 +43,7 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}")]
         public Alumno GetAlumno(int id)
         {
-
-            //if (alumno != null)
-            //{
-            //    return new ObjectResult(alumno);
-            //}
-            //else {
-            //    return Not Found();
-            //}
-
-            return null;
+            return manejadoraAlumnos.obtenerAlumno(id);
         }
         #endregion
         #region POST
@@ -60,7 +54,15 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostAlumnos([FromBody] Alumno value)
         {
-
+            try
+            {
+                manejadoraAlumnos.insertarAlumno(value);
+            }
+            catch (InvalidValueException invalido)
+            {
+                //Falta devolver error
+            }
+                     
         }
         #endregion
         #region PUT
@@ -70,9 +72,17 @@ namespace nervionPlayers_API.Controllers
         /// <param name="id">Id del Alumno que el usuario desea actualizar</param>
         /// <param name="value">Valores para la actualizacion del usuario</param>
         [HttpPut("{id}")]
-        public void PutAlumnos(int id, [FromBody]Alumno value)
+        public void PutAlumnos([FromBody]Alumno value)
         {
-
+            try
+            {
+                manejadoraAlumnos.actualizarAlumno(value);
+            }
+            catch(InvalidValueException invalido)
+            {
+                    //Devolver errr
+            }
+           
         }
         #endregion
         #region DELETE
@@ -83,8 +93,15 @@ namespace nervionPlayers_API.Controllers
         [HttpDelete("{id}")]
         public void DeleteAlumnos(int id)
         {
-
-
+            try
+            {
+                manejadoraAlumnos.borrarAlumno(id);
+            }
+            catch (InvalidValueException invalido)
+            {
+                //Falta error
+            }
+            
         }
         #endregion  
     }

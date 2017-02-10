@@ -1,13 +1,21 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using NervionPlayers_BL;
+using NervionPlayers_BL.Manejadoras;
+using NervionPlayers_Ent.Modelos;
+using NervionPlayers_BL.Model;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace nervionPlayers_API.Controllers
 {
+
     //    [Route("api/[controller]")]
     public class EquiposController : Controller
     {
+        ListadosBL lista = new ListadosBL();
+        ManejadoraEquipoBL manejadoraEquipos = new ManejadoraEquipoBL();
+
         // GET: NP
         public ActionResult Index()
         {
@@ -21,9 +29,7 @@ namespace nervionPlayers_API.Controllers
         [HttpGet]
         public IEnumerable<Equipo> GetEquipos()
         {
-            //clsListadosEquiposBL lista = new clsListadosEquiposBL();
-
-            //return lista.listadoEquiposBL();
+            return lista.listadoEquiposBL();
         }
         /// <summary>
         /// Metodo que devuelve un equipo concreto
@@ -33,16 +39,7 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}")]
         public Equipo GetEquipo(int id)
         {
-            // team = new clsManejadoraEquipoBL().getEquipoBL(id);
-
-            //if (team != null)
-            //{
-            //    return new ObjectResult(team);
-            //}
-            //else
-            //{
-            //    return NotFound();
-            //}
+            return manejadoraEquipos.obtenerEquipo(id);
         }
         #endregion
 
@@ -54,7 +51,15 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostEquipos([FromBody] Equipo value)
         {
-           // new clsManejadoraEquiposBL().insertEquipoBL(value);
+            try
+            {
+                manejadoraEquipos.insertarEquipo(value);
+            }
+            catch (InvalidValueException invalido)
+            {
+
+            }
+            
         }
         #endregion
 
@@ -66,9 +71,17 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="idEquipo">Es el ID del Partido que el usuario desea actualizar</param>
         [HttpPut("{id}")]
-        public void PutEquipos(int id, [FromBody]Equipo value)
+        public void PutEquipos([FromBody]Equipo value)
         {
-           // new clsManejadoraEquipo().updateEquipoBL(value);
+            try
+            {
+                manejadoraEquipos.actualizarEquipo(value);
+            }
+            catch (InvalidValueException invalido)
+            {
+
+            }
+           
         }
         #endregion
 
@@ -82,8 +95,14 @@ namespace nervionPlayers_API.Controllers
         [HttpDelete("{id}")]
         public void DeleteEquipos(int id)
         {
-            //clsManejadoraEquipoBL manejadora = new clsManejadoraEquipoBL();
-            //manejadora.deleteEquipoBLConfirmar(id);
+            try
+            {
+                manejadoraEquipos.borrarEquipo(id);
+            }
+            catch (InvalidValueException invalido)
+            {
+
+            }
         }
         #endregion
 
@@ -95,13 +114,14 @@ namespace nervionPlayers_API.Controllers
         /// <returns>Devuelve la informacion los alumnos que estan en ese equipo</returns>
 
         //Comprobar si nos lleva a la ruta directamente
-        [HttpGet("{id}"),ActionName("Alumnos")]
-        public IEnumerable<Alumnno> GetAlumnosEquipo(int id)
+        [HttpGet("{id}"),ActionName("Alumno")]
+        public IEnumerable<Alumno> GetAlumnosEquipo(int id)
         {
-            return null;
-        }
 
+            return lista.listadoAlumnosBL(id);
+       }
 
+        
         //Hace referencia a la tabla AlumnosGrupos
         /// <summary>
         /// Metodo que devuelve un grupo de equipos a los que pertenece un alumno
@@ -112,7 +132,7 @@ namespace nervionPlayers_API.Controllers
         public IEnumerable<Equipo> GetEquiposAlumno(int id)
         {
 
-            return null;
+            return lista.listadoEquiposBL(id);
         }
 
         /// <summary>
@@ -124,7 +144,7 @@ namespace nervionPlayers_API.Controllers
         public IEnumerable<Partido> GetPartidosEquipo(int id)
         {
 
-            return null;
+            return lista.listadoPartidosBL(id);
         }
 
 
@@ -137,7 +157,7 @@ namespace nervionPlayers_API.Controllers
         public IEnumerable<Duelo> GetDuelosAlumno(int id)
         {
 
-            return null;
+            return lista.listadoDuelosBL(id);
         }
 
         #endregion

@@ -221,7 +221,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Apellidos", alumno.Apellidos);
                 miComando.Parameters.AddWithValue("@Alias", alumno.Alias);
                 miComando.Parameters.AddWithValue("@Correo", alumno.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña", Crypto.HashPassword(alumno.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto", alumno.Foto);
                 miComando.Parameters.AddWithValue("@Curso", alumno.Curso);
                 miComando.Parameters.AddWithValue("@Confirmado", alumno.Confirmado);
@@ -322,7 +322,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Apellidos_Alumno", alumno.Apellidos);
                 miComando.Parameters.AddWithValue("@Alias_Alumno", alumno.Alias);
                 miComando.Parameters.AddWithValue("@Correo_Alumno", alumno.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña_Alumno", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña_Alumno",Crypto.HashPassword(alumno.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto_Alumno", alumno.Foto);
                 miComando.Parameters.AddWithValue("@Curso_Alumno", alumno.Curso);
                 miComando.Parameters.AddWithValue("@Confirmado_Alumno", alumno.Confirmado);

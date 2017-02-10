@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using CryptoHelper;
 
 namespace NervionPlayers_DAL.Manejadoras
 {
@@ -44,7 +45,7 @@ namespace NervionPlayers_DAL.Manejadoras
                         oProfesor.Id = Convert.ToInt32(lector[ContratoDB.Profesores_DB.ID]);
                         oProfesor.Nombre = Convert.ToString(lector[ContratoDB.Profesores_DB.NOMBRE]);
                         oProfesor.Apellidos = Convert.ToString(lector[ContratoDB.Profesores_DB.APELLIDOS]);
-                        oProfesor.Contraseña = Convert.ToString(lector[ContratoDB.Profesores_DB.CONTRASEÑA]);
+                        //oProfesor.Contraseña = Convert.ToString(lector[ContratoDB.Profesores_DB.CONTRASEÑA]);
                         oProfesor.Correo = Convert.ToString(lector[ContratoDB.Profesores_DB.CORREO]);
                         oProfesor.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Profesores_DB.FECHA_CREACION]);
                         oProfesor.Observaciones = Convert.ToString(lector[ContratoDB.Profesores_DB.OBSERVACIONEs]);
@@ -109,7 +110,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Nombre", profesor.Nombre);
                 miComando.Parameters.AddWithValue("@Apellidos", profesor.Apellidos);
                 miComando.Parameters.AddWithValue("@Correo", profesor.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña", profesor.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña", Crypto.HashPassword(profesor.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto", profesor.Foto);
                 miComando.Parameters.AddWithValue("@Fecha_Creacion", profesor.Fecha_Creacion);
                 miComando.Parameters.AddWithValue("@Observaciones", profesor.Observaciones);
@@ -210,7 +211,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Nombre", profesor.Nombre);
                 miComando.Parameters.AddWithValue("@Apellidos", profesor.Apellidos);
                 miComando.Parameters.AddWithValue("@Correo", profesor.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña", profesor.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña",Crypto.HashPassword(profesor.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto", profesor.Foto);
                 miComando.Parameters.AddWithValue("@Fecha_Creacion", profesor.Fecha_Creacion);
                 miComando.Parameters.AddWithValue("@Observaciones", profesor.Observaciones);

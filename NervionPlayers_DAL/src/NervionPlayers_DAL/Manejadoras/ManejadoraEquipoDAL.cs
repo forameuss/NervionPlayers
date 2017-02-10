@@ -225,7 +225,7 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME, ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE, nombre);
+                miComando.CommandText = String.Format("Select * From {0} Where {1} like {2}", ContratoDB.Equipos_DB.EQUIPOS_DB_TABLE_NAME, ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE, nombre);
                 miComando.Connection = conexion;
                 lector = miComando.ExecuteReader();
 

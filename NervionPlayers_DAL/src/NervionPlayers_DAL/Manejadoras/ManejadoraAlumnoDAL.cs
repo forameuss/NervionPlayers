@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using NervionPlayers_Ent.Modelos;
 using System.Security.Cryptography;
 using System.Text;
-
+using CryptoHelper;
 namespace NervionPlayers_DAL.Manejadoras
 {
     public class ManejadoraAlumnoDAL
@@ -79,6 +79,13 @@ namespace NervionPlayers_DAL.Manejadoras
             return oAlumno;
         }
 
+        /// <summary>
+        /// Metodo que comprobara si un alumno existe en la base de datos y ademas su contraseña es correcta
+        /// </summary>
+        /// <param name="cadena">Alias o Correo del Alumno</param>
+        /// <param name="password">contraseña del Alumno</param>
+        /// <returns>devolvera el alumno en caso de que todo sea correcto y devolvera Alumno = null si 
+        ///             el alumno no existe o la contraseña es incorrecta</returns>
         public Alumno obtenerAlumno(String cadena, String password)
         {
             Alumno alumno = new Alumno();
@@ -89,7 +96,8 @@ namespace NervionPlayers_DAL.Manejadoras
             String cadenaAlias = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME, ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS, cadena);
             conexion = con.openConnection();
             miComando.Connection = conexion;
-            
+            String passwordHash;
+
 
             //Si la cadena contiene @ significa que es el correo
             if (cadena.Contains("@"))
@@ -97,11 +105,37 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.CommandText = cadenaCorreo;
                 lector = miComando.ExecuteReader();
                 //Si contiene filas es que el alumno con ese correo existe existe
-                if(lector.HasRows)
+                if (lector.HasRows)
                 {
-                   
-                    //Comprobamos que la contraseña es correcta
-                    
+                    if (lector.Read())
+                    {
+                        passwordHash = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA]);
+                        //Comprobamos que la contraseña es correcta
+                        if (Crypto.VerifyHashedPassword(passwordHash, password))
+                        {
+
+                            alumno.Id = Convert.ToInt32(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID]);
+                            alumno.Nombre = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE]);
+                            alumno.Apellidos = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS]);
+                            alumno.Alias = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS]);
+                            alumno.Correo = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO]);
+                            alumno.Curso = Convert.ToByte(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO]);
+                            try
+                            {
+                                alumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                            }
+                            catch (InvalidCastException)
+                            {
+                                alumno.Foto = null;
+                            }
+
+                            alumno.Confirmado = Convert.ToBoolean(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO]);
+                            alumno.Letra = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA]);
+                            alumno.Observaciones = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES]);
+
+                        }
+                    }
+
                 }
             }
             //Si no , la cadena es el alias
@@ -112,7 +146,34 @@ namespace NervionPlayers_DAL.Manejadoras
                 //Si contiene filas es que el alumno con ese alias existe existe
                 if (lector.HasRows)
                 {
-                    //Comprobamos que la contraseña es correcta
+                    if (lector.Read())
+                    {
+                        passwordHash = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA]);
+                        //Comprobamos que la contraseña es correcta
+                        if (Crypto.VerifyHashedPassword(passwordHash, password))
+                        {
+
+                            alumno.Id = Convert.ToInt32(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID]);
+                            alumno.Nombre = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE]);
+                            alumno.Apellidos = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS]);
+                            alumno.Alias = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS]);
+                            alumno.Correo = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO]);
+                            alumno.Curso = Convert.ToByte(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO]);
+                            try
+                            {
+                                alumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                            }
+                            catch (InvalidCastException)
+                            {
+                                alumno.Foto = null;
+                            }
+
+                            alumno.Confirmado = Convert.ToBoolean(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO]);
+                            alumno.Letra = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA]);
+                            alumno.Observaciones = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES]);
+
+                        }
+                    }
                 }
             }
 

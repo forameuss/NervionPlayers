@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using NervionPlayers_Ent.Modelos;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace NervionPlayers_DAL.Manejadoras
 {
@@ -75,6 +77,46 @@ namespace NervionPlayers_DAL.Manejadoras
             }
 
             return oAlumno;
+        }
+
+        public Alumno obtenerAlumno(String cadena, String password)
+        {
+            Alumno alumno = new Alumno();
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader lector;
+            String cadenaCorreo = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME, ContratoDB.Alumno_DB.ALUMNO_DB_CORREO, cadena);
+            String cadenaAlias = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME, ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS, cadena);
+            conexion = con.openConnection();
+            miComando.Connection = conexion;
+            
+
+            //Si la cadena contiene @ significa que es el correo
+            if (cadena.Contains("@"))
+            {
+                miComando.CommandText = cadenaCorreo;
+                lector = miComando.ExecuteReader();
+                //Si contiene filas es que el alumno con ese correo existe existe
+                if(lector.HasRows)
+                {
+                   
+                    //Comprobamos que la contraseña es correcta
+                    
+                }
+            }
+            //Si no , la cadena es el alias
+            else
+            {
+                miComando.CommandText = cadenaAlias;
+                lector = miComando.ExecuteReader();
+                //Si contiene filas es que el alumno con ese alias existe existe
+                if (lector.HasRows)
+                {
+                    //Comprobamos que la contraseña es correcta
+                }
+            }
+
+            return alumno;
         }
 
         /// <summary>

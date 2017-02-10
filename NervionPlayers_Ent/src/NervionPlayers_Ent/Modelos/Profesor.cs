@@ -1,4 +1,13 @@
 ﻿using System;
+/***************
+ * Restricciones
+ * *************
+ * Nombre<=30
+ * Apellidos<=50
+ * Contraseña<=255 contendrá mínimo un caracter en mayúscula, un número y un carácter especial
+ * Correo<=50 será *@*.* donde * es cualquiera cadena
+ * No se insertará en BBDD las fecha de Creación
+ */
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -86,6 +95,10 @@ namespace NervionPlayers_Ent.Modelos
             get
             {
                 return fecha_Creacion;
+            }
+            set
+            {
+                fecha_Creacion = value;
             }
         }
         

@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NervionPlayers_BL;
+using NervionPlayers_BL.Manejadoras;
+using NervionPlayers_BL.Model;
+using NervionPlayers_Ent.Modelos;
 using System.Collections.Generic;
 
 
@@ -7,6 +11,9 @@ namespace ControllersNP.Controllers
     [Route("api/[controller]")]
     public class PartidosController : Controller
     {
+
+        ManejadoraPartidoBL manejaPartBL = new ManejadoraPartidoBL();
+        ListadosBL listaBL = new ListadosBL();
         // GET: Partidos
         public ActionResult Index()
         {
@@ -22,18 +29,8 @@ namespace ControllersNP.Controllers
         [HttpGet]
         public IEnumerable<Partido> GetPartidos()
         {
-           // List<Partido> partidos = new clsManejadoraPartidoBL().getPartidosBL();
 
-            //if (partidos != null)
-            //{
-            //    return new ObjectResult(partidos);
-            //}
-            //else
-            //{
-            //    return NotFound();
-            //}
-
-            return null;
+            return listaBL.listadoPartidosBL();
         }
 
         //  /partidos/{id}
@@ -44,19 +41,23 @@ namespace ControllersNP.Controllers
         /// </summary>
         /// <returns>un Partido</returns>
         [HttpGet("{id}")]
-        public Partido GetPartido(int id)
+        public ObjectResult GetPartido(int id)
         {
-            // Partido  partido= new clsManejadoraPartidoBL().getPartidoBL(id);
+            ObjectResult res;
+            Partido Part = new Partido();
 
-            //if (partido != null)
-            //{
-            //    return new ObjectResult(partido);
-            //}
-            //else {
-            //    return Not Found();
-            //}
+            Part = manejaPartBL.obtenerPartido(id);
 
-            return null;
+            if (Part != null)
+            {
+                res = new ObjectResult(Part);
+            }
+            else
+            {
+                res = new ObjectResult(NotFound());
+            }
+
+            return res;
         }
 
         #endregion
@@ -71,8 +72,19 @@ namespace ControllersNP.Controllers
         [HttpPost]
         public void PostPartidos([FromBody] Partido value)
         {
-            //clsManejadoraPartidoBL manejadoraBL = new clsManejadoraPartidoBL();
-            //manejadoraBL.postPartidoBL(value);
+            int filas;
+            try
+            {
+
+                filas = manejaPartBL.insertarPartido(value);
+
+            }
+            catch (InvalidValueException e)
+            {
+                //devolver el error
+            }
+
+            //filas=1 exit
 
         }
 
@@ -86,11 +98,12 @@ namespace ControllersNP.Controllers
         /// Dentro del metodo hay que actualizar el Partido
         /// </summary>
         /// <param name="id">Es el ID del Partido que el usuario desea actualizar</param>
-        [HttpPut("{id}")]
-        public void PutPartidos(int id, [FromBody]Duelo value)
+    //    [HttpPut("{id}")]
+        [HttpPut]
+        public void PutPartidos([FromBody] Partido value)
         {
-            //clsManejadoraPartidoBL manejadoraBL = new clsManejadoraPartidoBL();
-            //manejadoraBL.putPartidoBL(value);
+            //comprobar que el id existe (devuelven filas afectadas)
+            manejaPartBL.actualizarPartido(value);
         }
 
         #endregion
@@ -106,8 +119,8 @@ namespace ControllersNP.Controllers
         [HttpDelete("{id}")]
         public void DeletePartidos(int id)
         {
-            //clsManejadoraPartidoBL manejadoraBL = new clsManejadoraPartidoBL();
-            //manejadoraBL.deletePartidoBL(id);
+            //avisar de que se ha borrado con exito (filasAfectadas=1)
+            manejaPartBL.borrarPartido(id);
 
         }
 

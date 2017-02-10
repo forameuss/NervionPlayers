@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NervionPlayers_BL.Manejadoras;
+using NervionPlayers_BL;
+using NervionPlayers_BL.Model;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,6 +13,10 @@ namespace nervionPlayers_API.Controllers
 {
     public class ResultadosDuelosController : Controller
     {
+
+        ManejadoraResultadoDueloBL manejaResDueloBL = new ManejadoraResultadoDueloBL();
+        ListadosBL listaBL = new ListadosBL();
+
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -22,9 +29,9 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<ResultadosDuelos> GetResultadosDuelos()
+        public IEnumerable<ResultadoDuelo> GetResultadosDuelos()
         {
-            return null;
+            return listaBL.listadoResultadoDuelosBL();
         }
 
         /// <summary>
@@ -32,17 +39,24 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="id">Codigo del duelo concreto</param>
         [HttpGet("{id}")]
-        public ResultadosDuelos GetResultadosDuelos(int id)
+        public ObjectResult GetResultadoDuelo(int id)
         {
 
-            //if (partido != null)
-            //{
-            //    return new ObjectResult(partido);
-            //}
-            //else {
-            //    return Not Found();
-            //}
-            return null;
+            ObjectResult res;
+            ResultadoDuelo resPart = new ResultadoDuelo();
+
+            resPart = manejaResDueloBL.obtenerResultadoDuelo(id);
+
+            if (resPart != null)
+            {
+                res = new ObjectResult(resPart);
+            }
+            else
+            {
+                res = new ObjectResult(NotFound());
+            }
+
+            return res;
         }
         #endregion
 
@@ -52,9 +66,21 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="value">Valor del resultado de un duelo nuevo </param>
         [HttpPost]
-        public void PostResultadosDuelos([FromBody] ResultadosDuelos value)
+        public void PostResultadoDuelo([FromBody] ResultadoDuelo value)
         {
-            // new clsManejadoraResultadosDuelosBL().insertResultadosDuelosBL(value);
+            int filas;
+            try
+            {
+
+                filas = manejaResDueloBL.insertarResultadoDuelo(value);
+
+            }
+            catch (InvalidValueException e)
+            {
+                //devolver el error
+            }
+
+            //filas=1 exito
         }
         #endregion
 
@@ -65,9 +91,10 @@ namespace nervionPlayers_API.Controllers
         /// <param name="id"></param>
         /// <param name="value"></param>
         [HttpPut("{id}")]
-        public void PutResultadosDuelos(int id, [FromBody]ResultadosDuelos value)
+        public void PutResultadoDuelo(int id, [FromBody]ResultadoDuelo value)
         {
-
+            //comprobar que el id existe (devuelven filas afectadas)
+            manejaResDueloBL.actualizarResultadoDuelo(value);
         }
         #endregion
 
@@ -77,10 +104,10 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="id">Id del resultado del duelo que desea el usuario borrar</param>
         [HttpDelete("{id}")]
-        public void DeleteResultadosDuelos(int id)
+        public void DeleteResultadoDuelo(int id)
         {
-            //clsManejadoraResultadosDuelosBL manejadora = new clsManejadoraResultadosDuelosBL();
-            //manejadora.deleteEquipoBLConfirmar(id);
+            //avisar de que se ha borrado con exito (filasAfectadas=1)
+            manejaResDueloBL.borrarResultadoDuelo(id);
         }
         #endregion
     }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NervionPlayers_Ent.Modelos;
+using NervionPlayers_BL.Manejadoras;
+using NervionPlayers_BL;
+using NervionPlayers_BL.Model;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,6 +14,9 @@ namespace nervionPlayers_API.Controllers
 {
     public class ResultadosPartidosController : Controller
     {
+        ManejadoraResultadoPartidoBL manejaResPartBL = new ManejadoraResultadoPartidoBL();
+        ListadosBL listaBL = new ListadosBL();
+
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -23,9 +30,9 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <returns>IEnumerable de resultadosPartidos</returns>
         [HttpGet]
-        public IEnumerable<ResultadosPartidos> GetResultadosPartidos()
+        public IEnumerable<ResultadoPartido> GetResultadosPartidos()
         {
-            return null;
+            return listaBL.listadoResultadoPartidosBL();
         }
         /// <summary>
         /// Metodo que devuelve el resultado de un partido concreto
@@ -33,18 +40,23 @@ namespace nervionPlayers_API.Controllers
         /// <param name="id">Identificador del resultado del partido</param>
         /// <returns>Devuelve el resultado del partido</returns>
         [HttpGet("{id}")]
-        public ResultadosPartidos GetresultadosPartidos(int id)
+        public ObjectResult GetresultadoPartido(int id)
         {
+            ObjectResult res;
+            ResultadoPartido resPart = new ResultadoPartido();
 
-            //if (resultadosPartidos != null)
-            //{
-            //    return new ObjectResult(resultadosPartidos);
-            //}
-            //else {
-            //    return Not Found();
-            //}
+            resPart = manejaResPartBL.obtenerResultadoPartido(id);
 
-            return null;
+            if (resPart != null)
+            {
+                res = new ObjectResult(resPart);
+            }
+            else
+            {
+                res =  new ObjectResult(NotFound());
+            }
+
+            return res;
         }
 
         #endregion
@@ -56,10 +68,19 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="value">Valores referentes al nuevo resultado</param>
         [HttpPost]
-        public void PostResultadosPartidos([FromBody] ResultadosPartidos value)
+        public void PostResultadoPartido([FromBody] ResultadoPartido value)
         {
-            //clsManejadoraResultadosPartidosBL manejadoraBL = new clsManejadoraResultadosPartidosBL();
-            //manejadoraBL.postResultadosPartidosBL(value);
+            int filas;
+            try {
+
+              filas = manejaResPartBL.insertarResultadoPartido(value);
+
+            } catch (InvalidValueException e) {
+                //devolver el error
+            }
+
+            //filas=1 exito
+           
         }
 
         #endregion
@@ -70,11 +91,12 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="id">Identificador del resultado del partido</param>
         /// <param name="value">Valores que pasa el usuario para actualizar el resultado del partido</param>
-        [HttpPut("{id}")]
-        public void PutResultadosPartidos(int id, [FromBody]ResultadosPartidos value)
+      //  [HttpPut("{id}")]
+        [HttpPut]
+        public void PutResultadoPartido([FromBody]ResultadoPartido value) //(int id, [FromBody]ResultadoPartido value)
         {
-            //clsManejadoraResultadosPartidosBL manejadoraBL = new clsManejadoraResultadosPartidosBL();
-            //manejadoraBL.putResultadosPartidosBL(value);
+            //comprobar que el id existe (devuelven filas afectadas)
+            manejaResPartBL.actualizarResultaoPartido(value);
         }
 
         #endregion
@@ -86,10 +108,9 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="id">Identificador del partido que el usuario desea borrar</param>
         [HttpDelete("{id}")]
-        public void DeleteResultadosPartidos(int id)
-        {
-            //clsManejadoraResultadosPartidosBL manejadoraBL = new clsManejadoraResultadosPartidoBsL();
-            //manejadoraBL.deleteResultadosPartidosBL(id);
+        public void DeleteResultadoPartido(int id)
+        {   //avisar de que se ha borrado con exito (filasAfectadas=1)
+            manejaResPartBL.borrarResultadoPartido(id);
         }
 
 

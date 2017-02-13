@@ -324,48 +324,4 @@ namespace NervionPlayers_DAL.Manejadoras
         }
     }
 }
-
-
-                                            WHERE @Id_DB=@Id";
-
-
-
-                miComando.Connection = conexion;
-
-                //Parametros Tabla
-                miComando.Parameters.AddWithValue("@Id_DB", ContratoDB.Profesores_DB.ID);
-                miComando.Parameters.AddWithValue("@Nombre_DB", ContratoDB.Profesores_DB.NOMBRE);
-                miComando.Parameters.AddWithValue("@Apellidos_DB", ContratoDB.Profesores_DB.APELLIDOS);
-                miComando.Parameters.AddWithValue("@Correo_DB", ContratoDB.Profesores_DB.CORREO);
-                miComando.Parameters.AddWithValue("@Contraseña_DB", ContratoDB.Profesores_DB.CONTRASEÑA);
-                miComando.Parameters.AddWithValue("@Foto_DB", ContratoDB.Profesores_DB.FOTO);
-                miComando.Parameters.AddWithValue("@Fecha_Creacion_DB", ContratoDB.Profesores_DB.FECHA_CREACION);
-                miComando.Parameters.AddWithValue("@Observaciones_DB", ContratoDB.Profesores_DB.OBSERVACIONEs);
-                miComando.Parameters.AddWithValue("@table_Name", ContratoDB.Profesores_DB.TABLA);
-
-                //Parametros Profesor
-                miComando.Parameters.AddWithValue("@Id", profesor.Id);
-                miComando.Parameters.AddWithValue("@Nombre", profesor.Nombre);
-                miComando.Parameters.AddWithValue("@Apellidos", profesor.Apellidos);
-                miComando.Parameters.AddWithValue("@Correo", profesor.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña",Crypto.HashPassword(profesor.Contraseña));
-                miComando.Parameters.AddWithValue("@Foto", profesor.Foto);
-                miComando.Parameters.AddWithValue("@Fecha_Creacion", profesor.Fecha_Creacion);
-                miComando.Parameters.AddWithValue("@Observaciones", profesor.Observaciones);
-
-                filasAfectadas = miComando.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                con.CloseConnection();
-            }
-
-            return filasAfectadas;
-        }
-    }
-
    

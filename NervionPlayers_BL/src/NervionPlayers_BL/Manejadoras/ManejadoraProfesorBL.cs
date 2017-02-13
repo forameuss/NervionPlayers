@@ -72,7 +72,7 @@ namespace NervionPlayers_BL.Manejadoras
             if (profesor == null)
                 throw new InvalidValueException("El objeto profesor es nulo");
 
-            return manejadora.actualizarprofesor(profesor);
+            return manejadora.actualizarProfesor(profesor);
         }
 
     }

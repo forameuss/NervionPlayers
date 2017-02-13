@@ -212,7 +212,7 @@ namespace NervionPlayers_DAL.Manejadoras
         /// </summary>
         /// <param name="nombre">Nombre del equipo a buscar.</param>
         /// <returns>Devuelve el equipo si lo encuentra o null si no lo encuentra.</returns>
-        public Equipo encuentraEquipo(String nombre)
+        public Equipo obtenerEquipo(String nombre)
         {
             Equipo res = null;
             if (nombre == null)

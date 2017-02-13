@@ -114,6 +114,11 @@ namespace NervionPlayers_DAL.Manejadoras
             return filasAfectadas;
         }
         
+        /// <summary>
+        /// Borra un dispositivo
+        /// </summary>
+        /// <param name="id">id del dispositivo a borrar</param>
+        /// <returns>Devuelve el número de filas afectadas</returns>
         public int borrarDispositivo(int id)
         {
             int filasafectadas = 0;
@@ -142,6 +147,11 @@ namespace NervionPlayers_DAL.Manejadoras
             return filasafectadas;
         }
 
+        /// <summary>
+        /// Actualiza un dispositivo
+        /// </summary>
+        /// <param name="dispositivo">dispositivo a actualizar</param>
+        /// <returns>Devuelve el número de filas afectadas</returns>
         public int actualizarDispositivo(Dispositivo dispositivo)
         {
             int filasAfectadas = 0;

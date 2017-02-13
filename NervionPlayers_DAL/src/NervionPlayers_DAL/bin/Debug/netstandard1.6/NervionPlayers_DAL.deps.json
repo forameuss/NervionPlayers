@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v1.6/",
-    "signature": "7bf51aecdb3a9c46157a5874f4a85a53729497c4"
+    "signature": "87acc9b05ef029c8448f0f1e65c00212bd42d290"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,12 +9,39 @@
     ".NETStandard,Version=v1.6/": {
       "NervionPlayers_DAL/1.0.0": {
         "dependencies": {
+          "CryptoHelper": "2.1.0",
           "NervionPlayers_Ent": "1.0.0",
           "NETStandard.Library": "1.6.0",
           "System.Data.SqlClient": "4.1.0"
         },
         "runtime": {
           "NervionPlayers_DAL.dll": {}
+        }
+      },
+      "CryptoHelper/2.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "1.1.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/CryptoHelper.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Cryptography.Internal/1.1.0": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/1.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.Internal": "1.1.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.0.1": {},
@@ -963,6 +990,21 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CryptoHelper/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-x684nj1k/5z9nNXqypynjATUo9tD0wOzb6WUR/2hqUWbA8OSQjwL7wMsCnCEw/f3AWhbnXbUjPUFvx+KOIeluA=="
+    },
+    "Microsoft.AspNetCore.Cryptography.Internal/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Oy0pgxQkusvQwIrwbHvGVZhwk59qRVKxcer6HsWw0jCEq2LoQ7mj7x7DovE5ub8UvffLYWx77NMF5uwPtkl8KA=="
+    },
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cVlVvsH4/9G6AjrlXVO6unCzuFHnDCGRhPJNufOCclxpwImZUdhi+EIh09gSaCJ55gme2/Vn0ycig0cF9gKcbg=="
     },
     "Microsoft.NETCore.Platforms/1.0.1": {
       "type": "package",

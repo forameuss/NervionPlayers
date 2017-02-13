@@ -10,7 +10,7 @@ using NervionPlayers_BL.Model;
 namespace nervionPlayers_API.Controllers
 {
 
-    //    [Route("api/[controller]")]
+    [Route("api/[controller]")]
     public class EquiposController : Controller
     {
         ListadosBL lista = new ListadosBL();
@@ -129,33 +129,21 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="id">Identificador del grupo </param>
         /// <returns>Devuelve la informacion los alumnos que estan en ese equipo</returns>
-
+        
         //Comprobar si nos lleva a la ruta directamente
-        [HttpGet("{id}"),ActionName("Alumno")]
+        [HttpGet("{id}/Alumnos")]
         public IEnumerable<Alumno> GetAlumnosEquipo(int id)
         {
             return lista.listadoAlumnosBL(id);
        }
 
         
-        //Hace referencia a la tabla AlumnosGrupos
-        /// <summary>
-        /// Metodo que devuelve un grupo de equipos a los que pertenece un alumno
-        /// </summary>
-        /// <param name="id">Identificador del alumno</param>
-        /// <returns>Devuelve los equipos o equipo a los que pertenece el alumno</returns>
-        [HttpGet("{id}"), ActionName("Equipos")]
-        public IEnumerable<Equipo> GetEquiposAlumno(int id)
-        {       
-            return lista.listadoEquiposBL(id);
-        }
-
         /// <summary>
         /// Metodo que devuelve un grupo de partidos en los que ha participado un equipo
         /// </summary>
         /// <param name="id">Id del equipo</param>
         /// <returns>Devuelve los partidos que ha jugado un equipo</returns>
-        [HttpGet("{id}"), ActionName("Partidos")]
+        [HttpGet("{id}/Partidos")]
         public IEnumerable<Partido> GetPartidosEquipo(int id)
         {
 
@@ -163,17 +151,7 @@ namespace nervionPlayers_API.Controllers
         }
 
 
-        /// <summary>
-        ///  Metodo que devuelve un grupo de duelos en los que ha participado un alumno
-        /// </summary>
-        /// <param name="id">El id del Alumno</param>
-        /// <returns>Devulve los duelos en los que ha participado un alumno</returns>
-        [HttpGet("{id}"), ActionName("Duelos")]
-        public IEnumerable<Duelo> GetDuelosAlumno(int id)
-        {
-            return lista.listadoDuelosBL(id);
-        }
-
+        
         #endregion
     }
 }

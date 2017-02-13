@@ -39,24 +39,19 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="id">Codigo del duelo concreto</param>
         [HttpGet("{id}")]
-        public ObjectResult GetResultadoDuelo(int id)
+        public ResultadoDuelo GetResultadoDuelo(int id)
         {
 
-            ObjectResult res;
-            ResultadoDuelo resPart = new ResultadoDuelo();
+            ResultadoDuelo resDuelo = new ResultadoDuelo();
 
-            resPart = manejaResDueloBL.obtenerResultadoDuelo(id);
+            resDuelo = manejaResDueloBL.obtenerResultadoDuelo(id);
 
-            if (resPart != null)
+            if (resDuelo == null)
             {
-                res = new ObjectResult(resPart);
-            }
-            else
-            {
-                res = new ObjectResult(NotFound());
+                Response.StatusCode = 404; //Not found
             }
 
-            return res;
+            return resDuelo;
         }
         #endregion
 
@@ -68,7 +63,7 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostResultadoDuelo([FromBody] ResultadoDuelo value)
         {
-            int filas;
+            int filas = 0;
             try
             {
 
@@ -77,10 +72,13 @@ namespace nervionPlayers_API.Controllers
             }
             catch (InvalidValueException e)
             {
-                //devolver el error
+                Response.StatusCode = 400; //Bad request
             }
 
-            //filas=1 exito
+            //filas=1 exito //esto se puede quitar cuando envien la excepcion
+            if (filas < 1) {
+                Response.StatusCode = 400; //Bad request
+            }
         }
         #endregion
 
@@ -94,7 +92,17 @@ namespace nervionPlayers_API.Controllers
         public void PutResultadoDuelo(int id, [FromBody]ResultadoDuelo value)
         {
             //comprobar que el id existe (devuelven filas afectadas)
-            manejaResDueloBL.actualizarResultadoDuelo(value);
+
+            ResultadoDuelo resDuelo = manejaResDueloBL.obtenerResultadoDuelo(value.Id);
+
+            if (resDuelo == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            else
+            {
+                manejaResDueloBL.actualizarResultadoDuelo(value);
+            }
         }
         #endregion
 
@@ -107,7 +115,8 @@ namespace nervionPlayers_API.Controllers
         public void DeleteResultadoDuelo(int id)
         {
             //avisar de que se ha borrado con exito (filasAfectadas=1)
-            manejaResDueloBL.borrarResultadoDuelo(id);
+            int filas = manejaResDueloBL.borrarResultadoDuelo(id);
+            if (filas < 1) { Response.StatusCode = 404; } //Not found
         }
         #endregion
     }

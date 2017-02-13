@@ -42,8 +42,15 @@ namespace ControllersNP.Controllers
         [HttpGet("{id}")]
         public Deporte GetDeporte(int id)
         {
+            Deporte deporte = new Deporte();
 
-            return manejadoraDeporte.obtenerDeporte(id);
+            deporte = manejadoraDeporte.obtenerDeporte(id);
+
+            if (deporte == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            return deporte;
         }
 
         #endregion
@@ -56,13 +63,24 @@ namespace ControllersNP.Controllers
         [HttpPost]
         public void PostDeportes([FromBody] Deporte value)
         {
+            int filas = 0;
+
             try
             {
-                manejadoraDeporte.insertarDeporte(value);
+
+                filas = manejadoraDeporte.insertarDeporte(value);
+
             }
-            catch (InvalidValueException invalido)
+            catch (InvalidValueException e)
             {
-                //Devolver error
+
+                Response.StatusCode = 400; //Bad request
+            }
+
+            //quitar esto cuando la DAL nos lance el error
+            if (filas < 1)
+            {
+                Response.StatusCode = 400; //Bad request
             }
         }
         #endregion
@@ -76,12 +94,15 @@ namespace ControllersNP.Controllers
         [HttpPut("{id}")]
         public void PutDeportes([FromBody]Deporte value)
         {
-            try
+            Deporte deporte = manejadoraDeporte.obtenerDeporte(value.Id);
+
+            if (deporte == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            else
             {
                 manejadoraDeporte.actualizarDeporte(value);
-            }catch (InvalidValueException invalido)
-            {
-                //Devolver error
             }
         }
         #endregion
@@ -94,13 +115,8 @@ namespace ControllersNP.Controllers
         [HttpDelete("{id}")]
         public void DeleteDeportes(int id)
         {
-            try
-            {
-                manejadoraDeporte.borrarDeporte(id);
-            }catch(InvalidValueException invalido)
-            {
-                //Devolver error
-            }
+            int filas = manejadoraDeporte.borrarDeporte(id);
+            if (filas < 1) { Response.StatusCode = 404; } //Not found
 
         }
         #endregion

@@ -40,23 +40,18 @@ namespace nervionPlayers_API.Controllers
         /// <param name="id">Identificador del resultado del partido</param>
         /// <returns>Devuelve el resultado del partido</returns>
         [HttpGet("{id}")]
-        public ObjectResult GetresultadoPartido(int id)
+        public ResultadoPartido GetresultadoPartido(int id)
         {
-            ObjectResult res;
             ResultadoPartido resPart = new ResultadoPartido();
 
             resPart = manejaResPartBL.obtenerResultadoPartido(id);
 
-            if (resPart != null)
+            if (resPart == null)
             {
-                res = new ObjectResult(resPart);
-            }
-            else
-            {
-                res =  new ObjectResult(NotFound());
+                Response.StatusCode = 404; //Not found
             }
 
-            return res;
+            return resPart;
         }
 
         #endregion
@@ -70,16 +65,21 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostResultadoPartido([FromBody] ResultadoPartido value)
         {
-            int filas;
+           int filas = 0;
+            
             try {
 
-              filas = manejaResPartBL.insertarResultadoPartido(value);
+            filas =  manejaResPartBL.insertarResultadoPartido(value);
 
             } catch (InvalidValueException e) {
-                //devolver el error
+                           
+               Response.StatusCode = 400; //Bad request
             }
 
-            //filas=1 exito
+            //quitar esto cuando la DAL nos lance el error
+            if (filas < 1) {
+                Response.StatusCode = 400; //Bad request
+            }
            
         }
 
@@ -95,8 +95,18 @@ namespace nervionPlayers_API.Controllers
         [HttpPut]
         public void PutResultadoPartido([FromBody]ResultadoPartido value) //(int id, [FromBody]ResultadoPartido value)
         {
+
             //comprobar que el id existe (devuelven filas afectadas)
-            manejaResPartBL.actualizarResultaoPartido(value);
+           ResultadoPartido resP =  manejaResPartBL.obtenerResultadoPartido(value.Id);
+
+            if (resP == null) {
+                Response.StatusCode = 404; //Not found
+            } else {
+                manejaResPartBL.actualizarResultaoPartido(value);
+            }
+
+            
+            
         }
 
         #endregion
@@ -110,7 +120,8 @@ namespace nervionPlayers_API.Controllers
         [HttpDelete("{id}")]
         public void DeleteResultadoPartido(int id)
         {   //avisar de que se ha borrado con exito (filasAfectadas=1)
-            manejaResPartBL.borrarResultadoPartido(id);
+            int filas = manejaResPartBL.borrarResultadoPartido(id);
+            if (filas < 1) { Response.StatusCode = 404; } //Not found
         }
 
 

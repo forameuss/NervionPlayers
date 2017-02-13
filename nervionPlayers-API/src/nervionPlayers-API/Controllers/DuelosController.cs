@@ -39,8 +39,15 @@ namespace ControllersNP.Controllers
         [HttpGet("{id}")]
         public Duelo GetDuelo(int id)
         {
+            Duelo duelo = new Duelo();
 
-            return manejadoraDuelos.obtenerDuelo(id);
+            duelo = manejadoraDuelos.obtenerDuelo(id);
+
+            if (duelo == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            return duelo;
         }
 
         #endregion
@@ -53,13 +60,24 @@ namespace ControllersNP.Controllers
         [HttpPost]
         public void PostDuelos([FromBody] Duelo value)
         {
+            int filas = 0;
+
             try
             {
-                manejadoraDuelos.insertarDuelo(value);
+
+                filas = manejadoraDuelos.insertarDuelo(value);
+
             }
-            catch (InvalidValueException invalido)
+            catch (InvalidValueException e)
             {
-                //Falta devolver error
+
+                Response.StatusCode = 400; //Bad request
+            }
+
+            //quitar esto cuando la DAL nos lance el error
+            if (filas < 1)
+            {
+                Response.StatusCode = 400; //Bad request
             }
         }
         #endregion
@@ -73,12 +91,15 @@ namespace ControllersNP.Controllers
         [HttpPut("{id}")]
         public void PutDuelos(int id, [FromBody]Duelo value)
         {
-            try
+            Duelo resP = manejadoraDuelos.obtenerDuelo(value.Id);
+
+            if (resP == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            else
             {
                 manejadoraDuelos.actualizarDuelo(value);
-            }catch(InvalidValueException invalido)
-            {
-                //Falta devolver error
             }
         }
 
@@ -93,14 +114,8 @@ namespace ControllersNP.Controllers
         [HttpDelete("{id}")]
         public void DeleteDuelos(int id)
         {
-            try
-            {
-                manejadoraDuelos.borrarDuelo(id);
-            }
-            catch (InvalidValueException invalido)
-            {
-                //Falta devolver error
-            }
+            int filas = manejadoraDuelos.borrarDuelo(id);
+            if (filas < 1) { Response.StatusCode = 404; } //Not found
 
         }
 

@@ -41,23 +41,18 @@ namespace ControllersNP.Controllers
         /// </summary>
         /// <returns>un Partido</returns>
         [HttpGet("{id}")]
-        public ObjectResult GetPartido(int id)
+        public Partido GetPartido(int id)
         {
-            ObjectResult res;
             Partido Part = new Partido();
 
             Part = manejaPartBL.obtenerPartido(id);
 
-            if (Part != null)
+            if (Part == null)
             {
-                res = new ObjectResult(Part);
-            }
-            else
-            {
-                res = new ObjectResult(NotFound());
+                Response.StatusCode = 404; //Not found
             }
 
-            return res;
+            return Part;
         }
 
         #endregion
@@ -72,19 +67,23 @@ namespace ControllersNP.Controllers
         [HttpPost]
         public void PostPartidos([FromBody] Partido value)
         {
-            int filas;
+            int filas = 0;
+
             try
             {
-
-                filas = manejaPartBL.insertarPartido(value);
-
+              filas = manejaPartBL.insertarPartido(value);
             }
             catch (InvalidValueException e)
             {
-                //devolver el error
+
+                Response.StatusCode = 400; //Bad request
             }
 
-            //filas=1 exit
+            //quitar esto cuando la DAL nos lance el error
+            if (filas < 1)
+            {
+                Response.StatusCode = 400; //Bad request
+            }
 
         }
 
@@ -104,6 +103,17 @@ namespace ControllersNP.Controllers
         {
             //comprobar que el id existe (devuelven filas afectadas)
             manejaPartBL.actualizarPartido(value);
+
+            Partido resP = manejaPartBL.obtenerPartido(value.Id);
+
+            if (resP == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            else
+            {
+                manejaPartBL.actualizarPartido(value);
+            }
         }
 
         #endregion
@@ -120,7 +130,8 @@ namespace ControllersNP.Controllers
         public void DeletePartidos(int id)
         {
             //avisar de que se ha borrado con exito (filasAfectadas=1)
-            manejaPartBL.borrarPartido(id);
+            int filas =   manejaPartBL.borrarPartido(id);
+            if (filas < 1) { Response.StatusCode = 404; } //Not found
 
         }
 

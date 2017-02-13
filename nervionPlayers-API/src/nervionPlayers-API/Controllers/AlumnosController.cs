@@ -43,7 +43,15 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}")]
         public Alumno GetAlumno(int id)
         {
-            return manejadoraAlumnos.obtenerAlumno(id);
+            Alumno alumno = new Alumno();
+
+            alumno = manejadoraAlumnos.obtenerAlumno(id);
+
+            if (alumno == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            return alumno;
         }
         #endregion
         #region POST
@@ -54,15 +62,26 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostAlumnos([FromBody] Alumno value)
         {
+            int filas = 0;
+
             try
             {
-                manejadoraAlumnos.insertarAlumno(value);
+
+                filas = manejadoraAlumnos.insertarAlumno(value);
+
             }
-            catch (InvalidValueException invalido)
+            catch (InvalidValueException e)
             {
-                //Falta devolver error
+
+                Response.StatusCode = 400; //Bad request
             }
-                     
+
+            //quitar esto cuando la DAL nos lance el error
+            if (filas < 1)
+            {
+                Response.StatusCode = 400; //Bad request
+            }
+
         }
         #endregion
         #region PUT
@@ -74,15 +93,17 @@ namespace nervionPlayers_API.Controllers
         [HttpPut("{id}")]
         public void PutAlumnos([FromBody]Alumno value)
         {
-            try
+            Alumno alumno = manejadoraAlumnos.obtenerAlumno(value.Id);
+
+            if (alumno == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            else
             {
                 manejadoraAlumnos.actualizarAlumno(value);
             }
-            catch(InvalidValueException invalido)
-            {
-                    //Devolver errr
-            }
-           
+
         }
         #endregion
         #region DELETE
@@ -93,15 +114,9 @@ namespace nervionPlayers_API.Controllers
         [HttpDelete("{id}")]
         public void DeleteAlumnos(int id)
         {
-            try
-            {
-                manejadoraAlumnos.borrarAlumno(id);
-            }
-            catch (InvalidValueException invalido)
-            {
-                //Falta error
-            }
-            
+            int filas = manejadoraAlumnos.borrarAlumno(id);
+            if (filas < 1) { Response.StatusCode = 404; } //Not found
+
         }
         #endregion  
     }

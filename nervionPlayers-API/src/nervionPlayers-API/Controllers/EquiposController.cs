@@ -39,7 +39,17 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}")]
         public Equipo GetEquipo(int id)
         {
-            return manejadoraEquipos.obtenerEquipo(id);
+
+            Equipo equipo = new Equipo();
+
+            equipo = manejadoraEquipos.obtenerEquipo(id);
+
+            if (equipo == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+
+            return equipo;
         }
         #endregion
 
@@ -51,15 +61,26 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostEquipos([FromBody] Equipo value)
         {
+            int filas = 0;
+
             try
             {
-                manejadoraEquipos.insertarEquipo(value);
-            }
-            catch (InvalidValueException invalido)
-            {
+
+                filas = manejadoraEquipos.insertarEquipo(value);
 
             }
-            
+            catch (InvalidValueException e)
+            {
+
+                Response.StatusCode = 400; //Bad request
+            }
+
+            //quitar esto cuando la DAL nos lance el error
+            if (filas < 1)
+            {
+                Response.StatusCode = 400; //Bad request
+            }
+
         }
         #endregion
 
@@ -73,15 +94,17 @@ namespace nervionPlayers_API.Controllers
         [HttpPut("{id}")]
         public void PutEquipos([FromBody]Equipo value)
         {
-            try
+            Equipo equipo = manejadoraEquipos.obtenerEquipo(value.Id);
+
+            if (equipo == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            else
             {
                 manejadoraEquipos.actualizarEquipo(value);
             }
-            catch (InvalidValueException invalido)
-            {
 
-            }
-           
         }
         #endregion
 
@@ -95,14 +118,8 @@ namespace nervionPlayers_API.Controllers
         [HttpDelete("{id}")]
         public void DeleteEquipos(int id)
         {
-            try
-            {
-                manejadoraEquipos.borrarEquipo(id);
-            }
-            catch (InvalidValueException invalido)
-            {
-
-            }
+            int filas = manejadoraEquipos.borrarEquipo(id);
+            if (filas < 1) { Response.StatusCode = 404; } //Not found
         }
         #endregion
 

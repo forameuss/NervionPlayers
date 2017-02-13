@@ -134,7 +134,6 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}"),ActionName("Alumno")]
         public IEnumerable<Alumno> GetAlumnosEquipo(int id)
         {
-
             return lista.listadoAlumnosBL(id);
        }
 
@@ -147,8 +146,7 @@ namespace nervionPlayers_API.Controllers
         /// <returns>Devuelve los equipos o equipo a los que pertenece el alumno</returns>
         [HttpGet("{id}"), ActionName("Equipos")]
         public IEnumerable<Equipo> GetEquiposAlumno(int id)
-        {
-
+        {       
             return lista.listadoEquiposBL(id);
         }
 
@@ -173,7 +171,6 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}"), ActionName("Duelos")]
         public IEnumerable<Duelo> GetDuelosAlumno(int id)
         {
-
             return lista.listadoDuelosBL(id);
         }
 

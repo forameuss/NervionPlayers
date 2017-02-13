@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using NervionPlayers_Ent.Modelos;
+using System.Security.Cryptography;
+using System.Text;
+using CryptoHelper;
 
 namespace NervionPlayers_DAL.Manejadoras
 {
@@ -77,6 +80,46 @@ namespace NervionPlayers_DAL.Manejadoras
             return oAlumno;
         }
 
+        public Alumno obtenerAlumno(String cadena, String password)
+        {
+            Alumno alumno = new Alumno();
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader lector;
+            String cadenaCorreo = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME, ContratoDB.Alumno_DB.ALUMNO_DB_CORREO, cadena);
+            String cadenaAlias = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME, ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS, cadena);
+            conexion = con.openConnection();
+            miComando.Connection = conexion;
+            
+
+            //Si la cadena contiene @ significa que es el correo
+            if (cadena.Contains("@"))
+            {
+                miComando.CommandText = cadenaCorreo;
+                lector = miComando.ExecuteReader();
+                //Si contiene filas es que el alumno con ese correo existe existe
+                if(lector.HasRows)
+                {
+                   
+                    //Comprobamos que la contraseña es correcta
+                    
+                }
+            }
+            //Si no , la cadena es el alias
+            else
+            {
+                miComando.CommandText = cadenaAlias;
+                lector = miComando.ExecuteReader();
+                //Si contiene filas es que el alumno con ese alias existe existe
+                if (lector.HasRows)
+                {
+                    //Comprobamos que la contraseña es correcta
+                }
+            }
+
+            return alumno;
+        }
+
         /// <summary>
         /// Añade un nuevo Alumno en la base de datos
         /// </summary>
@@ -118,7 +161,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Apellidos", alumno.Apellidos);
                 miComando.Parameters.AddWithValue("@Alias", alumno.Alias);
                 miComando.Parameters.AddWithValue("@Correo", alumno.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña", Crypto.HashPassword(alumno.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto", alumno.Foto);
                 miComando.Parameters.AddWithValue("@Curso", alumno.Curso);
                 miComando.Parameters.AddWithValue("@Confirmado", alumno.Confirmado);
@@ -219,7 +262,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Apellidos_Alumno", alumno.Apellidos);
                 miComando.Parameters.AddWithValue("@Alias_Alumno", alumno.Alias);
                 miComando.Parameters.AddWithValue("@Correo_Alumno", alumno.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña_Alumno", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña_Alumno",Crypto.HashPassword(alumno.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto_Alumno", alumno.Foto);
                 miComando.Parameters.AddWithValue("@Curso_Alumno", alumno.Curso);
                 miComando.Parameters.AddWithValue("@Confirmado_Alumno", alumno.Confirmado);

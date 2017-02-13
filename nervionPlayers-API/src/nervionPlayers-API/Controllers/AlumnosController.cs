@@ -14,17 +14,12 @@ using NervionPlayers_BL.Model;
 namespace nervionPlayers_API.Controllers
 {
     //CAMBIAR
-   // [Route("api/[controller]")]
+    [Route("api/[controller]")]
     public class AlumnosController : Controller
     {
         ListadosBL listado = new ListadosBL();
         ManejadoraAlumnoBL manejadoraAlumnos = new ManejadoraAlumnoBL();
 
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
         #region GETs
         /// <summary>
         /// Metodo que devuelve un listado de todos los alumnos

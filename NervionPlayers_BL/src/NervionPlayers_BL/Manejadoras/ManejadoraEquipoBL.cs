@@ -1,4 +1,5 @@
 ﻿using NervionPlayers_BL.Model;
+using NervionPlayers_DAL.Manejadoras;
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,13 @@ namespace NervionPlayers_BL.Manejadoras
         #region const & Var
         private const int NOMBRE_MAXIMO_CARACTER = 20;
 
-        ManejadoraEquipoBL manejadoraEquipoBL;
+        ManejadoraEquipoDAL manejadoraEquipoDAL;
         #endregion
 
         #region Constructores
         public ManejadoraEquipoBL()
         {
-            manejadoraEquipoBL = new ManejadoraEquipoBL();
+            manejadoraEquipoDAL = new ManejadoraEquipoDAL();
         }
         #endregion
 
@@ -37,7 +38,7 @@ namespace NervionPlayers_BL.Manejadoras
         /// <returns>Equipo</returns>
         public Equipo obtenerEquipo(int id)
         {
-            return manejadoraEquipoBL.obtenerEquipo(id);
+            return manejadoraEquipoDAL.obtenerEquipo(id);
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace NervionPlayers_BL.Manejadoras
             {
                 throw new InvalidValueException("El nombre del quipo no puede tener mas de "+NOMBRE_MAXIMO_CARACTER+" caracteres");
             }
-            return manejadoraEquipoBL.insertarEquipo(equipo);
+            return manejadoraEquipoDAL.insertarEquipo(equipo);
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace NervionPlayers_BL.Manejadoras
         /// <returns>int con numero de filas afectadas</returns>
         public int borrarEquipo(int id)
         {
-            return manejadoraEquipoBL.borrarEquipo(id);
+            return manejadoraEquipoDAL.borrarEquipo(id);
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace NervionPlayers_BL.Manejadoras
             {
                 throw new InvalidValueException("El nombre del quipo no puede tener mas de " + NOMBRE_MAXIMO_CARACTER + " caracteres");
             }
-            return manejadoraEquipoBL.actualizarEquipo(equipo);
+            return manejadoraEquipoDAL.actualizarEquipo(equipo);
         }
 
         #endregion

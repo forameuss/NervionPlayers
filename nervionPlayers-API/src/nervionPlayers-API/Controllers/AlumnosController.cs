@@ -13,7 +13,6 @@ using NervionPlayers_BL.Model;
 
 namespace nervionPlayers_API.Controllers
 {
-    //CAMBIAR
     [Route("api/[controller]")]
     public class AlumnosController : Controller
     {
@@ -113,6 +112,34 @@ namespace nervionPlayers_API.Controllers
             if (filas < 1) { Response.StatusCode = 404; } //Not found
 
         }
-        #endregion  
+        #endregion
+
+        #region Metodos para la tabla alumnosDuelos
+
+        //Hace referencia a la tabla AlumnosGrupos
+        /// <summary>
+        /// Metodo que devuelve un grupo de equipos a los que pertenece un alumno
+        /// </summary>
+        /// <param name="id">Identificador del alumno</param>
+        /// <returns>Devuelve los equipos o equipo a los que pertenece el alumno</returns>
+        [HttpGet("{id}/Equipos")]
+        public IEnumerable<Equipo> GetEquiposAlumno(int id)
+        {
+            return listado.listadoEquiposBL(id);
+        }
+
+
+        /// <summary>
+        ///  Metodo que devuelve un grupo de duelos en los que ha participado un alumno
+        /// </summary>
+        /// <param name="id">El id del Alumno</param>
+        /// <returns>Devulve los duelos en los que ha participado un alumno</returns>
+        [HttpGet("{id}/Duelos")]
+        public IEnumerable<Duelo> GetDuelosAlumno(int id)
+        {
+            return listado.listadoDuelosBL(id);
+        }
+
+        #endregion
     }
 }

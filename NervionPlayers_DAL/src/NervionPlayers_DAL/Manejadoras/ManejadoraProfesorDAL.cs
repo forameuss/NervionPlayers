@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 using CryptoHelper;
 
 namespace NervionPlayers_DAL.Manejadoras
@@ -71,6 +72,98 @@ namespace NervionPlayers_DAL.Manejadoras
                 con.CloseConnection();
             }
 
+            return oProfesor;
+        }
+
+
+        /// <summary>
+        /// Busca en la base de datos y devuelve un Profesor con el alias o correo recibido
+        /// </summary>
+        /// <param name="cadena">Alias o Correo del profesor</param>
+        /// <param name="password">Contraseña del profesor</param>
+        /// <returns>Devuelve el Profesor si se encuentra o null en caso contrario</returns>
+        public Profesor obtenerProfesor(string cadena, string password)
+        {
+
+            SqlConnection conexion;
+            SqlCommand miComando = new SqlCommand();
+            Profesor oProfesor = new Profesor();
+            SqlDataReader lector;
+            String cadenaCorreo = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Profesores_DB.TABLA, ContratoDB.Profesores_DB.CORREO, cadena);
+            String cadenaAlias = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Profesores_DB.TABLA, ContratoDB.Profesores_DB.ALIAS, cadena);
+            String passwordHash;
+
+
+            //Si la cadena contiene @ significa que es el correo
+            if (cadena.Contains("@"))
+            {
+                miComando.CommandText = cadenaCorreo;
+                lector = miComando.ExecuteReader();
+                //Si contiene filas es que el profesor con ese correo existe 
+                if (lector.HasRows)
+                {
+                    if (lector.Read())
+                    {
+                        passwordHash = Convert.ToString(lector[ContratoDB.Profesores_DB.CONTRASEÑA]);
+                        //Comprobamos que la contraseña es correcta
+                        if (Crypto.VerifyHashedPassword(passwordHash, password))
+                        {
+                            oProfesor.Id = Convert.ToInt32(lector[ContratoDB.Profesores_DB.ID]);
+                            oProfesor.Nombre = Convert.ToString(lector[ContratoDB.Profesores_DB.NOMBRE]);
+                            oProfesor.Apellidos = Convert.ToString(lector[ContratoDB.Profesores_DB.APELLIDOS]);
+                            //oProfesor.Contraseña = Convert.ToString(lector[ContratoDB.Profesores_DB.CONTRASEÑA]);
+                            oProfesor.Correo = Convert.ToString(lector[ContratoDB.Profesores_DB.CORREO]);
+                            oProfesor.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Profesores_DB.FECHA_CREACION]);
+                            oProfesor.Observaciones = Convert.ToString(lector[ContratoDB.Profesores_DB.OBSERVACIONEs]);
+                            try
+                            {
+                                oProfesor.Foto = (byte[])lector[ContratoDB.Profesores_DB.FOTO];
+                            }
+                            catch (InvalidCastException)
+                            {
+                                oProfesor.Foto = null;
+                            }
+
+                        }
+
+                    }
+                }
+                //Si no , la cadena es el alias
+                else
+                {
+                    miComando.CommandText = cadenaAlias;
+                    lector = miComando.ExecuteReader();
+                    //Si contiene filas es que el profesor con ese alias existe
+                    if (lector.HasRows)
+                    {
+                        if (lector.Read())
+                        {
+                            passwordHash = Convert.ToString(lector[ContratoDB.Profesores_DB.CONTRASEÑA]);
+                            //Comprobamos que la contraseña es correcta
+                            if (Crypto.VerifyHashedPassword(passwordHash, password))
+                            {
+
+                                oProfesor.Id = Convert.ToInt32(lector[ContratoDB.Profesores_DB.ID]);
+                                oProfesor.Nombre = Convert.ToString(lector[ContratoDB.Profesores_DB.NOMBRE]);
+                                oProfesor.Apellidos = Convert.ToString(lector[ContratoDB.Profesores_DB.APELLIDOS]);
+                                //oProfesor.Contraseña = Convert.ToString(lector[ContratoDB.Profesores_DB.CONTRASEÑA]);
+                                oProfesor.Correo = Convert.ToString(lector[ContratoDB.Profesores_DB.CORREO]);
+                                oProfesor.Fecha_Creacion = Convert.ToDateTime(lector[ContratoDB.Profesores_DB.FECHA_CREACION]);
+                                oProfesor.Observaciones = Convert.ToString(lector[ContratoDB.Profesores_DB.OBSERVACIONEs]);
+                                try
+                                {
+                                    oProfesor.Foto = (byte[])lector[ContratoDB.Profesores_DB.FOTO];
+                                }
+                                catch (InvalidCastException)
+                                {
+                                    oProfesor.Foto = null;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             return oProfesor;
         }
 
@@ -230,5 +323,7 @@ namespace NervionPlayers_DAL.Manejadoras
             return filasAfectadas;
         }
     }
+
+   
 }
 

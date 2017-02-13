@@ -160,7 +160,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Apellidos", alumno.Apellidos);
                 miComando.Parameters.AddWithValue("@Alias", alumno.Alias);
                 miComando.Parameters.AddWithValue("@Correo", alumno.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña", Crypto.HashPassword(alumno.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto", alumno.Foto);
                 miComando.Parameters.AddWithValue("@Curso", alumno.Curso);
                 miComando.Parameters.AddWithValue("@Confirmado", alumno.Confirmado);
@@ -261,7 +261,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Apellidos_Alumno", alumno.Apellidos);
                 miComando.Parameters.AddWithValue("@Alias_Alumno", alumno.Alias);
                 miComando.Parameters.AddWithValue("@Correo_Alumno", alumno.Correo);
-                miComando.Parameters.AddWithValue("@Contraseña_Alumno", alumno.Contraseña);
+                miComando.Parameters.AddWithValue("@Contraseña_Alumno",Crypto.HashPassword(alumno.Contraseña));
                 miComando.Parameters.AddWithValue("@Foto_Alumno", alumno.Foto);
                 miComando.Parameters.AddWithValue("@Curso_Alumno", alumno.Curso);
                 miComando.Parameters.AddWithValue("@Confirmado_Alumno", alumno.Confirmado);
@@ -284,3 +284,104 @@ namespace NervionPlayers_DAL.Manejadoras
         }
     }
 }
+
+using System.Security.Cryptography;
+using System.Text;
+using CryptoHelper;
+        /// <summary>
+        /// Metodo que comprobara si un alumno existe en la base de datos y ademas su contraseña es correcta
+        /// </summary>
+        /// <param name="cadena">Alias o Correo del Alumno</param>
+        /// <param name="password">contraseña del Alumno</param>
+        /// <returns>devolvera el alumno en caso de que todo sea correcto y devolvera Alumno = null si 
+        ///             el alumno no existe o la contraseña es incorrecta</returns>
+        public Alumno obtenerAlumno(String cadena, String password)
+        {
+            Alumno alumno = new Alumno();
+            SqlDataReader lector;
+            String cadenaCorreo = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME, ContratoDB.Alumno_DB.ALUMNO_DB_CORREO, cadena);
+            String cadenaAlias = String.Format("Select * From {0} Where {1} = {2}", ContratoDB.Alumno_DB.ALUMNO_DB_TABLE_NAME, ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS, cadena);
+            conexion = con.openConnection();
+            miComando.Connection = conexion;
+            String passwordHash;
+
+
+            //Si la cadena contiene @ significa que es el correo
+            if (cadena.Contains("@"))
+            {
+                miComando.CommandText = cadenaCorreo;
+                lector = miComando.ExecuteReader();
+                //Si contiene filas es que el alumno con ese correo existe existe
+                if (lector.HasRows)
+                {
+                    if (lector.Read())
+                    {
+                        passwordHash = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA]);
+                        //Comprobamos que la contraseña es correcta
+                        if (Crypto.VerifyHashedPassword(passwordHash, password))
+                        {
+
+                            alumno.Id = Convert.ToInt32(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID]);
+                            alumno.Nombre = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE]);
+                            alumno.Apellidos = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS]);
+                            alumno.Alias = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS]);
+                            alumno.Correo = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO]);
+                            alumno.Curso = Convert.ToByte(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO]);
+                            try
+                            {
+                                alumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                            }
+                            catch (InvalidCastException)
+                            {
+                                alumno.Foto = null;
+                            }
+
+                            alumno.Confirmado = Convert.ToBoolean(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO]);
+                            alumno.Letra = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA]);
+                            alumno.Observaciones = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES]);
+
+                        }
+                    }
+
+                }
+            }
+            //Si no , la cadena es el alias
+            else
+            {
+                miComando.CommandText = cadenaAlias;
+                lector = miComando.ExecuteReader();
+                //Si contiene filas es que el alumno con ese alias existe existe
+                if (lector.HasRows)
+                {
+                    if (lector.Read())
+                    {
+                        passwordHash = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONTRASEÑA]);
+                        //Comprobamos que la contraseña es correcta
+                        if (Crypto.VerifyHashedPassword(passwordHash, password))
+                        {
+
+                            alumno.Id = Convert.ToInt32(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ID]);
+                            alumno.Nombre = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_NOMBRE]);
+                            alumno.Apellidos = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_APELLIDOS]);
+                            alumno.Alias = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_ALIAS]);
+                            alumno.Correo = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CORREO]);
+                            alumno.Curso = Convert.ToByte(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CURSO]);
+                            try
+                            {
+                                alumno.Foto = (byte[])lector[ContratoDB.Alumno_DB.ALUMNO_DB_FOTO];
+                            }
+                            catch (InvalidCastException)
+                            {
+                                alumno.Foto = null;
+                            }
+
+                            alumno.Confirmado = Convert.ToBoolean(lector[ContratoDB.Alumno_DB.ALUMNO_DB_CONFIRMADO]);
+                            alumno.Letra = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_LETRA]);
+                            alumno.Observaciones = Convert.ToString(lector[ContratoDB.Alumno_DB.ALUMNO_DB_OBSERVACIONES]);
+
+                        }
+                    }
+                }
+            }
+
+            return alumno;

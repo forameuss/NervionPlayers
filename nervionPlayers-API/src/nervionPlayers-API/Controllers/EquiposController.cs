@@ -39,7 +39,12 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}")]
         public Equipo GetEquipo(int id)
         {
-            return manejadoraEquipos.obtenerEquipo(id);
+            Equipo p = manejadoraEquipos.obtenerEquipo(id);
+            if (p == null)
+            {
+                Response.StatusCode = 404;
+            }
+            return p;
         }
         #endregion
 
@@ -51,13 +56,15 @@ namespace nervionPlayers_API.Controllers
         [HttpPost]
         public void PostEquipos([FromBody] Equipo value)
         {
+           
             try
             {
-                manejadoraEquipos.insertarEquipo(value);
+               
             }
             catch (InvalidValueException invalido)
             {
-
+                //Devuelve un error de que la sintaxis es erronea
+                Response.StatusCode = 400;
             }
             
         }
@@ -73,14 +80,20 @@ namespace nervionPlayers_API.Controllers
         [HttpPut("{id}")]
         public void PutEquipos([FromBody]Equipo value)
         {
-            try
+ 
+            //Obtenemos el id del equipo para comprobar que existe el equipo que quiere actualizar
+            Equipo idTeam = manejadoraEquipos.obtenerEquipo(value.Id);
+
+            if(idTeam == null)
+            {
+                //Devuelve un error 404 pq el equipo que desea actualizar no existe
+                Response.StatusCode = 404;
+            }else
             {
                 manejadoraEquipos.actualizarEquipo(value);
             }
-            catch (InvalidValueException invalido)
-            {
+                
 
-            }
            
         }
         #endregion
@@ -95,14 +108,18 @@ namespace nervionPlayers_API.Controllers
         [HttpDelete("{id}")]
         public void DeleteEquipos(int id)
         {
-            try
+            //Obtenemos el id del equipo para comprobar que existe el equipo que quiere actualizar
+            Equipo idTeam = manejadoraEquipos.obtenerEquipo(id);
+            if(idTeam == null)
+            {
+                //Devuelve un error 404 pq el equipo que desea actualizar no existe
+                Response.StatusCode = 404;
+            }
+            else
             {
                 manejadoraEquipos.borrarEquipo(id);
             }
-            catch (InvalidValueException invalido)
-            {
-
-            }
+                           
         }
         #endregion
 
@@ -117,7 +134,6 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}"),ActionName("Alumno")]
         public IEnumerable<Alumno> GetAlumnosEquipo(int id)
         {
-
             return lista.listadoAlumnosBL(id);
        }
 
@@ -130,8 +146,7 @@ namespace nervionPlayers_API.Controllers
         /// <returns>Devuelve los equipos o equipo a los que pertenece el alumno</returns>
         [HttpGet("{id}"), ActionName("Equipos")]
         public IEnumerable<Equipo> GetEquiposAlumno(int id)
-        {
-
+        {       
             return lista.listadoEquiposBL(id);
         }
 
@@ -156,7 +171,6 @@ namespace nervionPlayers_API.Controllers
         [HttpGet("{id}"), ActionName("Duelos")]
         public IEnumerable<Duelo> GetDuelosAlumno(int id)
         {
-
             return lista.listadoDuelosBL(id);
         }
 

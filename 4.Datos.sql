@@ -13,13 +13,13 @@ INSERT INTO [dbo].[Alumnos]
            ,[Confirmado])
      VALUES
 		   ('Francisco Javier','Constrase�a','Ruiz Rodr�guez','Javieraeros','pajarrurro@gmail.com',1,'a',0),
-		   ('Adrian','123','Pol Alcala','adripol94','prueba5dripol@gmail.com',1,'a',0),
-		   ('dummy','123','Das Dum','dummy1','dummy1@gmail.com',2,'d',0),
-		   ('dummy2','123','dom dym','dummy2','prueba6adripol@gmail.com',1,'a',0),
-		   ('Dummy4','123','dem','dumm3','dummon@gmail.com',1,'a',0),
-		   ('Paco','123','Alcarajo','pacoAlca','pacoAlca@gmail.com',2,'a',0),
-		   ('Mario','123','Parlatori','marPar','marioPar@gmail.com',2,'a',0),
-		   ('Loco','123','Man','locoMan','mariola@gmail.com',3,'a',0)
+		   ('Adrian','123','Pol Alcala','adripol94','prueba5dripol@gmail.com',2,'a',0),
+		   ('dummy','123','Das Dum','dummy1','dummy1@gmail.com',3,'d',0),
+		   ('dummy2','123','dom dym','dummy2','prueba6adripol@gmail.com',4,'a',0),
+		   ('Dummy4','123','dem','dumm3','dummon@gmail.com',5,'a',0),
+		   ('Paco','123','Alcarajo','pacoAlca','pacoAlca@gmail.com',6,'a',0),
+		   ('Mario','123','Parlatori','marPar','marioPar@gmail.com',7,'a',0),
+		   ('Loco','123','Man','locoMan','mariola@gmail.com',8,'a',0)
 GO
 INSERT INTO [dbo].[Equipos]
            ([Id_Creador]
@@ -28,7 +28,7 @@ INSERT INTO [dbo].[Equipos]
 		   ,Categoria)
      VALUES
 			(1,'Prueba',0,1),
-		   (2, 'Los de primero', 0,1),
+		   (2, 'Los de primero', 0,2),
 		   (3, 'Ya no me se mas', 0,1),
 		   (4, 'equipo dummy',0,1),
 		   (5, 'Los Googles', 0,1)
@@ -89,9 +89,15 @@ INSERT INTO [dbo].[AlumnosEquipos]
      VALUES
            (1,1),
 		   (2,1),
-		   (3,1),
-		   (4,1),
+		   (3,2),
+		   (4,2),
 		   (5,2),
 		   (6,2),
 		   (7,2)
 GO
+Delete from AlumnosEquipos
+Delete from Equipos
+
+Select * from Alumnos
+Select * from Equipos
+Select * from AlumnosEquipos

@@ -11,6 +11,7 @@ using NervionPlayers_BL.Model;
 
 namespace nervionPlayers_API.Controllers
 {
+    [Route("api/[controller]")]
     public class ResultadosDuelosController : Controller
     {
 

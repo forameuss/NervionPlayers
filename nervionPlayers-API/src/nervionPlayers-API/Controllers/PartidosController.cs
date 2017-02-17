@@ -97,7 +97,6 @@ namespace ControllersNP.Controllers
         /// Dentro del metodo hay que actualizar el Partido
         /// </summary>
         /// <param name="id">Es el ID del Partido que el usuario desea actualizar</param>
-    //    [HttpPut("{id}")]
         [HttpPut]
         public void PutPartidos([FromBody] Partido value)
         {

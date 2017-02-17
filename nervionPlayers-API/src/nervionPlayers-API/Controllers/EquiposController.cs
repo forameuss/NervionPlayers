@@ -149,8 +149,6 @@ namespace nervionPlayers_API.Controllers
 
             return lista.listadoPartidosBL(id);
         }
-
-
         
         #endregion
     }

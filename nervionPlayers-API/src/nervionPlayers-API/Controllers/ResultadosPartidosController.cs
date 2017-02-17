@@ -103,7 +103,18 @@ namespace nervionPlayers_API.Controllers
             if (resP == null) {
                 Response.StatusCode = 404; //Not found
             } else {
-                manejaResPartBL.actualizarResultaoPartido(value);
+                try
+                {
+
+                    manejaResPartBL.actualizarResultaoPartido(value);
+
+                }
+                catch (InvalidValueException e)
+                {
+
+                    Response.StatusCode = 400; //Bad request
+                }
+                
             }
 
             

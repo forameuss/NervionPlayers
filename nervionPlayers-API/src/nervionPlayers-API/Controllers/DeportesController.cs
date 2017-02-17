@@ -102,7 +102,18 @@ namespace ControllersNP.Controllers
             }
             else
             {
-                manejadoraDeporte.actualizarDeporte(value);
+                try
+                {
+
+                    manejadoraDeporte.actualizarDeporte(value);
+
+                }
+                catch (InvalidValueException e)
+                {
+
+                    Response.StatusCode = 400; //Bad request
+                }
+                
             }
         }
         #endregion

@@ -99,7 +99,18 @@ namespace ControllersNP.Controllers
             }
             else
             {
-                manejadoraDuelos.actualizarDuelo(value);
+                try
+                {
+
+                    manejadoraDuelos.actualizarDuelo(value);
+
+                }
+                catch (InvalidValueException e)
+                {
+
+                    Response.StatusCode = 400; //Bad request
+                }
+                
             }
         }
 

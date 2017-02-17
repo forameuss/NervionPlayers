@@ -95,7 +95,18 @@ namespace nervionPlayers_API.Controllers
             }
             else
             {
-                manejadoraAlumnos.actualizarAlumno(value);
+                try
+                {
+
+                    manejadoraAlumnos.actualizarAlumno(value);
+
+                }
+                catch (InvalidValueException e)
+                {
+
+                    Response.StatusCode = 400; //Bad request
+                }
+               
             }
 
         }

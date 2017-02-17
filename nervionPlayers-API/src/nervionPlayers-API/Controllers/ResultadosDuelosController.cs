@@ -102,7 +102,17 @@ namespace nervionPlayers_API.Controllers
             }
             else
             {
-                manejaResDueloBL.actualizarResultadoDuelo(value);
+                try
+                {
+
+                    manejaResDueloBL.actualizarResultadoDuelo(value);
+
+                }
+                catch (InvalidValueException e)
+                {
+                    Response.StatusCode = 400; //Bad request
+                }
+                
             }
         }
         #endregion

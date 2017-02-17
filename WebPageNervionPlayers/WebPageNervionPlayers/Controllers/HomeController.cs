@@ -13,5 +13,11 @@ namespace WebPageNervionPlayers.Controllers
         {
             return View();
         }
+
+        public ActionResult Registro()
+        {
+            return View();
+        }
+
     }
 }

@@ -1,8 +1,9 @@
 $(function(){
-    $("#tabla").tablesorter( {sortList: [[0,0], [1,0]]} );
-	$("#call").click(getClientes);
-	$("#callId").click(getClientesId);
+    //$("#tabla").tablesorter( {sortList: [[0,0], [1,0]]} );
+	//$("#call").click(getClientes);
+	//$("#callId").click(getClientesId);
     //modificar por id de botones reales
+    clickBtnRegistro();
 });
 
 /*a espera de api funcionando,
@@ -221,8 +222,8 @@ function pintar(data){
  }
 
 function getToken() {
-    var nombre = ;
-    var pass = ;
+    var nombre = "";
+    var pass = "";
     //a falta de recibir nombre y pass de campos de texto
 $.ajax({
     url:URL_BASE+"Token",
@@ -234,4 +235,10 @@ $.ajax({
         TOKEN = request.getResponseHeader('Authorization');
     }
     });     
-}	
+}
+
+function clickBtnRegistro() {
+    $("#btnRegistro").click(function () {
+        window.location.href = "/Home/Registro";
+    });
+}

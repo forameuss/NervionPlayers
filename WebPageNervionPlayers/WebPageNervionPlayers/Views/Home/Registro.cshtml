@@ -1,14 +1,20 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>NervionPlayers - Registro</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../Estilos/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../Estilos/bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="stylesheet">
     <link href="../Estilos/Registro.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="../jQuery/getters.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -20,7 +26,7 @@
                 <label id="labelApellidos">Apellidos</label>
                 <input id="txtApellidos" type="text" />
                 <label id="labelEmail">Email</label>
-                <input id="txtEmail" type="text" />
+                <input id="txtEmail" type="email" />
                 <label id="labelCurso">Curso</label>
                 <select id="selectCursos">
                     <option>1º ESO A</option>
@@ -54,7 +60,7 @@
                 <label id="labelUsuario">Usuario</label>
                 <input id="txtUsuario" type="text" />
                 <label id="labelPassword">Contraseña</label>
-                <input id="txtPassword" type="text" />
+                <input id="txtPassword" type="password" />
                 <label id="labelObservaciones">Observaciones</label>
                 <textarea id="txtAreaObservaciones" rows="7"></textarea>
             </div>
@@ -62,7 +68,7 @@
 
         <div class="row">
             <div id="divPiePagina" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <button id="btnRegistro" class="btn-default">Registrarse</button>
+                <button id="btnRegistro2" class="btn-default">Registrarse</button>
             </div>
         </div>
     </div>

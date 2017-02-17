@@ -14,7 +14,7 @@ namespace NervionPlayers_DAL.Manejadoras
 
         public ManejadoraAlumnoEquipoDAL()
         {
-            con = new Connection("AlumnoNervion", ".N3tApe$7aH");
+            con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
         }
 
         //NO ES NECESARIO HACER EL GET DE ALUMNOEQUIPO

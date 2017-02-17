@@ -32,7 +32,7 @@ namespace DALClassLibrary
         public Connection()
         {
             //TODO Insertar url;
-            this._host = "localhost";
+            this._host = "nervionplayers.database.windows.net";
             this._dataBase = "NervionPlayers";
         }
 

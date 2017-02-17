@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "CryptoHelper": "2.1.0",
+    "NervionPlayers_Ent": "1.0.0-*",
+    "NETStandard.Library": "1.6.1",
+    "System.Data.SqlClient": "4.1.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

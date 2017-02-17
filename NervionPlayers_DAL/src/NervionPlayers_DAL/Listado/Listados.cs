@@ -17,7 +17,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Alumno> listadoAlumnos()
         {
             ObservableCollection<Alumno> alumnos = new ObservableCollection<Alumno>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Alumno oAlumno;
 
             SqlConnection conexion;
@@ -81,7 +81,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Alumno> listadoAlumnos(int idEquipo)
         {
             ObservableCollection<Alumno> alumnos = new ObservableCollection<Alumno>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Alumno oAlumno;
 
             SqlConnection conexion;
@@ -166,7 +166,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Equipo> listadoEquipos()
         {
             ObservableCollection<Equipo> equipos = new ObservableCollection<Equipo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Equipo oEquipo;
 
             SqlConnection conexion;
@@ -225,7 +225,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Equipo> listadoEquipos(int idAlumno)
         {
             ObservableCollection<Equipo> equipos = new ObservableCollection<Equipo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Equipo oEquipo;
 
             SqlConnection conexion;
@@ -284,7 +284,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Partido> listadoPartidos()
         {
             ObservableCollection<Partido> partidos = new ObservableCollection<Partido>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Partido oPartido;
 
             SqlConnection conexion;
@@ -347,7 +347,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Partido> listadoPartidos(int idEquipo)
         {
             ObservableCollection<Partido> partidos = new ObservableCollection<Partido>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Partido oPartido;
 
             SqlConnection conexion;
@@ -414,7 +414,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Duelo> listadoDuelos()
         {
             ObservableCollection<Duelo> duelos = new ObservableCollection<Duelo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Duelo oDuelo;
 
             SqlConnection conexion;
@@ -476,7 +476,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Duelo> listadoDuelos(int idAlumno)
         {
             ObservableCollection<Duelo> duelos = new ObservableCollection<Duelo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Duelo oDuelo;
 
             SqlConnection conexion;
@@ -542,7 +542,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Deporte> listadoDeportes()
         {
             ObservableCollection<Deporte> deportes = new ObservableCollection<Deporte>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Deporte oDeporte;
 
             SqlConnection conexion;
@@ -588,7 +588,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<AlumnoEquipo> listadoAlumnosEquipos()
         {
             ObservableCollection<AlumnoEquipo> alumnosEquipos = new ObservableCollection<AlumnoEquipo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             AlumnoEquipo oAlumnoEquipo;
 
             SqlConnection conexion;
@@ -635,7 +635,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<ResultadoPartido> listadoResultadoPartidos()
         {
             ObservableCollection<ResultadoPartido> resultadoPartidos = new ObservableCollection<ResultadoPartido>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             ResultadoPartido oResultadoPartido;
 
             SqlConnection conexion;
@@ -684,7 +684,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<ResultadoDuelo> listadoResultadoDuelos()
         {
             ObservableCollection<ResultadoDuelo> resultadoDuelos = new ObservableCollection<ResultadoDuelo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             ResultadoDuelo oResultadoDuelo;
 
             SqlConnection conexion;
@@ -733,7 +733,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Dispositivo> listadoDispositivos()
         {
             ObservableCollection<Dispositivo> dispositivos = new ObservableCollection<Dispositivo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Dispositivo oDispositivo;
 
             SqlConnection conexion;
@@ -782,7 +782,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Dispositivo> listadoDispositivos(int idAlumno)
         {
             ObservableCollection<Dispositivo> dispositivos = new ObservableCollection<Dispositivo>();
-            Connection con = new Connection("InvitadoNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Dispositivo oDispositivo;
 
             SqlConnection conexion;
@@ -830,7 +830,7 @@ namespace NervionPlayers_DAL.Listado
         public ObservableCollection<Profesor> listadoProfesores()
         {
             ObservableCollection<Profesor> profesores = new ObservableCollection<Profesor>();
-            Connection con = new Connection("ProfesorNervion", "P4P,7h€60D!");
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
             Profesor profesor;
 
             SqlConnection conexion;

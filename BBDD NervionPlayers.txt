@@ -1,0 +1,19 @@
+Database en Azure de NervionPlayers
+
+Nombre de la BBDD:
+	NervionPlayers
+
+URL del Servidor:
+	nervionplayers.database.windows.net
+
+	User:ProfesorNervion
+	Pssw:1iNu#L0par7€T0
+
+Nombre del servidor:
+	name:nervionplayers
+
+
+Cadena de conexion completa:
+	Server=tcp:nervionplayers.database.windows.net,1433;Initial Catalog=NervionPlayers;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+WebAPI
+http://webapiejemplo.azurewebsites.net/api/values

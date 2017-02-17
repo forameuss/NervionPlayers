@@ -139,10 +139,21 @@ namespace NervionPlayers_BL
         }
 
         /// <summary>
-        /// Obtiene un listado de Profesores
+        /// Obtiene un listado de todos lso dispositivos de un alumno
         /// </summary>
-        /// <returns>Observablecollection de Profesor</returns>
-        public ObservableCollection<Profesor> listadoProfesor()
+        /// <param name="id">Id del alumno</param>
+        /// <returns></returns>
+        public ObservableCollection<Dispositivo> listadoDispositivosBL(int id)
+        {
+            return listadosDAL.listadoDispositivos();
+
+        }
+
+    /// <summary>
+    /// Obtiene un listado de Profesores
+    /// </summary>
+    /// <returns>Observablecollection de Profesor</returns>
+    public ObservableCollection<Profesor> listadoProfesor()
         {
             return listadosDAL.listadoProfesores();
         }

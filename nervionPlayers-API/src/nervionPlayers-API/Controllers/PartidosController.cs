@@ -111,7 +111,16 @@ namespace ControllersNP.Controllers
             }
             else
             {
-                manejaPartBL.actualizarPartido(value);
+                try
+                {
+                    manejaPartBL.actualizarPartido(value);
+                }
+                catch (InvalidValueException e)
+                {
+
+                    Response.StatusCode = 400; //Bad request
+                }
+                
             }
         }
 

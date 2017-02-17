@@ -102,7 +102,18 @@ namespace nervionPlayers_API.Controllers
             }
             else
             {
-                manejadoraEquipos.actualizarEquipo(value);
+                try
+                {
+
+                    manejadoraEquipos.actualizarEquipo(value);
+
+                }
+                catch (InvalidValueException e)
+                {
+
+                    Response.StatusCode = 400; //Bad request
+                }
+               
             }
 
         }

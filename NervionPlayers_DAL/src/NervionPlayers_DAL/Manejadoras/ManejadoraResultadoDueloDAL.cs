@@ -1,4 +1,5 @@
 ﻿using DALClassLibrary;
+using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

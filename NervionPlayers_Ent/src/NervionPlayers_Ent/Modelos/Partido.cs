@@ -54,6 +54,20 @@ namespace NervionPlayers_Ent.Modelos
             Lugar = lugar;
             Notas = notas;
         }
+        public Partido(Partido partido)
+        {
+            Id = partido.Id;
+            Id_Local = partido.id_Local;
+            Id_Visitante = partido.id_Visitante;
+            Id_Deporte = partido.id_Deporte;
+            Fecha_Partido = partido.fecha_Partido;
+            Fecha_Creacion = partido.fecha_Creacion;
+            Foto = partido.foto;
+            Resultado_Local = partido.resultado_Local;
+            Resultado_Visitante = partido.resultado_Visitante;
+            Lugar = partido.lugar;
+            Notas = partido.notas;
+        }
 
 
 

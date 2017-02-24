@@ -1,5 +1,6 @@
 ﻿using NervionPlayers_BL.Model;
 using NervionPlayers_DAL.Manejadoras;
+using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

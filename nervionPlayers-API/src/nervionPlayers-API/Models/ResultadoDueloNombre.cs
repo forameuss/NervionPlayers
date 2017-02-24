@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace nervionPlayers_API.Models
 {
-    public class DueloJSON
+    public class ResultadoDueloNombre
     {
     }
 }

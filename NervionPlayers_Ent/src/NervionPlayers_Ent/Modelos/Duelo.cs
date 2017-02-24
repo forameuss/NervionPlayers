@@ -43,6 +43,20 @@ namespace NervionPlayers_Ent.Modelos
             this.lugar = lugar;
             this.notas = notas;
         }
+        public Duelo(Duelo duelo)
+        {
+            this.id = duelo.id;
+            this.id_Local = duelo.id_Local;
+            this.id_Visitante = duelo.id_Visitante;
+            this.id_Deporte = duelo.id_Deporte;
+            this.fecha_Creacion = duelo.fecha_Creacion;
+            this.fecha_Duelo = duelo.fecha_Duelo;
+            this.foto = duelo.foto;
+            this.resultado_Local = duelo.resultado_Local;
+            this.resultado_Visitante = duelo.resultado_Visitante;
+            this.lugar = duelo.lugar;
+            this.notas = duelo.notas;
+        }
         #endregion
 
         #region Propiedades

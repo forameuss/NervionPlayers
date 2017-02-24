@@ -10,6 +10,9 @@ namespace nervionPlayers_API.Models
     {
         private String nombreCreador;
 
+        public EquipoNombreCreador()
+        {
+        }
         public EquipoNombreCreador(Equipo equipo, String nombreCreador)
         {
             this.Id = equipo.Id;

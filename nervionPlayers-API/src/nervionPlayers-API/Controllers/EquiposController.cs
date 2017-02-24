@@ -4,6 +4,7 @@ using NervionPlayers_BL;
 using NervionPlayers_BL.Manejadoras;
 using NervionPlayers_Ent.Modelos;
 using NervionPlayers_BL.Model;
+using nervionPlayers_API.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -170,19 +171,24 @@ namespace nervionPlayers_API.Controllers
         /// <param name="id">Identificador del equipo concreto</param>
         /// <returns>Devuelve una lista de equipos con los alumnos creadores añadidos</returns>
         [HttpGet("/nombreAlumnoCreador")]
-        public IEnumerable<Equipo> GetAlumnosCreadores()
+        public IEnumerable<EquipoNombreCreador> GetAlumnosCreadores()
         {
-            IEnumerable < Equipo > listaEquipos1 = lista.listadoEquiposBL();
-            IEnumerable<Equipo> listaEquipos2 = lista.listadoEquiposBL();
-            IEnumerable<Alumno> listaAlumnos = lista.listadoAlumnosBL();
-            //cambiar a la nueva clase de Equipo con Attr alumno creador
+            List < Equipo > listaEquipos = lista.listadoEquiposBL();
+            List<Alumno> listaAlumnos = lista.listadoAlumnosBL();
+            List<EquipoNombreCreador> listaEquiposNombreCreador = new List<EquipoNombreCreador>();
             Equipo equipo = new Equipo();
+            EquipoNombreCreador equipoNombreCreador = new EquipoNombreCreador();
+            //cambiar a la nueva clase de Equipo con Attr alumno creador
+            for (int i = 0; i < listaEquipos.Count; i++) {
+
+            }
 
 
 
 
 
-            return listaEquipos2;
+
+            return listaEquiposNombreCreador;
         }
         #endregion
     }

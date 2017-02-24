@@ -75,3 +75,4 @@ C:\Users\cprieto\Documents\GitHub\NervionPlayers\WebPageNervionPlayers\WebPageNe
 C:\Users\cprieto\Documents\GitHub\NervionPlayers\WebPageNervionPlayers\WebPageNervionPlayers\obj\Debug\WebPageNervionPlayers.dll
 C:\Users\cprieto\Documents\GitHub\NervionPlayers\WebPageNervionPlayers\WebPageNervionPlayers\obj\Debug\WebPageNervionPlayers.pdb
 C:\Users\cprieto\Documents\GitHub\NervionPlayers\WebPageNervionPlayers\WebPageNervionPlayers\obj\Debug\WebPageNervionPlayers.csprojResolveAssemblyReference.cache
+C:\Users\dleal\Documents\GitHub\NervionPlayers\WebPageNervionPlayers\WebPageNervionPlayers\obj\Debug\WebPageNervionPlayers.csprojResolveAssemblyReference.cache

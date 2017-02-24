@@ -57,16 +57,16 @@ namespace NervionPlayers_Ent.Modelos
         public Partido(Partido partido)
         {
             Id = partido.Id;
-            Id_Local = partido.id_Local;
-            Id_Visitante = partido.id_Visitante;
-            Id_Deporte = partido.id_Deporte;
-            Fecha_Partido = partido.fecha_Partido;
-            Fecha_Creacion = partido.fecha_Creacion;
-            Foto = partido.foto;
-            Resultado_Local = partido.resultado_Local;
-            Resultado_Visitante = partido.resultado_Visitante;
-            Lugar = partido.lugar;
-            Notas = partido.notas;
+            Id_Local = partido.Id_Local;
+            Id_Visitante = partido.Id_Visitante;
+            Id_Deporte = partido.Id_Deporte;
+            Fecha_Partido = partido.Fecha_Partido;
+            Fecha_Creacion = partido.Fecha_Creacion;
+            Foto = partido.Foto;
+            Resultado_Local = partido.Resultado_Local;
+            Resultado_Visitante = partido.Resultado_Visitante;
+            Lugar = partido.Lugar;
+            Notas = partido.Notas;
         }
 
 

@@ -30,6 +30,14 @@ namespace NervionPlayers_Ent.Modelos
             this.empatados = empatados;
             this.perdidos = perdidos;
         }
+        public ResultadoDuelo(ResultadoDuelo resultadoDuelo)
+        {
+            this.id = resultadoDuelo.Id;
+            this.id_Alumno = resultadoDuelo.Id_Alumno;
+            this.ganados = resultadoDuelo.Ganados;
+            this.empatados = resultadoDuelo.Empatados;
+            this.perdidos = resultadoDuelo.Perdidos;
+        }
         #endregion
 
         #region Propiedades

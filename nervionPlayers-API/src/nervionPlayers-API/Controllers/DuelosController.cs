@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using nervionPlayers_API.Models;
 using NervionPlayers_BL;
 using NervionPlayers_BL.Manejadoras;
 using NervionPlayers_BL.Model;
@@ -13,6 +14,7 @@ namespace ControllersNP.Controllers
     public class DuelosController : Controller
     {
         ListadosBL listaDuelos = new ListadosBL();
+        ListadosBL lista = new ListadosBL();
         ManejadoraDueloBL manejadoraDuelos = new ManejadoraDueloBL();
         // GET: Duelos
         public ActionResult Index()
@@ -130,6 +132,40 @@ namespace ControllersNP.Controllers
 
         }
 
+        #endregion
+
+        #region get duelo/nombres
+        /// <summary>
+        /// Metodo que devuelve un listado con los duelos y el nombre del local, nombre del visitante y nombre del deporte
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Devuelve una lista de duelos con los nombres de los alumnos visitate y local y el nombre del deporte</returns>
+        [HttpGet("/nombres")]
+        public List<DueloNombres> GetAlumnosCreadores()
+        {
+            List<Duelo> listaDuelos = lista.listadoDuelosBL().ToList();
+            List<DueloNombres> listaDuelosNombres = new List<DueloNombres>();
+
+            Duelo duelo = new Duelo();
+            Alumno alumnoLocal = new Alumno();
+            Alumno alumnoVisitante = new Alumno();
+            Deporte deporte = new Deporte();
+
+            ManejadoraAlumnoBL manejaAlumno = new ManejadoraAlumnoBL();
+            ManejadoraDeporteBL manejaDeporte = new ManejadoraDeporteBL();
+
+            for (int i = 0; i < listaDuelos.Count(); i++)
+            {
+                duelo = listaDuelos[i];
+                alumnoLocal = manejaAlumno.obtenerAlumno(duelo.Id_Local);
+                alumnoVisitante = manejaAlumno.obtenerAlumno(duelo.Id_Visitante);
+                deporte = manejaDeporte.obtenerDeporte(duelo.Id_Deporte);
+
+                listaDuelosNombres.Add(new DueloNombres(duelo, alumnoLocal.Nombre, alumnoVisitante.Nombre, deporte.Nombre));
+            }
+
+            return listaDuelosNombres;
+        }
         #endregion
     }
 }

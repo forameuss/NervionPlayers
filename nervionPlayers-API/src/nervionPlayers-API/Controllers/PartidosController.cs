@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using nervionPlayers_API.Models;
 using NervionPlayers_BL;
 using NervionPlayers_BL.Manejadoras;
 using NervionPlayers_BL.Model;
 using NervionPlayers_Ent.Modelos;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace ControllersNP.Controllers
 {
@@ -143,6 +144,40 @@ namespace ControllersNP.Controllers
 
         }
 
+        #endregion
+
+        #region get partido/equiposDeporte
+        /// <summary>
+        /// Metodo que devuelve un listado con los duelos y el nombre del local, nombre del visitante y nombre del deporte
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Devuelve una lista de duelos con los nombres de los alumnos visitate y local y el nombre del deporte</returns>
+        [HttpGet("/equiposDeporte")]
+        public List<PartidoNombre> GetPartidosEquiposDeporte()
+        {
+            List<Partido> listaPartidos = listaBL.listadoPartidosBL().ToList();
+            List<PartidoNombre> listaPartidosNombres = new List<PartidoNombre>();
+
+            Partido partido = new Partido();
+            Equipo equipoLocal = new Equipo();
+            Equipo equipoVisitante = new Equipo();
+            Deporte deporte = new Deporte();
+
+            ManejadoraEquipoBL manejaEquipo = new ManejadoraEquipoBL();
+            ManejadoraDeporteBL manejaDeporte = new ManejadoraDeporteBL();
+
+            for (int i = 0; i < listaPartidos.Count(); i++)
+            {
+                partido = listaPartidos[i];
+                equipoLocal = manejaEquipo.obtenerEquipo(partido.Id_Local);
+                equipoVisitante = manejaEquipo.obtenerEquipo(partido.Id_Visitante);
+                deporte = manejaDeporte.obtenerDeporte(partido.Id_Deporte);
+
+                listaPartidosNombres.Add(new PartidoNombre(partido, equipoLocal.Nombre, equipoVisitante.Nombre, deporte.Nombre));
+            }
+
+            return listaPartidosNombres;
+        }
         #endregion
     }
 }

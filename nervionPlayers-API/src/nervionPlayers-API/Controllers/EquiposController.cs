@@ -160,7 +160,30 @@ namespace nervionPlayers_API.Controllers
 
             return lista.listadoPartidosBL(id);
         }
-        
+
+        #endregion
+
+        #region get equipos/nombreAlumnoCreador
+        /// <summary>
+        /// Metodo que devuelve un equipo con su alumno creador asignado
+        /// </summary>
+        /// <param name="id">Identificador del equipo concreto</param>
+        /// <returns>Devuelve una lista de equipos con los alumnos creadores añadidos</returns>
+        [HttpGet("/nombreAlumnoCreador")]
+        public IEnumerable<Equipo> GetAlumnosCreadores()
+        {
+            IEnumerable < Equipo > listaEquipos1 = lista.listadoEquiposBL();
+            IEnumerable<Equipo> listaEquipos2 = lista.listadoEquiposBL();
+            IEnumerable<Alumno> listaAlumnos = lista.listadoAlumnosBL();
+            //cambiar a la nueva clase de Equipo con Attr alumno creador
+            Equipo equipo = new Equipo();
+
+
+
+
+
+            return listaEquipos2;
+        }
         #endregion
     }
 }

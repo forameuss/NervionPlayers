@@ -10,9 +10,6 @@ namespace nervionPlayers_API.Models
     {
         #region Atributos
         private String nombreAlumno;
-
-
-
         #endregion
 
         #region Constructores

@@ -5,6 +5,7 @@ using NervionPlayers_BL.Manejadoras;
 using NervionPlayers_BL.Model;
 using NervionPlayers_Ent.Modelos;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace ControllersNP.Controllers
@@ -55,7 +56,31 @@ namespace ControllersNP.Controllers
 
             return Part;
         }
+        /// <summary>
+        /// Método que devuelve todos los partidos de un deporte
+        /// </summary>
+        /// <param name="id">El id del deporte</param>
+        /// <returns></returns>
+        [HttpGet("{id}/Partidos")]
+        public IEnumerable<Partido> GetPartidosDeporte(int id)
+        {
+            ListadosBL miManejadora = new ListadosBL();
+            ObservableCollection<Partido> partidos = miManejadora.listadoPartidosBL();
+            ObservableCollection<Partido> partidosDevolver = new ObservableCollection<Partido>();
+            for (int i = 0; i < partidos.Count; i++)
+            {
+                if (partidos[i].Id_Deporte == id)
+                {
+                    partidosDevolver.Add(partidos[i]);
+                }
+            }
 
+            if (partidosDevolver == null)
+            {
+                Response.StatusCode = 404; //Not found
+            }
+            return partidosDevolver;
+        }
         #endregion
 
         #region POST

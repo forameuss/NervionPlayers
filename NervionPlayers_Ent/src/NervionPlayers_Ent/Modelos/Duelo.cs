@@ -45,17 +45,17 @@ namespace NervionPlayers_Ent.Modelos
         }
         public Duelo(Duelo duelo)
         {
-            this.id = duelo.id;
-            this.id_Local = duelo.id_Local;
-            this.id_Visitante = duelo.id_Visitante;
-            this.id_Deporte = duelo.id_Deporte;
-            this.fecha_Creacion = duelo.fecha_Creacion;
-            this.fecha_Duelo = duelo.fecha_Duelo;
-            this.foto = duelo.foto;
-            this.resultado_Local = duelo.resultado_Local;
-            this.resultado_Visitante = duelo.resultado_Visitante;
-            this.lugar = duelo.lugar;
-            this.notas = duelo.notas;
+            this.id = duelo.Id;
+            this.id_Local = duelo.Id_Local;
+            this.id_Visitante = duelo.Id_Visitante;
+            this.id_Deporte = duelo.Id_Deporte;
+            this.fecha_Creacion = duelo.Fecha_Creacion;
+            this.fecha_Duelo = duelo.Fecha_Duelo;
+            this.foto = duelo.Foto;
+            this.resultado_Local = duelo.Resultado_Local;
+            this.resultado_Visitante = duelo.Resultado_Visitante;
+            this.lugar = duelo.Lugar;
+            this.notas = duelo.Notas;
         }
         #endregion
 

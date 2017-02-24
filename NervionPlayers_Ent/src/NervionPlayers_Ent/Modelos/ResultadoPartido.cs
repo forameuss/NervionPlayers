@@ -38,6 +38,15 @@ namespace NervionPlayers_Ent.Modelos
             Empatados = empatados;
             Perdidos = perdidos;
         }
+
+        public ResultadoPartido(ResultadoPartido resultadoPartido)
+        {
+            Id = resultadoPartido.Id;
+            Id_Equipo = resultadoPartido.Id_Equipo;
+            Ganados = resultadoPartido.Ganados;
+            Empatados = resultadoPartido.Empatados;
+            Perdidos = resultadoPartido.Perdidos;
+        }
         #endregion
 
         #region Propiedades

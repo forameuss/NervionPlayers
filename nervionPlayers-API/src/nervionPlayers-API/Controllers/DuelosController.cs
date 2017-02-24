@@ -140,7 +140,7 @@ namespace ControllersNP.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Devuelve una lista de duelos con los nombres de los alumnos visitate y local y el nombre del deporte</returns>
-        [HttpGet("/nombres")]
+        [HttpGet("/alumnosDeporte")]
         public List<DueloNombres> GetDuelosNombresAlumnosDeporte()
         {
             List<Duelo> listaDuelos = lista.listadoDuelosBL().ToList();

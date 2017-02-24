@@ -172,7 +172,7 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="id">Identificador del equipo concreto</param>
         /// <returns>Devuelve una lista de equipos con los alumnos creadores añadidos</returns>
-        [HttpGet("/nombreAlumnoCreador")]
+        [HttpGet("/alumnoCreador")]
         public List<EquipoNombreCreador> GetAlumnosCreadores()
         {
             List < Equipo > listaEquipos =  lista.listadoEquiposBL().ToList();

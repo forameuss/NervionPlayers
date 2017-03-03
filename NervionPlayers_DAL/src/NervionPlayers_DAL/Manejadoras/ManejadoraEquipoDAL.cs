@@ -44,6 +44,7 @@ namespace NervionPlayers_DAL.Manejadoras
                         oEquipo.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
                         oEquipo.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
                         oEquipo.Categoria = Convert.ToInt16(lector[ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA]);
+
                         //oEquipo.Id_Deporte = Convert.ToInt16(lector[ContratoDB.Deportes_DB.DEPORTES_DB_ID]);
                         try
                         {

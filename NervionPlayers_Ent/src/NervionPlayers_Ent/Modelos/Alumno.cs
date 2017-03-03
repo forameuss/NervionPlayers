@@ -67,6 +67,22 @@ namespace NervionPlayers_Ent.Modelos
             this.foto = foto;
         }
 
+        public Alumno(Alumno alumno)
+        {
+            this.id = alumno.Id;
+            this.nombre = alumno.nombre;
+            this.apellidos = alumno.apellidos;
+            this.contraseña = alumno.contraseña;
+            this.alias = alumno.alias;
+            this.correo = alumno.correo;
+            this.fecha_Creacion = alumno.fecha_Creacion;
+            this.curso = alumno.curso;
+            this.letra = alumno.letra;
+            this.observaciones = alumno.observaciones;
+            this.confirmado = alumno.confirmado;
+            this.foto = alumno.foto;
+        }
+
         #endregion
 
         #region Propiedades

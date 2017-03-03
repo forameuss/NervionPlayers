@@ -11,7 +11,7 @@ namespace NervionPlayers_Ent.Modelos
     public class ResultadoDuelo
     {
         #region Atributos
-        private int id;
+        private int id_Deporte;
         private int id_Alumno;
         private int ganados;
         private int empatados;
@@ -22,9 +22,9 @@ namespace NervionPlayers_Ent.Modelos
         #region Constructores
         public ResultadoDuelo() { }
 
-        public ResultadoDuelo(int id, int id_Alumno, int ganados, int empatados, int perdidos)
+        public ResultadoDuelo(int id_Deporte, int id_Alumno, int ganados, int empatados, int perdidos)
         {
-            this.id = id;
+            this.id_Deporte = id_Deporte;
             this.id_Alumno = id_Alumno;
             this.ganados = ganados;
             this.empatados = empatados;
@@ -32,7 +32,7 @@ namespace NervionPlayers_Ent.Modelos
         }
         public ResultadoDuelo(ResultadoDuelo resultadoDuelo)
         {
-            this.id = resultadoDuelo.Id;
+            this.id_Deporte = resultadoDuelo.id_Deporte;
             this.id_Alumno = resultadoDuelo.Id_Alumno;
             this.ganados = resultadoDuelo.Ganados;
             this.empatados = resultadoDuelo.Empatados;
@@ -42,16 +42,16 @@ namespace NervionPlayers_Ent.Modelos
 
         #region Propiedades
 
-        public int Id
+        public int Id_Deporte
         {
             get
             {
-                return id;
+                return id_Deporte;
             }
 
             set
             {
-                id = value;
+                id_Deporte = value;
             }
         }
 

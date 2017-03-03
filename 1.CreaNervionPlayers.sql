@@ -48,6 +48,7 @@ Confirmado bit not null default 0
 CREATE TABLE Equipos(
 Id int identity(1,1),
 Id_Creador int not null,
+Id_Deporte int not null,
 Categoria int not null,
 Nombre nvarchar(20) unique not null,
 Fecha_Creacion smalldatetime not null default CURRENT_TIMESTAMP,
@@ -94,9 +95,14 @@ Id_Equipo int not null,
 Fecha_Creacion smalldatetime not null default CURRENT_TIMESTAMP
 )
 
+CREATE TABLE AlumnosDeportes(
+Id_Alumno int not null,
+Id_Deporte int not null
+)
+
 CREATE TABLE ResultadosDuelos(
-Id int identity(1,1),
-Id_Alumno int unique not null,
+Id_Alumno int not null,
+Id_Deporte int not null,
 Ganados int not null default 0,
 Empatados int not null default 0,
 Perdidos int not null default 0
@@ -128,10 +134,11 @@ Alter table Deportes add constraint PK_Deportes primary key (Id);
 Alter table Dispositivos add constraint PK_Dispositivos primary key (Id);
 Alter table Partidos add constraint PK_Partidos primary key (Id);
 Alter table Duelos add constraint PK_Duelos primary key (Id);
-Alter table ResultadosDuelos add constraint PK_ResultadosDuelos primary key (Id);
+Alter table ResultadosDuelos add constraint PK_ResultadosDuelos primary key (Id_Alumno,Id_Deporte);
 Alter table ResultadosPartidos add constraint PK_ResultadosPartidos primary key (Id);
 
 Alter table AlumnosEquipos add constraint PK_AlumnosEquipos primary key (Id_Alumno,Id_Equipo);
+Alter table AlumnosDeportes add constraint PK_AlumnosDeportes primary key (Id_Alumno,Id_Deporte);
 
 --Claves foráneas
 
@@ -139,15 +146,18 @@ Alter table Dispositivos add constraint FK_Dispositivos_Alumnos foreign key (Id_
 Alter table Duelos add constraint FK_Duelos_Deportes foreign key (Id_Deporte) references Deportes(Id) on update cascade on delete cascade;
 Alter table Partidos add constraint FK_Partidos_Deportes foreign key (Id_Deporte) references Deportes(Id) on update cascade on delete cascade;
 Alter table Equipos add constraint FK_Equipos_Creador foreign key (Id_Creador) references Alumnos(Id) on update cascade on delete cascade;
+Alter table Equipos add constraint FK_Equipos_Deportes foreign key (Id_Deporte) references Deportes(Id) on update cascade on delete cascade;
 Alter table AlumnosEquipos add constraint FK_AG_Alumnos foreign key(Id_Alumno) references Alumnos(Id) on update cascade on delete cascade;
 Alter table AlumnosEquipos add constraint FK_AG_Equipos foreign key(Id_Equipo) references Equipos(Id) on update no action on delete no action;
-Alter table ResultadosDuelos add constraint FK_RD_Alumnos foreign key(Id_Alumno) references Alumnos(Id) on update cascade on delete cascade;
+Alter table AlumnosDeportes add constraint FK_AD_Alumnos foreign key(Id_Alumno) references Alumnos(Id) on update cascade on delete cascade;
+Alter table AlumnosDeportes add constraint FK_AD_Deportes foreign key(Id_Deporte) references Deportes(Id) on update no action on delete no action;
+
+
 Alter table ResultadosPartidos add constraint FK_RP_Equipos foreign key(Id_Equipo) references Equipos(Id) on update cascade on delete cascade;
-
-
+Alter table ResultadosDuelos add constraint FK_RD_AlumnosDeportes foreign key(Id_Alumno,Id_Deporte) references AlumnosDeportes(Id_Alumno,Id_Deporte) on update cascade on delete cascade;
 Alter table Duelos add constraint FK_Duelos_Local foreign key (Id_Local) references Alumnos(Id) on update cascade on delete cascade;
 Alter table Duelos add constraint FK_Duelos_Visitante foreign key (Id_Visitante) references Alumnos(Id) on update no action on delete no action;
-Alter table Partidos add constraint FK_Partidos_Local foreign key (Id_Local) references Equipos(Id) on update cascade on delete cascade;
+Alter table Partidos add constraint FK_Partidos_Local foreign key (Id_Local) references Equipos(Id) on update no action on delete no action;
 Alter table Partidos add constraint FK_Partidos_Visitante foreign key (Id_Visitante) references Equipos(Id) on update no action on delete no action;
 
 --Restricciones

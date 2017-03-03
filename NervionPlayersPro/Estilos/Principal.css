@@ -1,0 +1,26 @@
+﻿body 
+{
+    background-color:rgb(68, 68, 68);
+    color:white;
+}
+
+#navBarra
+{
+    background-color:rgb(52, 52, 52);
+    font-size:medium;
+    border:5px solid rgb(52, 52, 52);
+}
+
+.dropdown-toggle.btn-default:hover
+{
+    color:white !important;
+}
+
+.dropdown-menu
+{
+    background-color:rgb(68, 68, 68);
+}
+
+a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: white !important;
+}

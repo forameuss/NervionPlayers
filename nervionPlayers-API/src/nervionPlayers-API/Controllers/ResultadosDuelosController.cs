@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using NervionPlayers_BL.Manejadoras;
 using NervionPlayers_BL;
 using NervionPlayers_BL.Model;
+using NervionPlayers_Ent.Modelos;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 

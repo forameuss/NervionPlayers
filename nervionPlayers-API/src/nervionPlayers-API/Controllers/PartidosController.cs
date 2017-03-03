@@ -56,31 +56,7 @@ namespace ControllersNP.Controllers
 
             return Part;
         }
-        /// <summary>
-        /// Método que devuelve todos los partidos de un deporte
-        /// </summary>
-        /// <param name="id">El id del deporte</param>
-        /// <returns></returns>
-        [HttpGet("{id}/Partidos")]
-        public IEnumerable<Partido> GetPartidosDeporte(int id)
-        {
-            ListadosBL miManejadora = new ListadosBL();
-            ObservableCollection<Partido> partidos = miManejadora.listadoPartidosBL();
-            ObservableCollection<Partido> partidosDevolver = new ObservableCollection<Partido>();
-            for (int i = 0; i < partidos.Count; i++)
-            {
-                if (partidos[i].Id_Deporte == id)
-                {
-                    partidosDevolver.Add(partidos[i]);
-                }
-            }
-
-            if (partidosDevolver == null)
-            {
-                Response.StatusCode = 404; //Not found
-            }
-            return partidosDevolver;
-        }
+       
         #endregion
 
         #region POST
@@ -173,11 +149,11 @@ namespace ControllersNP.Controllers
 
         #region get partido/equiposDeporte
         /// <summary>
-        /// Metodo que devuelve un listado con los duelos y el nombre del local, nombre del visitante y nombre del deporte
+        /// Metodo que devuelve un listado con los partidow y el nombre del local, nombre del visitante y nombre del deporte
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Devuelve una lista de duelos con los nombres de los alumnos visitate y local y el nombre del deporte</returns>
-        [HttpGet("/equiposDeporte")]
+        /// <returns>Devuelve una lista de partidos con los nombres de los equipos visitate y local y el nombre del deporte</returns>
+        [HttpGet("EquiposDeporte")]
         public List<PartidoNombre> GetPartidosEquiposDeporte()
         {
             List<Partido> listaPartidos = listaBL.listadoPartidosBL().ToList();

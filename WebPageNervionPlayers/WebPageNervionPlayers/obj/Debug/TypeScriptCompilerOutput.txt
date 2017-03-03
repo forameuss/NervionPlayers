@@ -1,0 +1,2 @@
+C:\Users\fjrodriguez\Source\Repos\NervionPlayers\WebPageNervionPlayers\WebPageNervionPlayers\Models\Persona.js
+C:\Users\fjrodriguez\Source\Repos\NervionPlayers\WebPageNervionPlayers\WebPageNervionPlayers\Models\Persona.js.map

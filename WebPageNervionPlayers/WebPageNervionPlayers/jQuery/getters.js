@@ -10,51 +10,22 @@ de nombres de tablas y de botones, de estilos, de jwt, y de controlar la session
 */
 
 //a espera de url final
-var URL_BASE = "";
+var URL_BASE = "http://nervionplayers.azurewebsites.net/api/";
 var TOKEN = "";
 function getAlumnos(){
-    var arraypersonas;
+   // var arraypersonas = 0;
+   // var data = 0;
 	$.ajax({
-		url:URL_BASE+"alumnos",
-		type:"GET",
-		beforeSend: function (xhr) {
-		    xhr.setRequestHeader ("Authorization", "Bearer " + TOKEN);
-		},
+	    url: URL_BASE + "alumnos",
+	    type: "GET",
+	    dataType: 'json',
 		success: function (data) {
-
-		    arraypersonas = JSON.parse(data);
-		   /* $('#tabla tr').remove();
-		    var primeraFila = $("<tr>");
+		    console.log(data);
+		   // arraypersonas = JSON.parse(data);
 		    
-		        primeraFila.append($("<th>").text("Nombre"));
-		        primeraFila.append($("<th>").text("Apellidos"));
-		        primeraFila.append($("<th>").text("Alias"));
-		        primeraFila.append($("<th>").text("Correo"));		        
-		        primeraFila.append($("<th>").text("Curso"));
-		        primeraFila.append($("<th>").text("Letra"));
-		        primeraFila.append($("<th>").text("Observaciones"));
-		        primeraFila.append($("<th>").text("Confirmado"));
-		    
-		    $('#tabla').append(primeraFila);
-		    $.each(data,function(index,value){
-		        var row = $("<tr>");
-		            row.append($("<td>").text(data[index].nombre));
-		            row.append($("<td>").text(data[index].apellidos));
-		            row.append($("<td>").text(data[index].alias));
-		            row.append($("<td>").text(data[index].correo));
-		            row.append($("<td>").text(data[index].curso));
-		            row.append($("<td>").text(data[index].letra));
-		            row.append($("<td>").text(data[index].observaciones));
-		            if (data[index].confirmado == true) {
-		                row.append($("<td>").text("SI"));
-		            }else{
-		                if (data[index].confirmado == false) {
-		                    row.append($("<td>").text("NO"));
-		                }
-		            }		                     
-		        $('#tabla').append(row);
-		    })*/
-		    
+		},
+		error: function (xhr, textStatus, errorThrown) {
+		    console.log(errorThrown);
 		}
 	});
 
@@ -67,9 +38,9 @@ function getAlumnosId(id){
 	$.ajax({
 		url:URL_BASE+"alumnos/"+id,
 		type:"GET",
-		beforeSend: function (xhr) {
-		    xhr.setRequestHeader ("Authorization", "Bearer " + TOKEN);
-		},
+		//beforeSend: function (xhr) {
+		 //   xhr.setRequestHeader ("Authorization", "Bearer " + TOKEN);
+		//},
 		success: function (data) {
 
 

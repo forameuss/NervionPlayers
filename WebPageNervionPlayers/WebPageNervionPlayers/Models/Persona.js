@@ -1,4 +1,3 @@
-"use strict";
 var Persona = (function () {
     function Persona(id, nombre, alias, correo, fecha_Creacion, curso, letra, observaciones, confirmado, contraseña, apellidos, foto) {
         this.id = id;
@@ -29,7 +28,8 @@ var Persona = (function () {
     Persona.prototype.getConfirmado = function () {
         return this.confirmado;
     };
+    Persona.prototype.toString = function () {
+        return this.nombre + ", " + this.apellidos;
+    };
     return Persona;
 }());
-exports.Persona = Persona;
-//# sourceMappingURL=Persona.js.map

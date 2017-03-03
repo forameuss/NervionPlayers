@@ -1,4 +1,4 @@
-﻿export class Persona {
+﻿class Persona {
 
 
     private id: number;
@@ -48,5 +48,10 @@
 
     public getConfirmado(): boolean{
         return this.confirmado;
+    }
+
+    public toString(): string {
+        return this.nombre + ", " + this.apellidos;
+
     }
 }

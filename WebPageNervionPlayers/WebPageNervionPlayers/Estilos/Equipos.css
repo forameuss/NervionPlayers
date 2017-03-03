@@ -1,0 +1,54 @@
+﻿body
+{
+    background-color:rgb(68, 68, 68);
+    color:white;
+}
+
+button
+{
+    background: rgb(98, 134, 193);
+    border: 0px;
+    border-radius: 30px;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    margin: auto;
+}
+
+li
+{
+    margin-top: 4%;
+}
+
+#divListaEquipos, #divDetallesEquipo
+{
+    margin-top: 2%;
+}
+
+@media(min-width:720px)
+{
+    #divDetallesEquipo
+    {
+        border-left: 4px solid rgb(98, 134, 193);
+    }
+}
+
+#btnUnirse
+{
+    margin-top: 2%;
+}
+
+#btnAbandonar
+{
+    display: none;
+    margin-top: 2%;
+}
+
+#labelNombreEquipo
+{
+    text-decoration: underline;
+}
+
+#listaMiembrosEquipo
+{
+    margin: auto;
+}

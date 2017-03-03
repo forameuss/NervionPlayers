@@ -55,7 +55,7 @@ input
 #divPiePagina 
 {
     bottom:0px;
-    position:fixed;
+    position:absolute;
     background-color:rgb(36, 36, 36);
 }
 

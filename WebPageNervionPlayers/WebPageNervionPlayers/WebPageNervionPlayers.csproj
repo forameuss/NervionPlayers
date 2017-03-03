@@ -91,11 +91,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap.css" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap.min.css" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\js\bootstrap.js" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\js\npm.js" />
     <Content Include="Estilos\Content\bootstrap-theme.css" />
     <Content Include="Estilos\Content\bootstrap-theme.min.css" />
     <Content Include="Estilos\Content\bootstrap.css" />
     <Content Include="Estilos\Content\bootstrap.min.css" />
+    <Content Include="Estilos\Equipos.css" />
     <Content Include="Estilos\HomePage.css" />
+    <Content Include="Estilos\Partidos_Duelos.css" />
+    <Content Include="Estilos\Principal.css" />
     <Content Include="Estilos\Registro.css" />
     <Content Include="Estilos\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -107,16 +118,28 @@
     <Content Include="Estilos\Content\bootstrap.css.map" />
     <Content Include="Estilos\Content\bootstrap-theme.min.css.map" />
     <Content Include="Estilos\Content\bootstrap-theme.css.map" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap.css.map" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\css\bootstrap.min.css.map" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Estilos\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Estilos\Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Estilos\Scripts\bootstrap.js" />
     <Content Include="Estilos\Scripts\bootstrap.min.js" />
     <Content Include="Estilos\Scripts\jquery-1.9.1.js" />
     <Content Include="Estilos\Scripts\jquery-1.9.1.min.js" />
     <Content Include="Imagenes\logoNervionPlayers.png" />
+    <Content Include="Imagenes\logoPeque.png" />
     <Content Include="jQuery\getters.js" />
     <Content Include="jQuery\RegistroProfesor\formularioProfesor.js" />
     <Content Include="jQuery\scriptLoad.js" />
     <Content Include="Models\clsProfesor.js" />
+    <Content Include="Views\Home\Equipos.html" />
+    <Content Include="Views\Home\Partidos_Duelos.html" />
+    <Content Include="Views\Home\Principal.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +156,7 @@
     <Content Include="Estilos\Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Home\Principal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -142,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Estilos\jquery ui\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Models\Persona.ts" />

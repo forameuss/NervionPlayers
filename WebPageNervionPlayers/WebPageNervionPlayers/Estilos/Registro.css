@@ -57,9 +57,12 @@ input
     margin-top:8%;
 }
 
-#labelUsuario
+@media(min-width:720px)
 {
-    margin-top:10%;
+    #labelUsuario
+    {
+        margin-top:10%;
+    }
 }
 
 #txtNombre
@@ -111,13 +114,21 @@ input
     text-align:center;
     padding: 6px 20px 6px 20px;
     resize:none;
-    width:50%;
+    width:80%;
+}
+
+@media(min-width:720px)
+{
+    #txtAreaObservaciones
+    {
+        width:50%;
+    }
 }
 
 #divPiePagina 
 {
     bottom:0px;
-    position:absolute;
+    position:fixed;
 }
 
 #btnRegistro
@@ -135,5 +146,12 @@ input
     border-radius: 30px;
     color:black;
     padding: 6px 20px 6px 20px;
-    margin-bottom:8%;
+}
+
+@media(min-width:720px)
+{
+    #selectCursos
+    {
+        margin-bottom:8%;
+    }
 }

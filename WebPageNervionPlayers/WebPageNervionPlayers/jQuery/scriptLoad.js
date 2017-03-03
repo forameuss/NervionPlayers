@@ -17,9 +17,9 @@ function clickBtnLogin() {
     $("#btnLogin").click(function () {
         var usuario = $("#txtUsuario").val;
         var passw = $("#txtPassword").val;
-        var alumnos = getAlumnos();
+      //  var alumnos = getAlumnos();
 
-        $.each(alumnos, function (index, value) {
+    /*    $.each(alumnos, function (index, value) {
             
             var persona = value;
             if ((usuario == persona.getNombre() || usuario == persona.getAlias()) && passw == persona.getContraseña()) {
@@ -29,8 +29,8 @@ function clickBtnLogin() {
             else {
                 alert("ESTO NO VA");
             }
-        })
+        })*/
 
-        window.location.href = "/Home/Login";
+        window.location = "/Home/Principal";
     });
 }

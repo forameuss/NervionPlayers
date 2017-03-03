@@ -1,0 +1,29 @@
+﻿body
+{
+    background-color:rgb(68, 68, 68);
+    color:white;
+}
+
+#divListaPartidos, #divDetallesPartido
+{
+    margin-top: 2%;
+}
+
+#imgPartido, #labelFecha, #labelResultado, #labelLugar, #labelNotas
+{
+    margin-top: 4%;
+    display: block;
+}
+
+li
+{
+    margin-top: 4%;
+}  
+
+@media(min-width:720px)
+{
+    #divDetallesPartido
+    {
+        border-left: 4px solid rgb(98, 134, 193);
+    }
+}

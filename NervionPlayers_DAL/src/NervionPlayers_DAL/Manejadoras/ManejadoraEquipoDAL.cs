@@ -44,6 +44,7 @@ namespace NervionPlayers_DAL.Manejadoras
                         oEquipo.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
                         oEquipo.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
                         oEquipo.Categoria = Convert.ToInt16(lector[ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA]);
+                        //oEquipo.Id_Deporte = Convert.ToInt16(lector[ContratoDB.Deportes_DB.DEPORTES_DB_ID]);
                         try
                         {
                             oEquipo.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];
@@ -84,6 +85,7 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
+                //FALTA EL ID DEL DEPORTE CUANDO ESTE LA RELACION N:M
                 miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Creador_DB ,@Nombre_DB,@Categoria_DB,@Foto_DB,@confirmado_DB)
                                         VALUES (@Id_Creador,@Nombre,@Categoria,@Foto,@Confirmado)";
                 miComando.Connection = conexion;
@@ -130,7 +132,7 @@ namespace NervionPlayers_DAL.Manejadoras
             int filasafectadas = 0;
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();
-
+            //FALTA EL ID DEL DEPORTE CUANDO ESTE LA RELACION N:M
             try
             {
                 conexion = con.openConnection();
@@ -160,6 +162,7 @@ namespace NervionPlayers_DAL.Manejadoras
         /// <returns>Numero de filas afectadas</returns>
         public int actualizarEquipo(Equipo equipo) 
         {
+            //FALTA EL ID DEL DEPORTE CUANDO ESTE LA RELACION N:M
             if (equipo == null)
                 throw new ArgumentNullException("Equipo es nulo");
 
@@ -237,6 +240,7 @@ namespace NervionPlayers_DAL.Manejadoras
                         res.Id_Creador = Convert.ToInt32(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_ID_CREADOR]);
                         res.Nombre = Convert.ToString(lector[ContratoDB.Equipos_DB.EQUIPOS_DB_NOMBRE]);
                         res.Categoria = Convert.ToInt16(lector[ContratoDB.Equipos_DB.EQuIPOS_DB_CATEGORIA]);
+                        //res.Categoria = Convert.ToInt16(lector[ContratoDB.Deportes_DB.DEPORTES_DB_ID]);
                         try
                         {
                             res.Foto = (byte[])lector[ContratoDB.Equipos_DB.EQUIPOS_DB_FOTO];

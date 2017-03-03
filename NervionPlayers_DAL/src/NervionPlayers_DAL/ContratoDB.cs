@@ -89,10 +89,19 @@ namespace NervionPlayers_DAL
 
         }
 
+        public static class AlumnosDeportes_DB
+        {
+
+            public static String ALUMNOSDEPORTES_DB_TABLE_NAME = "AlumnosDeportes";
+            public static String ALUMNOSDEPORTES_DB_ID_ALUMNO = "Id_Alumno";
+            public static String ALUMNOSDEPORTES_DB_ID_DEPORTE = "Id_Deporte";
+        }
+
         public static class ResultadosDuelos_DB
         {
             public static String RESULTADOSDUELOS_DB_TABLE_NAME = "ResultadosDuelos";
             public static String RESULTADOSDUELOS_DB_ID = "Id";
+            public static String RESULTADOSDUELOS_DB_ID_DEPORTE = "Id_Deporte";
             public static String RESULTADOSDUELOS_DB_ID_ALUMNO = "Id_Alumno";
             public static String RESULTADOSDUELOS_DB_GANADOS = "Ganados";
             public static String RESULTADOSDUELOS_DB_EMPATADOS = "Empatados";

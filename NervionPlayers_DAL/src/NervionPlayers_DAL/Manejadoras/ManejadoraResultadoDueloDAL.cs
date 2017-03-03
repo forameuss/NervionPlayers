@@ -42,6 +42,7 @@ namespace NervionPlayers_DAL.Manejadoras
                     {
                         oResultadoDuelo.Id = Convert.ToInt32(lector[ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID]);
                         oResultadoDuelo.Id_Alumno = Convert.ToInt32(lector[ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_ALUMNO]);
+                        oResultadoDuelo.Id_Deporte = Convert.ToInt32(lector[ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_DEPORTE]);
                         oResultadoDuelo.Ganados = Convert.ToInt32(lector[ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_GANADOS]);
                         oResultadoDuelo.Empatados = Convert.ToInt32(lector[ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_EMPATADOS]);
                         oResultadoDuelo.Perdidos = Convert.ToInt32(lector[ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_PERDIDOS]);
@@ -76,16 +77,18 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Alumno_DB) VALUES 
-                                        (@Id_Alumno)";
+                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name](@Id_Alumno_DB,@Id_Deporte_DB) VALUES 
+                                        (@Id_Alumno,@Id_Deporte)";
                 miComando.Connection = conexion;
 
                 //Parametros Tabla
                 miComando.Parameters.AddWithValue("@Id_Alumno_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_ALUMNO);
+                miComando.Parameters.AddWithValue("@Id_Deporte_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_DEPORTE);
                 miComando.Parameters.AddWithValue("@table_Name", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_TABLE_NAME);
 
                 //Parametros ResultadoDuelo
                 miComando.Parameters.AddWithValue("@Id_Alumno", resultadoDuelo.Id_Alumno);
+                miComando.Parameters.AddWithValue("@Id_Deporte", resultadoDuelo.Id_Deporte);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 
@@ -154,7 +157,7 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = @"UPDATE [@table_Name] set @Id_Alumno_DB=@Id_Alumno, @Ganados_DB=@Ganados,
+                miComando.CommandText = @"UPDATE [@table_Name] set @Id_Alumno_DB=@Id_Alumno,@Id_Deporte_DB=@Id_Deporte @Ganados_DB=@Ganados,
                                                                   @Empatados_DB=@Empatados, @Perdidos_DB=@Perdidos
                                             WHERE @Id_DB=@Id";
 
@@ -163,6 +166,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 //Parametros Tabla
                 miComando.Parameters.AddWithValue("@Id_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID);
                 miComando.Parameters.AddWithValue("@Id_Alumno_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_ALUMNO);
+                miComando.Parameters.AddWithValue("@Id_Deporte_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_ID_DEPORTE);
                 miComando.Parameters.AddWithValue("@Ganados_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_GANADOS);
                 miComando.Parameters.AddWithValue("@Empatados_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_EMPATADOS);
                 miComando.Parameters.AddWithValue("@Perdidos_DB", ContratoDB.ResultadosDuelos_DB.RESULTADOSDUELOS_DB_PERDIDOS);
@@ -171,6 +175,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 //Parametros Resultado Duelo
                 miComando.Parameters.AddWithValue("@Id", resultadoDuelo.Id);
                 miComando.Parameters.AddWithValue("@Id_Alumno", resultadoDuelo.Id_Alumno);
+                miComando.Parameters.AddWithValue("@Id_Deporte", resultadoDuelo.Id_Deporte);
                 miComando.Parameters.AddWithValue("@Ganados", resultadoDuelo.Ganados);
                 miComando.Parameters.AddWithValue("@Empatados", resultadoDuelo.Empatados);
                 miComando.Parameters.AddWithValue("@Perdidos", resultadoDuelo.Perdidos);

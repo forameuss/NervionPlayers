@@ -101,6 +101,7 @@ Id_Deporte int not null
 )
 
 CREATE TABLE ResultadosDuelos(
+Id int identity(1,1),
 Id_Alumno int not null,
 Id_Deporte int not null,
 Ganados int not null default 0,
@@ -134,7 +135,7 @@ Alter table Deportes add constraint PK_Deportes primary key (Id);
 Alter table Dispositivos add constraint PK_Dispositivos primary key (Id);
 Alter table Partidos add constraint PK_Partidos primary key (Id);
 Alter table Duelos add constraint PK_Duelos primary key (Id);
-Alter table ResultadosDuelos add constraint PK_ResultadosDuelos primary key (Id_Alumno,Id_Deporte);
+Alter table ResultadosDuelos add constraint PK_ResultadosDuelos primary key (Id);
 Alter table ResultadosPartidos add constraint PK_ResultadosPartidos primary key (Id);
 
 Alter table AlumnosEquipos add constraint PK_AlumnosEquipos primary key (Id_Alumno,Id_Equipo);

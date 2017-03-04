@@ -205,7 +205,8 @@ namespace NervionPlayers_BL.Manejadoras
         private bool isPassValid(String pass)
         {
             bool isValid = false;
-            Regex RgxUrl = new Regex("[^a-z0-9]");
+            //Añado A-Z porque sino, detecta las mayúsculas como caracter especial
+            Regex RgxUrl = new Regex("[^a-zA-Z0-9]");
             bool isSpecialChar = RgxUrl.IsMatch(pass);
             bool isUpper = pass.Any(x => char.IsUpper(x));
             bool isDigit = pass.Any(x => char.IsDigit(x));

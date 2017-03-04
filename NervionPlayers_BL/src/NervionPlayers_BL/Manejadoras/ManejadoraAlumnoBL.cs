@@ -84,7 +84,7 @@ namespace NervionPlayers_BL.Manejadoras
             if (!isPassValid(alumno.Contraseña))
                 throw new InvalidValueException("La contraseña del alumno no cumple con los requisitos");
 
-            if (!isPassValid(alumno.Correo))
+            if (!isValidEmail(alumno.Correo))
                 throw new InvalidValueException("El correo no es valido");
 
             if (alumno.Curso < CURSO_MINIMO_ACEPTADO || alumno.Curso > CURSO_MAXIMO_ACEPTADO)
@@ -122,7 +122,7 @@ namespace NervionPlayers_BL.Manejadoras
             if (!isPassValid(alumno.Contraseña))
                 throw new InvalidValueException("La contraseña del alumno no cumple con los requisitos");
 
-            if (!isPassValid(alumno.Correo))
+            if (!isValidEmail(alumno.Correo))
                 throw new InvalidValueException("El correo no es valido");
 
             //Todo es correcto se llama a DAL

@@ -55,14 +55,14 @@ namespace nervionPlayers_API.Controllers
         /// </summary>
         /// <param name="value">Valores para la creacion del nuevo alumno</param>
         [HttpPost]
-        public void PostAlumnos([FromBody] Alumno value)
+        public Alumno PostAlumnos([FromBody] Alumno value)
         {
-            int filas = 0;
+            Alumno alumno=null;
 
             try
             {
 
-                filas = manejadoraAlumnos.insertarAlumno(value);
+                alumno = manejadoraAlumnos.insertarAlumno(value);
 
             }
             catch (InvalidValueException e)
@@ -72,10 +72,11 @@ namespace nervionPlayers_API.Controllers
             }
 
             //quitar esto cuando la DAL nos lance el error
-            if (filas < 1)
+            if (alumno== null)
             {
                 Response.StatusCode = 400; //Bad request
             }
+            return alumno;
 
         }
         [HttpPost("equipo")]
@@ -100,6 +101,19 @@ namespace nervionPlayers_API.Controllers
             {
                 Response.StatusCode = 400; //Bad request
             }
+        }
+
+        /// <summary>
+        /// Inserta un alumno en un deporte, para ello es necesario que en el cuerpo envíe el id del alumno y el 
+        /// id del equipo
+        /// </summary>
+        /// <param name="alumnoDeporte"></param>
+        /// <returns></returns>
+        [HttpPost("deporte")]
+        public int insertaAlumnoDeporte([FromBody] AlumnoDeporte alumnoDeporte)
+        {
+            ManejadoraAlumnoDeporteBL miMane = new ManejadoraAlumnoDeporteBL();
+            return miMane.insertarAlumnoDeporte(alumnoDeporte);
         }
         #endregion
         #region PUT
@@ -178,12 +192,17 @@ namespace nervionPlayers_API.Controllers
         #endregion
 
         #region Deportes
+        /// <summary>
+        /// Método que devuelve todos los deportes individuales a los que está asociado un alumno
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}/deportes")]
         public IEnumerable<Deporte> getDeportesAlumno(int id)
         {
-            ObservableCollection<Deporte> listado = new ObservableCollection<Deporte>();
-
+            return listado.listadoAlumnosDeportes(id);
         }
+
         #endregion
     }
 }

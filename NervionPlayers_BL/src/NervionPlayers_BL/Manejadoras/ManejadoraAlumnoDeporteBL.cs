@@ -15,5 +15,10 @@ namespace NervionPlayers_BL.Manejadoras
         {
             return miMane.insertarAlumnoDeporte(oAlumnoDeporte);
         }
+
+        public int borraAlumnoDeporte(int id_Alumno,int id_Deporte)
+        {
+            return miMane.borrarAlumnoDeporte(id_Alumno, id_Deporte);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using NervionPlayers_Ent.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace NervionPlayers_DAL.Manejadoras
             con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
         }
 
-        //NO ES NECESARIO HACER EL GET DE ALUMNOEQUIPO
+        //TODO revisar porque no funciona
 
         /// <summary>
         /// Añade un nuevo oAlumnoDeporte en la base de datos
@@ -33,7 +34,7 @@ namespace NervionPlayers_DAL.Manejadoras
             try
             {
                 conexion = con.openConnection();
-                miComando.CommandText = @"INSERT INTO [dbo].[@table_Name] (@Id_Alumno_DB,@Id_Deporte_DB).
+                miComando.CommandText = @"INSERT INTO [@table_Name] (@Id_Alumno_DB,@Id_Deporte_DB)
                                     VALUES (@Id_Alumno,@Id_Deporte)";
                 miComando.Connection = conexion;
 
@@ -44,7 +45,7 @@ namespace NervionPlayers_DAL.Manejadoras
 
                 //Parametros Equipo
                 miComando.Parameters.AddWithValue("@Id_Alumno", oAlumnoDeporte.Id_Alumno);
-                miComando.Parameters.AddWithValue("@Id_Deporte", oAlumnoDeporte.iId_Deporte);
+                miComando.Parameters.AddWithValue("@Id_Deporte", oAlumnoDeporte.Id_Deporte);
 
                 filasAfectadas = miComando.ExecuteNonQuery();
 

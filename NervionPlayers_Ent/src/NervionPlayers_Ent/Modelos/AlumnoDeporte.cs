@@ -43,7 +43,7 @@ namespace NervionPlayers_Ent.Modelos
             }
         }
 
-        public int iId_Deporte
+        public int Id_Deporte
         {
             get
             {

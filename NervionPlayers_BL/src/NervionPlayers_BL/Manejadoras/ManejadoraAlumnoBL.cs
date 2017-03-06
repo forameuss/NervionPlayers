@@ -71,7 +71,7 @@ namespace NervionPlayers_BL.Manejadoras
         /// <exception cref="InvalidValueException">En caso de no cumplir con las especificaciones</exception>
         /// <param name="alumno">Objeto alumno</param>
         /// <returns><see cref="ManejadoraAlumnoDAL"/></returns>
-        public int insertarAlumno(Alumno alumno)
+        public Alumno insertarAlumno(Alumno alumno)
         {
             //Comprobacion de los datos del alumno
 

@@ -8,6 +8,7 @@ using NervionPlayers_BL;
 using NervionPlayers_DAL.Listado;
 using NervionPlayers_BL.Manejadoras;
 using NervionPlayers_BL.Model;
+using System.Collections.ObjectModel;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -76,6 +77,29 @@ namespace nervionPlayers_API.Controllers
                 Response.StatusCode = 400; //Bad request
             }
 
+        }
+        [HttpPost("equipo")]
+        public void insertaAlumnoEquipo([FromBody] AlumnoEquipo alumnoEquipo)
+        {
+            int filas = 0;
+            ManejadoraAlumnoEquipoBL miMane = new ManejadoraAlumnoEquipoBL();
+            try
+            {
+
+                filas = miMane.insertarAlumnoEquipo(alumnoEquipo);
+
+            }
+            catch (InvalidValueException e)
+            {
+
+                Response.StatusCode = 400; //Bad request
+            }
+
+            //quitar esto cuando la DAL nos lance el error
+            if (filas < 1)
+            {
+                Response.StatusCode = 400; //Bad request
+            }
         }
         #endregion
         #region PUT
@@ -151,6 +175,15 @@ namespace nervionPlayers_API.Controllers
             return listado.listadoDuelosBL(id);
         }
 
+        #endregion
+
+        #region Deportes
+        [HttpGet("{id}/deportes")]
+        public IEnumerable<Deporte> getDeportesAlumno(int id)
+        {
+            ObservableCollection<Deporte> listado = new ObservableCollection<Deporte>();
+
+        }
         #endregion
     }
 }

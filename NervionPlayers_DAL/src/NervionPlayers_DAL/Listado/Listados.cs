@@ -160,6 +160,67 @@ namespace NervionPlayers_DAL.Listado
         }
 
         /// <summary>
+        /// Método que devuelve todos los deportes de un Alumno
+        /// </summary>
+        /// <param name="idAlumno"></param>
+        /// <returns></returns>
+        public ObservableCollection<Deporte> listadoAlumnosDeportes(int idAlumno)
+        {
+            ObservableCollection<Deporte> deportes = new ObservableCollection<Deporte>();
+            Connection con = new Connection("ProfesorNervion", "1iNu#L0par7€T0");
+            Deporte oDeporte;
+
+            SqlConnection conexion;
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = String.Format(
+                "Select D.{0},D.{1}"
+                + " FROM {2} as D"
+                + " inner join {3} as AD on D.{0}=AD.{4}"
+                + " where {5}={6}",
+                ContratoDB.Deportes_DB.DEPORTES_DB_ID,
+                ContratoDB.Deportes_DB.DEPORTES_DB_NOMBRE,
+                ContratoDB.Deportes_DB.DEPORTES_DB_TABLE_NAME,
+                ContratoDB.AlumnosDeportes_DB.ALUMNOSDEPORTES_DB_TABLE_NAME,
+                ContratoDB.AlumnosDeportes_DB.ALUMNOSDEPORTES_DB_ID_DEPORTE,
+                ContratoDB.AlumnosDeportes_DB.ALUMNOSDEPORTES_DB_ID_ALUMNO,
+                idAlumno
+                );
+
+            SqlDataReader lector;
+
+            try
+            {
+                conexion = con.openConnection();
+                comando.Connection = conexion;
+                lector = comando.ExecuteReader();
+
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        oDeporte = new Deporte();
+                        oDeporte.Id = Convert.ToInt32(lector[ContratoDB.Deportes_DB.DEPORTES_DB_ID]);
+                        oDeporte.Nombre = Convert.ToString(lector[ContratoDB.Deportes_DB.DEPORTES_DB_NOMBRE]);
+
+                        deportes.Add(oDeporte);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+
+            return (deportes);
+
+        }
+
+        /// <summary>
         /// Metodo que obtiene una ObservableCollection<Equipo> de todos los equipos
         /// </summary>
         /// <returns>ObservableCollection<Equipo> equipos</returns>

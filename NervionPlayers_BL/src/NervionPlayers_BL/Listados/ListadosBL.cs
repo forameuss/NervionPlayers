@@ -33,6 +33,16 @@ namespace NervionPlayers_BL
         }
 
         /// <summary>
+        /// Obtiene un listado de deportes de un alumno
+        /// </summary>
+        /// <param name="idAlumno"></param>
+        /// <returns></returns>
+        public ObservableCollection<Deporte> listadoAlumnosDeportes(int idAlumno)
+        {
+            return listadosDAL.listadoAlumnosDeportes(idAlumno);
+        }
+
+        /// <summary>
         /// Obtiene un listado de los equipos
         /// </summary>
         /// <returns>Observable Collection de Equipo</returns>

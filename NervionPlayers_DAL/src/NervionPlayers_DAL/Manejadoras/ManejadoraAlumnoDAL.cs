@@ -124,10 +124,10 @@ namespace NervionPlayers_DAL.Manejadoras
         /// Añade un nuevo Alumno en la base de datos
         /// </summary>
         /// <param name="alumno">Recibe un  tipo Alumno</param>
-        /// <returns>retorna el numero de filas afectadas , int</returns>
-        public int insertarAlumno(Alumno alumno)
+        /// <returns>retorna el alumno</returns>
+        public Alumno insertarAlumno(Alumno alumno)
         {
-            int filasAfectadas = 0;
+            Alumno miAlumno;
             SqlConnection conexion;
             SqlCommand miComando = new SqlCommand();
 
@@ -168,7 +168,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 miComando.Parameters.AddWithValue("@Letra", alumno.Letra);
                 miComando.Parameters.AddWithValue("@Observaciones", alumno.Observaciones);
 
-                filasAfectadas = miComando.ExecuteNonQuery();
+                miComando.ExecuteNonQuery();
 
             }
             catch (SqlException ex)
@@ -180,7 +180,7 @@ namespace NervionPlayers_DAL.Manejadoras
                 con.CloseConnection();
             }
 
-            return filasAfectadas;
+            return obtenerAlumno(alumno.Alias,alumno.Contraseña);
         }
 
         /// <summary>
